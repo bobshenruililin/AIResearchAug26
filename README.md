@@ -1,11 +1,17 @@
-# Calibration under covariate shift (tabular, sklearn)
+# Feature perturbation vs selection shift (tabular, sklearn)
 
 Workshop-style analysis study: **do post-hoc calibrators fitted on i.i.d.
-validation data stay calibrated when test covariates shift?**
+validation data stay calibrated when test features are perturbed with
+frozen labels, versus when test points are selected on \(X\)?**
+
+The headline mechanism is **not** covariate shift. Frozen-label Gaussian
+mean-shift changes \(P(Y\mid X)\) at the observed \(x\). Selection
+controls that keep \((X,y)\) pairs are closer to covariate shift and
+show a much smaller ECE change.
 
 This repository is the source of truth. Paper numbers come only from
 `results/*.json` written by experiment scripts. Citations come only from
-`paper/verified.bib` after live API verification.
+`paper/verified.bib` after live API verification. Draft: `paper/main.pdf`.
 
 ## Constraints
 
@@ -20,6 +26,7 @@ make setup
 make test
 make smoke
 make fresh-clone-test   # clones into /tmp and repeats setup+test+smoke
+make summary            # stats + figures + paper/numbers.tex
 ```
 
 ## Layout

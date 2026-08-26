@@ -12746,6 +12746,28 @@
     "exp04_n_failed": 0,
     "exp04_n_ok": 240,
     "exp04_seconds": 22.9881374835968,
+    "exp04_split_sizes": {
+      "breast_cancer": {
+        "n_cal": 142,
+        "n_test": 143,
+        "n_train": 284
+      },
+      "synthetic_multiclass": {
+        "n_cal": 450,
+        "n_test": 450,
+        "n_train": 900
+      },
+      "synthetic_shift": {
+        "n_cal": 500,
+        "n_test": 500,
+        "n_train": 1000
+      },
+      "wine": {
+        "n_cal": 44,
+        "n_test": 45,
+        "n_train": 89
+      }
+    },
     "exp05": {
       "delta_ece": {
         "breast_cancer|hgb|importance_resample|histogram": {
@@ -13089,6 +13111,25 @@
       "n_ok": 60,
       "seconds": 5.032357454299927
     },
+    "exp05_datasets": [
+      "breast_cancer",
+      "synthetic_shift"
+    ],
+    "exp05_matched_gaussian_none_cellmean_delta_acc": {
+      "max": -2.2204460492503132e-17,
+      "mean": -0.12755151515151517,
+      "min": -0.312,
+      "n": 6,
+      "std": 0.12144473541460353
+    },
+    "exp05_matched_gaussian_none_cellmean_delta_ece": {
+      "max": 0.2921412092589243,
+      "mean": 0.10494132318033245,
+      "min": 0.0016522510454739959,
+      "n": 6,
+      "std": 0.10935517352294805
+    },
+    "exp05_n_dataset_model": 6,
     "exp05_none_importance_resample_cellmean_delta_ece": {
       "max": 0.049938620584275104,
       "mean": 0.011007641900227278,
@@ -13102,6 +13143,13 @@
       "min": 0.00447062841381999,
       "n": 6,
       "std": 0.00635343091703713
+    },
+    "exp05_quantile_slice_none_cellmean_delta_acc": {
+      "max": -0.0032000000000000028,
+      "mean": -0.016360787360787367,
+      "min": -0.03292540792540795,
+      "n": 6,
+      "std": 0.011376798455142351
     },
     "exp06_isotonic_minus_temperature_shifted_ece": {
       "breast_cancer|logreg|100": {
@@ -13691,6 +13739,82 @@
         "s": 1.5
       }
     },
+    "pooled_none_s1.5_by_corpus": {
+      "sklearn": {
+        "calibrator": "none",
+        "datasets": [
+          "breast_cancer",
+          "wine"
+        ],
+        "delta_ece": {
+          "max": 0.136241258741028,
+          "mean": 0.04248122350705129,
+          "min": -0.006738196813208246,
+          "n": 30,
+          "std": 0.03865308304720833
+        },
+        "n": 30,
+        "n_neg": 5,
+        "n_pos": 25,
+        "s": 1.5
+      },
+      "synthetic": {
+        "calibrator": "none",
+        "datasets": [
+          "synthetic_shift",
+          "synthetic_multiclass"
+        ],
+        "delta_ece": {
+          "max": 0.5330143390029546,
+          "mean": 0.1842559563764041,
+          "min": -0.04066940476192276,
+          "n": 30,
+          "std": 0.18292832073787393
+        },
+        "n": 30,
+        "n_neg": 4,
+        "n_pos": 26,
+        "s": 1.5
+      }
+    },
+    "pooled_none_s1.5_other_metrics": {
+      "delta_acc": {
+        "max": 0.006993006993006978,
+        "mean": -0.1557757575757576,
+        "min": -0.5444444444444444,
+        "n": 60,
+        "std": 0.16251650615363933
+      },
+      "delta_brier": {
+        "max": 1.0000652152374927,
+        "mean": 0.2571243535111673,
+        "min": -0.005960409718902215,
+        "n": 60,
+        "std": 0.29295706751544903
+      },
+      "delta_nll": {
+        "max": 9.261304772019663,
+        "mean": 0.7918505202463434,
+        "min": -0.02701924577979166,
+        "n": 60,
+        "std": 1.4911683351544511
+      },
+      "ece_iid": {
+        "max": 0.17431534391540998,
+        "mean": 0.05293853823853887,
+        "min": 0.012545044437768507,
+        "n": 60,
+        "std": 0.03543897946993883
+      },
+      "ece_shifted": {
+        "max": 0.5525417848489963,
+        "mean": 0.16630712818026658,
+        "min": 0.02315419214152086,
+        "n": 60,
+        "std": 0.14634303993077274
+      },
+      "n": 60
+    },
     "source_experiments": [
       "exp04_main_h1.json",
       "exp05_ablate_shift_family.json",
@@ -13700,5 +13824,5 @@
     "status": "ok"
   },
   "schema": "calibshift.result.v1",
-  "written_at_utc": "2026-08-26T07:51:07.162253+00:00"
+  "written_at_utc": "2026-08-26T08:14:25.943793+00:00"
 }

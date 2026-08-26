@@ -1,4 +1,4 @@
-"""Post-hoc calibration under covariate shift — core library."""
+"""Post-hoc calibration under feature perturbation and selection shift."""
 
 from .calibrators import (
     HistogramBinningCalibrator,

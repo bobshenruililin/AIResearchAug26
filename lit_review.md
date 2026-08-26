@@ -1,5 +1,10 @@
 # Literature review: post-hoc calibration under covariate shift (tabular)
 
+**P6 note (2026-08-26):** The paper's supported claim is frozen-label
+feature perturbation, not covariate shift. H1 as worded in the gap table
+below was withdrawn after the selection-shift ablation; see `analysis.md`.
+This file is the P1 literature snapshot, not the final claim.
+
 **n_verified = 47** (target 20–40; extras retained rather than dropped).
 Sources: Semantic Scholar batch verification (`/tmp/lit_sol`) + live arXiv API
 title-matched IDs. Canonical file: `paper/verified.bib` / `paper/verified_papers.json`.

@@ -23,9 +23,11 @@ columns `[0,1,2,3]` at strengths `{0, 1.0, 1.5, 2.5}`.
 2. **Gaussian feature perturbation (frozen labels) usually raises ECE**
    relative to the matched i.i.d. test set. At strength 1.5, pooled over
    4 datasets × 3 models × 5 seeds (n=60): mean ΔECE is
-   +0.113±0.149 (none). Sign counts: 51/60 positive. Seed-averaged
-   dataset×model means: 12/12 positive. Pooled n=60 Wilcoxon p-values
-   overstate independence and are exploratory.
+   +0.113±0.149 (none). Sign counts: 51/60 positive. Sklearn-only
+   (breast_cancer+wine, n=30) mean ΔECE 0.042 (25/30 positive);
+   synthetics (n=30) mean 0.184 (26/30 positive). Seed-averaged
+   uncalibrated dataset×model means: 12/12 positive. Pooled n=60 Wilcoxon
+   p-values overstate independence and are exploratory (one-sided).
 
 3. **i.i.d.-fitted post-hoc calibrators do not prevent that increase.**
    Temperature/isotonic/histogram still have large positive pooled ΔECE.
@@ -39,8 +41,10 @@ columns `[0,1,2,3]` at strengths `{0, 1.0, 1.5, 2.5}`.
 
 5. **Shift family matters, and the headline mechanism is not covariate
    shift.** Frozen-label Gaussian feature mean-shift changes $P(Y|X)$.
-   Quantile slicing on feature 0 (selection; $P(Y|X)$ preserved) produces
-   small ΔECE (cell-mean ≈ 0.016). Importance resampling is mixed. The
+   Quantile slicing on feature 0 (selection; $P(Y|X)$ preserved) was run
+   on 6 dataset×model cells (breast_cancer and synthetic_shift only) and
+   produces small ΔECE (cell-mean ≈ 0.016), with a milder accuracy drop
+   than matched Gaussian perturbation on those cells (ΔECE ≈ 0.105). Importance resampling is mixed. The
    H1 story as originally stated about covariate shift is **not
    supported**; the supported story is feature perturbation.
 
@@ -59,29 +63,29 @@ columns `[0,1,2,3]` at strengths `{0, 1.0, 1.5, 2.5}`.
 2. **Not a universal law even for feature perturbation.**
    `breast_cancer` × HGB × none at s=1.5 has ΔECE 0.002±0.009.
 
-2. **Not “post-hoc calibration helps under shift.”** Sign of
+3. **Not “post-hoc calibration helps under shift.”** Sign of
    ECE_shifted(cal) − ECE_shifted(none) is **dataset/model dependent**.
    Wine RF: isotonic *helps* by −0.123 ECE (trees were badly calibrated).
    Breast-cancer logreg: isotonic *hurts* by +0.074. We do not claim a
    winner among temperature / isotonic / histogram under shift.
 
-3. **Not H2 as a general isotonic-overfit law.** exp06 iso−temp shifted ECE
+4. **Not H2 as a general isotonic-overfit law.** exp06 iso−temp shifted ECE
    is positive for some n_cal×model cells and negative for others
    (breast_cancer RF at n_cal=100 and 142). Killed as a primary claim.
 
-4. **Not “oracle-weighted conformal restores coverage.”** Pilot exp03: 1-D
+5. **Not “oracle-weighted conformal restores coverage.”** Pilot exp03: 1-D
    histogram density ratio on feature 0 did not beat unweighted coverage
    (0.744 vs 0.747 at s=1.5). The 4-feature mean-shift is not that 1-D
    shift. H3-as-stated is killed.
 
-5. **Not ImageNet / deep-net calibration.** These are sklearn models on
+6. **Not ImageNet / deep-net calibration.** These are sklearn models on
    ≤2000-point tabular sets. ECE magnitudes are not comparable to Guo/Ovadia.
 
-6. **Not that accuracy is preserved.** Shifted accuracy drops with strength
+7. **Not that accuracy is preserved.** Shifted accuracy drops with strength
    (synthetic logreg 0.932 → 0.620 at s=1.5). Some ECE increase is entangled
    with accuracy drop / confidence on the wrong class. We report both.
 
-7. **Not causal identification of “pure covariate shift.”** Gaussian
+8. **Not causal identification of “pure covariate shift.”** Gaussian
    mean-shift changes P(X) and, because X is predictive, the test label
    mix and Bayes error can move. Quantile slice has the same caveat.
 
@@ -97,14 +101,21 @@ columns `[0,1,2,3]` at strengths `{0, 1.0, 1.5, 2.5}`.
 
 ## Paper claims allowed (abstract ⊆ this list)
 
-- Under frozen-label Gaussian feature perturbation at s=1.5, ECE on the
-  perturbed test is higher than i.i.d. ECE in most seed-level cells and in
-  all 12 dataset×model seed-averaged means (exploratory Wilcoxon).
+- Under frozen-label Gaussian feature perturbation at s=1.5, uncalibrated
+  ECE on the perturbed test is higher than i.i.d. ECE in 51/60 seed-level
+  cells and in all 12 uncalibrated dataset×model seed-averaged means
+  (sign count; models sharing a dataset are not independent). Pooled
+  mean ΔECE mixes sklearn cells (~0.042) with synthetics (~0.184).
 - i.i.d. post-hoc maps do not reliably prevent that increase; they can help
-  or hurt vs. none.
+  or hurt vs. none. Wine RF isotonic *helps* shifted ECE (0.175 → 0.052);
+  breast-cancer logreg isotonic *hurts*.
 - Selection-based shifts that preserve (X,y) pairs (closer to covariate
-  shift) yield much smaller ΔECE and do **not** support a general
-  “calibration fails under covariate shift” claim.
+  shift) were measured on 6 dataset×model cells from two datasets, are
+  not strength-matched to s=1.5 perturbation, and yield smaller ΔECE.
+  They do **not** support a general “calibration fails under covariate
+  shift” claim.
 - Unweighted split-conformal (LAC, not APS) coverage declines under
-  feature perturbation.
+  feature perturbation (report seed sd).
 - The HGB-on-breast-cancer cell is a small-effect exception.
+- Pooled ΔBrier and ΔNLL on the same uncalibrated s=1.5 cells are
+  positive; mean accuracy change is negative.

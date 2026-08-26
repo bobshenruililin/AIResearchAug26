@@ -1,6 +1,8 @@
-"""Covariate-shift mechanisms that change P(X) without relabeling.
+"""Test-time feature perturbation and selection mechanisms.
 
-All methods return (X_out, y_out, meta). Labels are never shuffled.
+Gaussian mean-shift freezes labels and does not preserve P(Y|X).
+Selection operators keep original (X, y) pairs. Labels are never shuffled.
+All methods return (X_out, y_out, meta).
 """
 
 from __future__ import annotations

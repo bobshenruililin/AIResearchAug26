@@ -12,7 +12,7 @@ from collections import defaultdict
 from pathlib import Path
 
 import numpy as np
-from scipy.stats import wilcoxon
+from scipy.stats import binomtest, wilcoxon
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -37,9 +37,14 @@ def wilcoxon_gt0(xs: list[float]) -> dict:
     # Wilcoxon on paired difference vs 0; alternative greater.
     try:
         stat, p = wilcoxon(a, alternative="greater", zero_method="wilcox")
-        return {"stat": float(stat), "p_greater": float(p), "n": int(a.size)}
+        return {
+            "stat": float(stat),
+            "p_greater": float(p),
+            "n": int(a.size),
+            "alternative": "greater",
+        }
     except ValueError as exc:
-        return {"error": str(exc), "n": int(a.size)}
+        return {"error": str(exc), "n": int(a.size), "alternative": "greater"}
 
 
 def main() -> None:
@@ -117,6 +122,41 @@ def main() -> None:
             }
         )
 
+    def pool_delta(ds_list: list[str], cal: str) -> dict:
+        diffs = []
+        for ds in ds_list:
+            for m in models:
+                diffs.extend(x["delta_ece"] for x in G[(ds, m, 1.5, cal)])
+        return {
+            "datasets": list(ds_list),
+            "s": 1.5,
+            "calibrator": cal,
+            "delta_ece": mean_std(diffs),
+            "n_pos": int(sum(d > 1e-12 for d in diffs)),
+            "n_neg": int(sum(d < -1e-12 for d in diffs)),
+            "n": len(diffs),
+        }
+
+    sklearn_ds = [d for d in datasets if d in {"breast_cancer", "wine"}]
+    synth_ds = [d for d in datasets if d.startswith("synthetic")]
+    corpus_none = {
+        "sklearn": pool_delta(sklearn_ds, "none"),
+        "synthetic": pool_delta(synth_ds, "none"),
+    }
+
+    none_s15 = []
+    for ds in datasets:
+        for m in models:
+            none_s15.extend(G[(ds, m, 1.5, "none")])
+    none_other = {
+        "delta_acc": mean_std([x["acc_sh"] - x["acc_iid"] for x in none_s15]),
+        "delta_brier": mean_std([x["brier_sh"] - x["brier_iid"] for x in none_s15]),
+        "delta_nll": mean_std([x["nll_sh"] - x["nll_iid"] for x in none_s15]),
+        "ece_iid": mean_std([x["ece_iid"] for x in none_s15]),
+        "ece_shifted": mean_std([x["ece_sh"] for x in none_s15]),
+        "n": len(none_s15),
+    }
+
     # One ΔECE per (dataset, model), averaging seeds (n=12; less pseudo-replication).
     cell_means_none = []
     for ds in datasets:
@@ -129,10 +169,35 @@ def main() -> None:
             "calibrator": "none",
             "shift_strength": 1.5,
             "hypothesis": "seed-averaged delta_ece > 0 over dataset x model cells",
+            "note": "exploratory; models that share a dataset are not independent",
             **wilcoxon_gt0(cell_means_none),
             "n_pos": int(sum(d > 1e-12 for d in cell_means_none)),
             "n_neg": int(sum(d < -1e-12 for d in cell_means_none)),
             "delta_ece": mean_std(cell_means_none),
+        }
+    )
+
+    dataset_means_none = []
+    for ds in datasets:
+        diffs = []
+        for m in models:
+            diffs.extend(x["delta_ece"] for x in G[(ds, m, 1.5, "none")])
+        dataset_means_none.append(float(np.mean(diffs)))
+    n_pos_ds = int(sum(d > 1e-12 for d in dataset_means_none))
+    sign_ds = binomtest(n_pos_ds, len(dataset_means_none), 0.5, alternative="greater")
+    tests["tests"].append(
+        {
+            "name": "sign_delta_ece_gt0_s1.5_none_dataset_means",
+            "calibrator": "none",
+            "shift_strength": 1.5,
+            "hypothesis": "dataset-mean delta_ece > 0 (one-sided sign/binomial)",
+            "alternative": "greater",
+            "n": len(dataset_means_none),
+            "n_pos": n_pos_ds,
+            "n_neg": int(sum(d < -1e-12 for d in dataset_means_none)),
+            "p_greater": float(sign_ds.pvalue),
+            "delta_ece": mean_std(dataset_means_none),
+            "note": "one mean per dataset; models and seeds pooled inside the dataset",
         }
     )
 
@@ -207,6 +272,37 @@ def main() -> None:
     qs_none = [v["mean"] for k, v in e5s["delta_ece"].items() if k.endswith("|quantile_slice|none")]
     imp_none = [v["mean"] for k, v in e5s["delta_ece"].items() if k.endswith("|importance_resample|none")]
 
+    e5_payload = load("exp05_ablate_shift_family.json")["payload"]
+    e5_ds = list(dict.fromkeys(c["dataset"] for c in e5_payload["cells"]))
+    e5_models = list(dict.fromkeys(c["model"] for c in e5_payload["cells"]))
+    matched_g = []
+    matched_g_acc = []
+    for ds in e5_ds:
+        for m in e5_models:
+            xs = G[(ds, m, 1.5, "none")]
+            matched_g.append(float(np.mean([x["delta_ece"] for x in xs])))
+            matched_g_acc.append(float(np.mean([x["acc_sh"] - x["acc_iid"] for x in xs])))
+    qs_acc_by_cell: dict[tuple[str, str], list[float]] = defaultdict(list)
+    for cell in e5_payload["cells"]:
+        if cell["shift"]["kind"] != "quantile_slice":
+            continue
+        row = next(r for r in cell["rows"] if r["calibrator"] == "none")
+        qs_acc_by_cell[(cell["dataset"], cell["model"])].append(
+            float(row["shifted"]["accuracy"] - row["iid"]["accuracy"])
+        )
+    qs_acc_cellmeans = [float(np.mean(v)) for v in qs_acc_by_cell.values()]
+
+    split_sizes = {}
+    for cell in payload["cells"]:
+        ds = cell["dataset"]
+        if ds in split_sizes:
+            continue
+        split_sizes[ds] = {
+            "n_train": int(cell["n_train"]),
+            "n_cal": int(cell["n_cal"]),
+            "n_test": int(cell["n_test"]),
+        }
+
     from calibshift.io import write_result
 
     write_result(
@@ -223,17 +319,26 @@ def main() -> None:
             "exp04_n_failed": payload["n_failed"],
             "exp04_seconds": payload["seconds"],
             "pooled_delta_ece_s1.5": pooled,
+            "pooled_none_s1.5_by_corpus": corpus_none,
+            "pooled_none_s1.5_other_metrics": none_other,
             "dataset_model_mean_delta_ece_s1.5_none": mean_std(cell_means_none),
             "cells": cells_summary,
             "ece_shifted_minus_none_s1.5": help_rows,
             "iid_sanity_s0_none": iid_sanity,
+            "exp04_split_sizes": split_sizes,
             "exp05": e5s,
+            "exp05_datasets": e5_ds,
+            "exp05_n_dataset_model": len(qs_none),
             "exp06_isotonic_minus_temperature_shifted_ece": ncal_out,
             "exp07_noise_feature_delta_ece": noise_out,
             "exp05_none_quantile_slice_cellmean_delta_ece": mean_std(qs_none),
             "exp05_none_importance_resample_cellmean_delta_ece": mean_std(imp_none),
+            "exp05_matched_gaussian_none_cellmean_delta_ece": mean_std(matched_g),
+            "exp05_quantile_slice_none_cellmean_delta_acc": mean_std(qs_acc_cellmeans),
+            "exp05_matched_gaussian_none_cellmean_delta_acc": mean_std(matched_g_acc),
         },
     )
+    tests["n_tests"] = len(tests["tests"])
     write_result(ROOT / "results" / "stats_tests.json", tests)
     print("wrote results/summary_main.json and results/stats_tests.json")
     for t in tests["tests"][:4]:

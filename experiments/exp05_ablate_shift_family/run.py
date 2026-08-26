@@ -1,4 +1,4 @@
-"""P3 ablation: alternative covariate-shift mechanisms."""
+"""P3 ablation: selection shifts that keep (X, y) pairs."""
 
 from __future__ import annotations
 

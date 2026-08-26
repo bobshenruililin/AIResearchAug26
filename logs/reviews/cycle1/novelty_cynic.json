@@ -1,0 +1,31 @@
+{
+  "persona": "novelty-cynic",
+  "scores": {
+    "novelty": 4,
+    "positioning": 8,
+    "honesty_of_claims": 9,
+    "overall": 6
+  },
+  "fabrication_flag": false,
+  "fabrication_evidence": [],
+  "must_fix": [
+    "Qualify the novelty claim in the Introduction: 'we found no verified paper that measures...' is based only on the authors' own 47-entry verified.bib set (built from Semantic Scholar batch + arXiv title matching). That is a shallow novelty check for a claim phrased as a gap in the literature. Either state the search scope explicitly in the paper ('within our verified set of 47 papers') or perform and report a broader systematic search covering applied/tabular-domain venues (healthcare drift, credit scoring, dataset-shift monitoring), where calibration-under-drift measurements for classical models plausibly already exist.",
+    "Fix the attribution inconsistency: lit_review.md line 71 names the closest prior work as 'Pampari & Pfister', but verified.bib (pampari2020unsupervised) lists Pampari & Ermon. Any downstream text derived from the lit review must use the correct authors.",
+    "The Related Work section should state explicitly what outcome would have been surprising given Ovadia/Tomani/Tibshirani. As written, every headline result (ECE rises under shift; i.i.d. calibrators do not transfer; unweighted conformal undercovers) is the outcome those prior works predict. The paper concedes this in the lit review ('If our numbers merely reproduce their qualitative story... that is still a valid analysis result') but the main text should say so as plainly."
+  ],
+  "weaknesses": [
+    "Marginal novelty: the qualitative findings are exactly what the cited prior work predicts. Ovadia et al. 2019 and Tomani et al. 2021 established that i.i.d.-fitted post-hoc calibration degrades under shift (for NNs); Tibshirani et al. 2019 proves unweighted split conformal loses coverage under covariate shift. The contribution reduces to 'the same story holds for sklearn LogReg/RF/HGB under a synthetic Gaussian mean-shift', which is a confirmation on an easier model class, not a new phenomenon.",
+    "The shift is synthetic and entangled with a large accuracy drop (synthetic logreg 0.932 -> 0.620 at s=1.5, per analysis.md item 6). A mean-shift of predictive features changes the label mix and Bayes error (analysis.md item 7 admits no causal identification of 'pure covariate shift'), so 'calibration fails under covariate shift' is partly 'the test set got much harder'. The paper acknowledges this but the title and abstract still lead with 'covariate shift'.",
+    "Dataset selection is very weak for external validity: sklearn breast_cancer, wine, and two make_classification synthetics. No real tabular dataset with a naturally occurring shift (no folktables, no temporal splits), which is what would make the measurement claim interesting rather than constructed.",
+    "The novelty check inside each hypothesis ('No verified paper in our set reports this exact grid', lit_review.md H1(d)) is circular: the verified set was assembled by the same pipeline, and its coverage of applied tabular calibration literature appears thin (it is dominated by deep-net calibration and conformal theory papers).",
+    "Niculescu-Mizil & Caruana 2005 already characterized tree-ensemble miscalibration and isotonic overfit; the H2 ablation adds little beyond that and was killed anyway, so the surviving content is one confirmed directional effect plus one theory-predicted coverage plot."
+  ],
+  "strengths": [
+    "Positioning is unusually honest for this genre: the paper says in the abstract 'This is an analysis result, not a new calibrator', explicitly names Tomani and Pampari as the closest prior work, and states 'We reuse those questions, not their model class'. The gap statement in lit_review.md pre-commits to the possibility that the result merely reproduces prior qualitative stories.",
+    "No fabricated citations: all 22 \\cite keys in main.tex resolve to entries in verified.bib (checked mechanically), and the lit review documents excluding unverifiable classics (Platt 1999, Shimodaira 2000, beta calibration) rather than citing them anyway.",
+    "The abstract is a subset of what analysis.md licenses: the HGB-on-breast-cancer exception, the help-or-hurt asymmetry (wine RF isotonic helps, breast-cancer logreg isotonic hurts), and the failed H2/H3 hypotheses all appear in the abstract or main text rather than being buried.",
+    "Pre-registered kill criteria in lit_review.md were actually applied: H2 and H3 were killed per the decision log with the stated thresholds, and the misspecified 1-D density-ratio weight for H3 is reported as a failure with the correct diagnosis rather than dropped.",
+    "Claims are appropriately scoped: no calibrator ranking under shift, no comparison of ECE magnitudes to ImageNet numbers, and the noise-feature control (exp07) narrows the claim to 'shift of used covariates' rather than any mean shift."
+  ],
+  "confidence": 0.75
+}

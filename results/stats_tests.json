@@ -1,8 +1,10 @@
 {
   "payload": {
+    "n_tests": 22,
     "source": "results/exp04_main_h1.json",
     "tests": [
       {
+        "alternative": "greater",
         "calibrator": "none",
         "hypothesis": "delta_ece > 0 (ECE_shifted > ECE_iid)",
         "n": 60,
@@ -14,6 +16,7 @@
         "stat": 1763.0
       },
       {
+        "alternative": "greater",
         "calibrator": "temperature",
         "hypothesis": "delta_ece > 0 (ECE_shifted > ECE_iid)",
         "n": 60,
@@ -25,6 +28,7 @@
         "stat": 1803.0
       },
       {
+        "alternative": "greater",
         "calibrator": "isotonic",
         "hypothesis": "delta_ece > 0 (ECE_shifted > ECE_iid)",
         "n": 60,
@@ -36,6 +40,7 @@
         "stat": 1795.0
       },
       {
+        "alternative": "greater",
         "calibrator": "histogram",
         "hypothesis": "delta_ece > 0 (ECE_shifted > ECE_iid)",
         "n": 60,
@@ -47,6 +52,7 @@
         "stat": 1802.0
       },
       {
+        "alternative": "greater",
         "calibrator": "none",
         "delta_ece": {
           "max": 0.2921412092589243,
@@ -60,11 +66,32 @@
         "n_neg": 0,
         "n_pos": 12,
         "name": "wilcoxon_delta_ece_gt0_s1.5_none_dataset_model_means",
+        "note": "exploratory; models that share a dataset are not independent",
         "p_greater": 0.000244140625,
         "shift_strength": 1.5,
         "stat": 78.0
       },
       {
+        "alternative": "greater",
+        "calibrator": "none",
+        "delta_ece": {
+          "max": 0.2012584939544594,
+          "mean": 0.11336858994172769,
+          "min": 0.04233321945178645,
+          "n": 4,
+          "std": 0.08302267011437994
+        },
+        "hypothesis": "dataset-mean delta_ece > 0 (one-sided sign/binomial)",
+        "n": 4,
+        "n_neg": 0,
+        "n_pos": 4,
+        "name": "sign_delta_ece_gt0_s1.5_none_dataset_means",
+        "note": "one mean per dataset; models and seeds pooled inside the dataset",
+        "p_greater": 0.0625,
+        "shift_strength": 1.5
+      },
+      {
+        "alternative": "greater",
         "calibrator": "none",
         "dataset": "breast_cancer",
         "delta_ece": {
@@ -81,6 +108,7 @@
         "stat": 105.0
       },
       {
+        "alternative": "greater",
         "calibrator": "temperature",
         "dataset": "breast_cancer",
         "delta_ece": {
@@ -97,6 +125,7 @@
         "stat": 113.0
       },
       {
+        "alternative": "greater",
         "calibrator": "isotonic",
         "dataset": "breast_cancer",
         "delta_ece": {
@@ -113,6 +142,7 @@
         "stat": 115.0
       },
       {
+        "alternative": "greater",
         "calibrator": "histogram",
         "dataset": "breast_cancer",
         "delta_ece": {
@@ -129,6 +159,7 @@
         "stat": 111.0
       },
       {
+        "alternative": "greater",
         "calibrator": "none",
         "dataset": "wine",
         "delta_ece": {
@@ -145,6 +176,7 @@
         "stat": 120.0
       },
       {
+        "alternative": "greater",
         "calibrator": "temperature",
         "dataset": "wine",
         "delta_ece": {
@@ -161,6 +193,7 @@
         "stat": 120.0
       },
       {
+        "alternative": "greater",
         "calibrator": "isotonic",
         "dataset": "wine",
         "delta_ece": {
@@ -177,6 +210,7 @@
         "stat": 114.0
       },
       {
+        "alternative": "greater",
         "calibrator": "histogram",
         "dataset": "wine",
         "delta_ece": {
@@ -193,6 +227,7 @@
         "stat": 120.0
       },
       {
+        "alternative": "greater",
         "calibrator": "none",
         "dataset": "synthetic_shift",
         "delta_ece": {
@@ -209,6 +244,7 @@
         "stat": 114.0
       },
       {
+        "alternative": "greater",
         "calibrator": "temperature",
         "dataset": "synthetic_shift",
         "delta_ece": {
@@ -225,6 +261,7 @@
         "stat": 118.0
       },
       {
+        "alternative": "greater",
         "calibrator": "isotonic",
         "dataset": "synthetic_shift",
         "delta_ece": {
@@ -241,6 +278,7 @@
         "stat": 119.0
       },
       {
+        "alternative": "greater",
         "calibrator": "histogram",
         "dataset": "synthetic_shift",
         "delta_ece": {
@@ -257,6 +295,7 @@
         "stat": 119.0
       },
       {
+        "alternative": "greater",
         "calibrator": "none",
         "dataset": "synthetic_multiclass",
         "delta_ece": {
@@ -273,6 +312,7 @@
         "stat": 117.0
       },
       {
+        "alternative": "greater",
         "calibrator": "temperature",
         "dataset": "synthetic_multiclass",
         "delta_ece": {
@@ -289,6 +329,7 @@
         "stat": 120.0
       },
       {
+        "alternative": "greater",
         "calibrator": "isotonic",
         "dataset": "synthetic_multiclass",
         "delta_ece": {
@@ -305,6 +346,7 @@
         "stat": 119.0
       },
       {
+        "alternative": "greater",
         "calibrator": "histogram",
         "dataset": "synthetic_multiclass",
         "delta_ece": {
@@ -323,5 +365,5 @@
     ]
   },
   "schema": "calibshift.result.v1",
-  "written_at_utc": "2026-08-26T07:51:07.174525+00:00"
+  "written_at_utc": "2026-08-26T08:14:25.955016+00:00"
 }

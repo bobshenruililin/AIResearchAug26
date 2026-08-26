@@ -25,20 +25,26 @@ transfers under two different test-time changes, for logistic regression,
 random forests, and histogram gradient boosting on small tabular datasets
 (no deep nets, no API models). \emph{Feature mean-shift with frozen
 labels}---a perturbation of $X$ that does \textbf{not} preserve
-$P(Y\mid X)$---raises ECE: at strength $1.5$,
+$P(Y\mid X)$---raises ECE: at strength $1.5$, uncalibrated
 $\Delta\mathrm{ECE}=\mathrm{ECE}_{\mathrm{pert}}-\mathrm{ECE}_{\mathrm{iid}}$
-is positive in \NumNoneNPos/\NumNoneN seed-level cells without
-calibration (mean \NumNoneDeltaMean, cell-to-cell sd \NumNoneDeltaStd)
-and remains positive after i.i.d.\ temperature, isotonic, or histogram
-maps. Averaging seeds first, all \NumTwelveMeanNPos/\NumTwelveMeanN{}
-dataset$\times$model means are positive (exploratory Wilcoxon
-$p{=}$\NumTwelveMeanP). The same maps can help or hurt relative to
-doing nothing. By contrast, \emph{selection} on $X$ that keeps the
-original $(X,y)$ pairs---closer to covariate shift---yields much
-smaller $\Delta\mathrm{ECE}$ (quantile-slice cell-mean
-\NumQuantileSliceDeltaMean, sd \NumQuantileSliceDeltaStd). Unweighted
-split-conformal coverage falls under feature perturbation. This is an
-analysis result, not a new calibrator.
+is positive in \NumNoneNPos/\NumNoneN{} seed-level cells (mean
+\NumNoneDeltaMean, cell-to-cell sd \NumNoneDeltaStd). That pool mixes
+sklearn sets (mean \NumSklearnDeltaMean,
+\NumSklearnNPos/\NumSklearnN{} positive) with synthetics (mean
+\NumSynthDeltaMean, \NumSynthNPos/\NumSynthN{} positive) where accuracy
+also falls. Averaging seeds first, all
+\NumTwelveMeanNPos/\NumTwelveMeanN{} uncalibrated
+dataset$\times$model means are positive (a sign count; models that share
+a dataset are not independent). After i.i.d.\ temperature, isotonic, or
+histogram maps, pooled $\Delta\mathrm{ECE}$ remains positive. The same
+maps can help or hurt relative to doing nothing. By contrast,
+\emph{selection} on $X$ that keeps the original $(X,y)$ pairs---closer
+to covariate shift, but a milder change in accuracy---yields smaller
+$\Delta\mathrm{ECE}$ (quantile-slice cell-mean
+\NumQuantileSliceDeltaMean{} on \NumExpFiveN{} dataset$\times$model cells
+from \NumExpFiveNDs{} datasets). Unweighted split-conformal coverage
+falls under feature perturbation. This is an analysis result, not a new
+calibrator.
 \end{abstract}
 
 \section{Introduction}
@@ -81,12 +87,14 @@ ECE via confidence binning \cite{naeini2015bbq,guo2017calibration} is
 biased and definition-dependent
 \cite{nixon2019measuring,kumar2019verified,vaicenavicius2019evaluating};
 we therefore also report Brier score \cite{brier1950verification} and
-NLL \cite{gneiting2007scoring}. Temperature scaling
+NLL \cite{gneiting2007scoring} (pooled $\Delta$ alongside ECE in
+Results). Temperature scaling
 \cite{guo2017calibration} and Dirichlet calibration
 \cite{kull2019dirichlet} target neural nets. Unsupervised recalibration
 under covariate shift exists for neural models
-\cite{pampari2020unsupervised}. Domain-drift post-hoc calibration of CNNs
-is studied by \cite{tomani2021posthoc}. Those papers already
+(Pampari and Ermon~\cite{pampari2020unsupervised}). Domain-drift post-hoc
+calibration of CNNs is studied by Tomani et~al.~\cite{tomani2021posthoc}.
+Those papers already
 \textit{predict} our headline outcomes: ECE should rise under shift, and
 i.i.d.-fitted post-hoc maps should not be a complete fix. A surprising
 result here would have been that logistic regression, random forests, and
@@ -169,38 +177,51 @@ Figure~\ref{fig:heat} shows mean $\Delta\mathrm{ECE}$ at $s{=}1.5$.
 Pooled over \NumNoneN{} dataset$\times$model$\times$seed cells,
 uncalibrated mean $\Delta\mathrm{ECE}=\NumNoneDeltaMean$ with
 cell-to-cell sd \NumNoneDeltaStd{}
-(\NumNoneNPos{} positive, \NumNoneNNeg{} negative). After i.i.d.\
-temperature scaling the pooled mean is \NumTempDeltaMean{} (sd
-\NumTempDeltaStd). These sd figures describe heterogeneity, not a
-confidence interval for the mean. Averaging seeds first, all
-\NumTwelveMeanNPos{} of \NumTwelveMeanN{} dataset$\times$model means
-are positive (exploratory Wilcoxon $p{=}$\NumTwelveMeanP; still not
-independent across models that share a dataset). Breast-cancer histogram
-boosting is the smallest cell (mean \NumBcHgbDelta, seed sd
-\NumBcHgbDeltaStd). Synthetic logistic regression is the largest
-(mean \NumSynthLogregDelta, sd \NumSynthLogregDeltaStd) and coincides
-with a large accuracy drop. Table~\ref{tab:pooled} records seed-pooled
-statistics; \texttt{results/stats\_tests.json} contains \NumNTests{}
-related $p$-values with no multiplicity correction.
+(\NumNoneNPos{} positive, \NumNoneNNeg{} negative). The same cells have
+mean $\Delta$Brier \NumNoneDeltaBrierMean, mean $\Delta$NLL
+\NumNoneDeltaNllMean, and mean accuracy change \NumNoneDeltaAccMean.
+Sklearn-only cells (breast-cancer and wine) have mean
+$\Delta\mathrm{ECE}=\NumSklearnDeltaMean$
+(\NumSklearnNPos/\NumSklearnN{} positive); synthetics have mean
+\NumSynthDeltaMean{} (\NumSynthNPos/\NumSynthN{} positive). After i.i.d.\
+temperature scaling the pooled mean $\Delta\mathrm{ECE}$ is
+\NumTempDeltaMean{} (sd \NumTempDeltaStd). These sd figures describe
+heterogeneity, not a confidence interval for the mean. Averaging seeds
+first, all \NumTwelveMeanNPos{} of \NumTwelveMeanN{} \emph{uncalibrated}
+dataset$\times$model means are positive. An exploratory one-sided
+Wilcoxon on those \NumTwelveMeanN{} means gives
+$p{=}$\NumTwelveMeanP, but models that share a dataset are not
+independent; a dataset-level one-sided sign test on
+\NumDatasetSignN{} dataset means is $p{=}$\NumDatasetSignP.
+Breast-cancer histogram boosting is the smallest cell (mean
+\NumBcHgbDelta, seed sd \NumBcHgbDeltaStd). Synthetic logistic
+regression is the largest (mean \NumSynthLogregDelta, sd
+\NumSynthLogregDeltaStd) and coincides with a large accuracy drop.
+Table~\ref{tab:pooled} records seed-pooled sign counts, not confirmatory
+$p$-values; \texttt{results/stats\_tests.json} contains \NumNTests{}
+related one-sided tests with no multiplicity correction.
 
 \begin{table}[t]
 \centering
 \caption{Seed-pooled $\Delta\mathrm{ECE}$ at feature-perturbation
-$s{=}1.5$ ($n=\NumNoneN$ cells). ``std'' is heterogeneity, not
-$\mathrm{se}$ of the mean. Wilcoxon $p$ on the 60 cells is
-exploratory; a seed-averaged $n=\NumTwelveMeanN$ test is
-$p{=}$\NumTwelveMeanP. \NumNTests{} tests in
-\texttt{results/stats\_tests.json}, unadjusted.}
+$s{=}1.5$. ``std'' is heterogeneity, not $\mathrm{se}$ of the mean.
+The $n=\NumNoneN$ rows are 4 datasets $\times$ 3 models $\times$
+\NumNSeeds{} seeds (pseudo-replicated). Sklearn/synthetic rows are
+uncalibrated subsets. One-sided Wilcoxon $p$-values on this pool are
+exploratory and live in \texttt{results/stats\_tests.json}
+(\NumNTests{} tests, unadjusted).}
 \label{tab:pooled}
 \small
-\begin{tabular}{lcccc}
+\begin{tabular}{lccc}
 \toprule
-Calibrator & mean $\Delta$ECE & std & $\#$pos/neg & Wilcoxon $p$ \\
+Calibrator & mean $\Delta$ECE & std & $\#$pos/neg \\
 \midrule
-none & \NumNoneDeltaMean & \NumNoneDeltaStd & \NumNoneNPos/\NumNoneNNeg & \NumNonePooledP \\
-temperature & \NumTempDeltaMean & \NumTempDeltaStd & \NumTempNPos/\NumTempNNeg & \NumTempPooledP \\
-isotonic & \NumIsoDeltaMean & \NumIsoDeltaStd & \NumIsoNPos/\NumIsoNNeg & \NumIsoPooledP \\
-histogram & \NumHistDeltaMean & \NumHistDeltaStd & \NumHistNPos/\NumHistNNeg & \NumHistPooledP \\
+none & \NumNoneDeltaMean & \NumNoneDeltaStd & \NumNoneNPos/\NumNoneNNeg \\
+none (sklearn) & \NumSklearnDeltaMean & \NumSklearnDeltaStd & \NumSklearnNPos/\NumSklearnNNeg \\
+none (synthetic) & \NumSynthDeltaMean & \NumSynthDeltaStd & \NumSynthNPos/\NumSynthNNeg \\
+temperature & \NumTempDeltaMean & \NumTempDeltaStd & \NumTempNPos/\NumTempNNeg \\
+isotonic & \NumIsoDeltaMean & \NumIsoDeltaStd & \NumIsoNPos/\NumIsoNNeg \\
+histogram & \NumHistDeltaMean & \NumHistDeltaStd & \NumHistNPos/\NumHistNNeg \\
 \bottomrule
 \end{tabular}
 \end{table}
@@ -226,8 +247,9 @@ the shifted test is \emph{worse} calibrated than the i.i.d.\ test.}
 Figure~\ref{fig:help} plots $\mathrm{ECE}_{\mathrm{shift}}(\mathrm{cal})-\mathrm{ECE}_{\mathrm{shift}}(\mathrm{none})$.
 Wine random forests \emph{benefit} from isotonic
 (\NumWineRfIsoHelp{} ECE; shifted ECE \NumWineRfNoneSh{} $\to$
-temperature \NumWineRfTempSh), because the uncalibrated forest was already
-badly calibrated. Breast-cancer logistic regression is \emph{hurt} by
+\NumWineRfIsoSh), because the uncalibrated forest was already
+badly calibrated. Temperature scaling on the same cell reaches shifted
+ECE \NumWineRfTempSh. Breast-cancer logistic regression is \emph{hurt} by
 isotonic (\NumBcLogregIsoHelp). We therefore do not rank calibrators under
 shift.
 
@@ -241,12 +263,12 @@ mean the calibrator beats \texttt{none} under shift.}
 
 \subsection{Coverage under perturbation}
 Unweighted split conformal (logreg, \texttt{none}, LAC score $1-p_y$)
-coverage at $\alpha=\NumAlpha$:
-breast-cancer \NumBcLogregCovSZero{} ($s{=}0$),
-\NumBcLogregCovSOneFive{} ($s{=}1.5$),
+coverage at $\alpha=\NumAlpha$ (seed mean $\pm$ sd):
+breast-cancer \NumBcLogregCovSZero$\pm$\NumBcLogregCovSZeroStd{} ($s{=}0$),
+\NumBcLogregCovSOneFive$\pm$\NumBcLogregCovSOneFiveStd{} ($s{=}1.5$),
 \NumBcLogregCovSTwoFive{} ($s{=}2.5$);
-synthetic binary \NumSynthLogregCovSOneFive{} at $s{=}1.5$
-(Figure~\ref{fig:cov}). Exchangeability is broken by construction.
+synthetic binary \NumSynthLogregCovSOneFive$\pm$\NumSynthLogregCovSOneFiveStd{}
+at $s{=}1.5$ (Figure~\ref{fig:cov}). Exchangeability is broken by construction.
 A 1-D ``oracle'' density ratio on feature $0$ did \emph{not}
 restore coverage in the H3 pilot (killed).
 
@@ -261,14 +283,22 @@ restore coverage in the H3 pilot (killed).
 \subsection{Selection shift is a different, weaker effect}
 Quantile slicing and importance resampling keep original $(X,y)$ pairs,
 so $P(Y\mid X)$ is preserved and the mechanism is closer to covariate
-shift. Mean $\Delta\mathrm{ECE}$ across dataset$\times$model cells
-(\texttt{none}) is \NumQuantileSliceDeltaMean{} (sd
-\NumQuantileSliceDeltaStd) for quantile slice and
-\NumImpResampleDeltaMean{} (sd \NumImpResampleDeltaStd) for importance
-resampling---an order of magnitude below the feature-perturbation pooled
-mean \NumNoneDeltaMean. Importance resampling can even \emph{decrease}
-ECE on breast-cancer. This control \textbf{does not support} a claim that
-i.i.d.\ post-hoc calibration fails under covariate shift in general.
+shift. This ablation uses \NumExpFiveN{} dataset$\times$model cells on
+\NumExpFiveNDs{} datasets (breast-cancer and
+\texttt{synthetic\_shift}; wine and the multiclass synthetic are absent).
+Mean $\Delta\mathrm{ECE}$ (\texttt{none}) is
+\NumQuantileSliceDeltaMean{} (sd \NumQuantileSliceDeltaStd) for quantile
+slice and \NumImpResampleDeltaMean{} (sd \NumImpResampleDeltaStd) for
+importance resampling. On the \emph{same} \NumExpFiveN{} cells, Gaussian
+perturbation at $s{=}1.5$ has cell-mean $\Delta\mathrm{ECE}$
+\NumMatchedGaussDeltaMean{} (sd \NumMatchedGaussDeltaStd). Quantile slice
+also moves accuracy less (cell-mean $\Delta$acc
+\NumQuantileDeltaAccMean{} vs.\ matched Gaussian
+\NumMatchedGaussDeltaAccMean), so the gap is not identified as
+``preserving $P(Y\mid X)$'' alone. Importance resampling can even
+\emph{decrease} ECE on breast-cancer. This control \textbf{does not
+support} a claim that i.i.d.\ post-hoc calibration fails under covariate
+shift in general.
 Trailing-column perturbation on \texttt{synthetic\_shift} yields RF
 $\Delta\mathrm{ECE}=\NumNoiseSynthRf$ vs.\ \NumPredSynthRf{} when
 perturbing the first four columns.
@@ -282,8 +312,9 @@ $\Delta\mathrm{ECE}$. Title and abstract are scoped accordingly.
 \item \textbf{Shift is synthetic} and, for feature perturbation, entangled
 with accuracy drop (synthetic logreg
 \NumSynthLogregAccIid$\to$\NumSynthLogregAccShifted{} at $s{=}1.5$).
-\item \textbf{Small tabular data only.} Wine test splits are $\sim$45 points
-with \NumEceBins{} ECE bins; those cells are noisy. No ImageNet, no LMs,
+\item \textbf{Small tabular data only.} Wine test splits have
+\NumWineNTest{} points and \NumWineNCal{} calibration points with
+\NumEceBins{} ECE bins; those cells are noisy. No ImageNet, no LMs,
 no naturally occurring drift (no Folktables/WILDS).
 \item \textbf{Multiclass isotonic/histogram} map confidence, not a full
 Dirichlet map \cite{kull2019dirichlet}; argmax can flip after
@@ -293,9 +324,13 @@ $0/1$ probabilities saturate after clipping. This is not Guo logit
 temperature.
 \item \textbf{H3 weights were misspecified.} A 1-D histogram ratio is not
 $p_{\mathrm{test}}(x)/p_{\mathrm{cal}}(x)$ for a 4-D perturbation.
-\item \textbf{Pooling and tests.} Seed-level $n=60$ Wilcoxon is
-pseudo-replicated. We also report $n=\NumTwelveMeanN$ seed-averaged
-dataset$\times$model means. \NumNTests{} tests, unadjusted.
+\item \textbf{Pooling and tests.} Seed-level $n=\NumNoneN$ Wilcoxon is
+pseudo-replicated and one-sided. The $n=\NumTwelveMeanN$ seed-averaged
+uncalibrated means are a sign count, not independent replicates. A
+dataset-level one-sided sign test has $n=\NumDatasetSignN$ and
+$p{=}$\NumDatasetSignP. \NumNTests{} tests, unadjusted. Selection
+comparisons use \NumExpFiveN{} cells on \NumExpFiveNDs{} datasets and
+are not strength-matched to $s{=}1.5$ perturbation.
 \item \textbf{Search scope.} Novelty is relative to
 \texttt{paper/verified.bib} (47 API-verified papers).
 \end{itemize}

@@ -1,8 +1,8 @@
 # STATE.md
 
-**Phase:** P6 review cycle 2 (revised paper; three independent reviewers in flight)
-**Last completed step:** Cycle 1 mean overall 5.67 (<6). No fabrication flags. Paper reframed as feature perturbation vs selection; LAC not APS; n=12 seed-averaged test. Cycle-1 reviews archived under `logs/reviews/cycle1/`.
-**Next action:** Wait for cycle-2 reviewers; mean ≥ 6 and no fabrication → P6 done; else cycle 3 or HANDOFF.md
+**Phase:** P6 cycle 2 passed; applying must-fixes then closing
+**Last completed step:** Cycle 2 mean overall 6.67 (≥6). No fabrication flags (methods 7, stats 6, novelty 7). Paper updates for remaining must-fixes in flight (corpus split, wine RF calibrator match, exp05 n=6, one-sided tests, author names).
+**Next action:** Integrity tests + compile PDF; mark goal complete.
 **Updated:** 2026-08-26
 
 ## Selected hypothesis
@@ -31,9 +31,14 @@ Post-hoc calibration under feature perturbation vs selection shift on small tabu
 | novelty-cynic | 6 |
 | **mean** | **5.67** |
 
-## Cycle 2 reviewers (in flight)
+## Cycle 2 scores (no fabrication) — GATE PASS
 
-Independent; must not see cycle-1 reviews.
+| Persona | Overall |
+|---|---|
+| methods-skeptic | 7 |
+| stats-pedant | 6 |
+| novelty-cynic | 7 |
+| **mean** | **6.67** |
 
 ## Hypothesis status
 

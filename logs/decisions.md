@@ -86,3 +86,17 @@ exp04 240/240 ok (23s); exp05 60/60; exp06 60/60; exp07 30/30. No failed
 runs. Headline: pooled ΔECE at s=1.5 is +0.113 (none) with 51/60 positive,
 Wilcoxon p=2.2e-10. Exceptions and mixed calibrator-help documented in
 analysis.md. H2/H3 remain killed as primary claims.
+
+## 2026-08-26 — P6 cycle 2 gate
+
+Overall: methods 7, stats 6, novelty 7. Mean **6.67 ≥ 6**. No fabrication
+flags. GATE PASS. Remaining must-fixes applied without a third review
+cycle: sklearn vs synthetic split in abstract/table; 12/12 bound to
+uncalibrated cells and treated as a sign count; Table 1 drops n=60
+Wilcoxon p as a primary column; one-sided tests labeled; wine RF
+isotonic parenthetical no longer mixes in temperature ECE; exp05 n=6
+on two datasets with matched Gaussian ΔECE/Δacc; Brier/NLL pooled Δ
+reported; Pampari and Ermon / Tomani et al. named in running text;
+dataset-level sign test n=4 p=0.0625 disclosed; wine n_test/n_cal from
+JSON. NumNTests is now 22.
+
