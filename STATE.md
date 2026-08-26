@@ -1,8 +1,8 @@
 # STATE.md
 
-**Phase:** P5 paper compiled (4 pages); P6 review next
-**Last completed step:** analysis.md + figures + stats JSON + paper/main.pdf
-**Next action:** Three independent reviewer subagents; revise if mean < 6 or fabrication flags
+**Phase:** P6 internal review (cycle 1 in progress)
+**Last completed step:** Novelty-cynic and stats-pedant scored; paper revised for positioning and stats wording
+**Next action:** Wait for methods-skeptic; then compute mean overall and fabrication flags
 **Updated:** 2026-08-26
 
 ## Selected hypothesis
