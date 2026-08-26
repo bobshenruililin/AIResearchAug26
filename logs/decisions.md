@@ -63,3 +63,10 @@ plot from the main grid; do not claim weighted conformal recovery.
 **P3 implication:** Fix shifted feature indices (pilot seed 2 on
 synthetic_shift often had ΔECE≈0 because random columns missed predictive
 features). Add a noise-feature-shift *control*.
+
+## 2026-08-26 — P3 complete / P4 analysis
+
+exp04 240/240 ok (23s); exp05 60/60; exp06 60/60; exp07 30/30. No failed
+runs. Headline: pooled ΔECE at s=1.5 is +0.113 (none) with 51/60 positive,
+Wilcoxon p=2.2e-10. Exceptions and mixed calibrator-help documented in
+analysis.md. H2/H3 remain killed as primary claims.

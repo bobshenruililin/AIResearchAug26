@@ -1,8 +1,8 @@
 # STATE.md
 
-**Phase:** P3 Main experiments (P0–P2 gates passed; H1 selected)
-**Last completed step:** Pilots complete; H2 primary killed; H3-as-stated killed
-**Next action:** Run exp04–exp07; then P4 analysis + figures
+**Phase:** P5 paper compiled (4 pages); P6 review next
+**Last completed step:** analysis.md + figures + stats JSON + paper/main.pdf
+**Next action:** Three independent reviewer subagents; revise if mean < 6 or fabrication flags
 **Updated:** 2026-08-26
 
 ## Selected hypothesis

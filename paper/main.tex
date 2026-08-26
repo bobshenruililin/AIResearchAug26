@@ -1,0 +1,287 @@
+\documentclass[10pt,twocolumn]{article}
+\usepackage[margin=0.75in]{geometry}
+\usepackage{times}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{amsmath,amssymb}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage[numbers,sort&compress]{natbib}
+
+\title{Post-hoc Calibration Under Covariate Shift:\\
+An Analysis of Classical Tabular Models}
+\author{Ruililin Shen\\
+\texttt{bobshenruililin@gmail.com}}
+\date{26 August 2026}
+
+\input{numbers}
+
+\begin{document}
+\maketitle
+\begin{abstract}
+Temperature scaling and related post-hoc maps are often treated as a cheap
+fix for miscalibrated probabilities. We measure whether that fix
+\textit{transfers} when test covariates shift, for logistic regression,
+random forests, and histogram gradient boosting on small tabular datasets
+(no deep nets, no API models). On a Gaussian mean-shift of four features
+at strength $1.5$, the difference $\Delta\mathrm{ECE}=\mathrm{ECE}_{\mathrm{shift}}-\mathrm{ECE}_{\mathrm{iid}}$
+is positive in \NumNoneNPos/\NumNoneN cells without calibration (mean
+\NumNoneDeltaMean$\pm$\NumNoneDeltaStd) and remains positive after
+i.i.d.\ temperature, isotonic, or histogram calibration
+(\NumTempNPos, \NumIsoNPos, and \NumHistNPos of \NumNoneN cells;
+one-sided Wilcoxon $p{=}$\NumNonePooledP). The effect is \textbf{not}
+universal: histogram boosting on breast-cancer has
+$\Delta\mathrm{ECE}=\NumBcHgbDelta\pm\NumBcHgbDeltaStd$.
+Post-hoc maps can help or hurt relative to doing nothing
+(wine random forests: isotonic changes shifted ECE by \NumWineRfIsoHelp;
+breast-cancer logistic regression: \NumBcLogregIsoHelp).
+Unweighted split-conformal coverage falls with shift strength
+(breast-cancer logistic regression: \NumBcLogregCovSZero{} at $s{=}0$ to
+\NumBcLogregCovSOneFive{} at $s{=}1.5$). We report all seeds, failed
+hypotheses, and shift-family controls. This is an analysis result, not a
+new calibrator.
+\end{abstract}
+
+\section{Introduction}
+A classifier is \emph{calibrated} when a predicted probability $p$ is
+correct with frequency $p$. Post-hoc maps---Platt-style scaling, histogram
+binning, isotonic regression, and temperature scaling---are the standard
+way to improve calibration without retraining
+\cite{zadrozny2002multiclass,niculescumizil2005probabilities,guo2017calibration}.
+A separate literature shows that deep-net uncertainty \emph{collapses}
+under dataset shift \cite{ovadia2019trust,minderer2021revisiting,tomani2021posthoc}.
+Almost all of that evidence is vision-scale neural nets. Tree ensembles
+remain strong on tabular data \cite{grinsztajn2022trees}, and their
+i.i.d.\ calibration properties have been known for decades
+\cite{niculescumizil2005probabilities}, but we found no verified paper
+that measures whether i.i.d.-fitted post-hoc maps still work for these
+models under an explicit covariate shift of $P(X)$.
+
+We treat that as a measurement question. We do not introduce a new
+calibrator. A negative or mixed answer is an acceptable outcome.
+
+\paragraph{Primary hypothesis (H1).}
+Fitting temperature scaling, isotonic regression, or histogram binning on
+an i.i.d.\ validation split does not keep ECE from rising when test
+features are mean-shifted.
+
+Two other hypotheses were piloted and \emph{not} selected as the paper
+claim: isotonic overfit vs.\ temperature as a function of $n_{\mathrm{cal}}$
+(H2; heterogeneous), and oracle-weighted conformal recovery (H3; the 1-D
+weight estimator failed). Decision log: \texttt{logs/decisions.md}.
+
+\section{Related work}
+Surveys of calibration methods and metrics include
+\cite{silvafilho2021survey,wang2023survey}.
+ECE via confidence binning \cite{naeini2015bbq,guo2017calibration} is
+biased and definition-dependent
+\cite{nixon2019measuring,kumar2019verified,vaicenavicius2019evaluating};
+we therefore also report Brier score \cite{brier1950verification} and
+NLL \cite{gneiting2007scoring}. Temperature scaling
+\cite{guo2017calibration} and Dirichlet calibration
+\cite{kull2019dirichlet} target neural nets. Unsupervised recalibration
+under covariate shift exists for neural models
+\cite{pampari2020unsupervised}. Domain-drift post-hoc calibration of CNNs
+is studied by \cite{tomani2021posthoc}. We reuse those \emph{questions},
+not their model class.
+
+Conformal prediction has finite-sample coverage under exchangeability
+\cite{vovk2005algorithmic,lei2016distributionfree,angelopoulos2021gentle}
+and requires density-ratio weights under covariate shift
+\cite{tibshirani2019covariate}. We use unweighted split conformal as a
+secondary diagnostic, not as a proposed fix.
+
+\section{Methods}
+\paragraph{Models.}
+Scikit-learn logistic regression (with standard scaling), random forests
+($100$ trees), and \texttt{HistGradientBoostingClassifier}. All expose
+\texttt{predict\_proba}.
+
+\paragraph{Calibrators.}
+Fitted on a held-out calibration split of the \emph{source} distribution,
+then frozen. \texttt{none}: identity. \texttt{temperature}: one scalar
+$T$ on $\log p$, fitted by NLL (Guo-style, using log-probabilities so
+trees without logits still apply). \texttt{isotonic}: sklearn isotonic
+regression on $p(y{=}1)$ (binary) or on confidence (multiclass).
+\texttt{histogram}: equal-width binning of the same 1-D score.
+
+\paragraph{Shift.}
+Primary: add $s\cdot\hat\sigma_j$ to features $j\in\{0,1,2,3\}$ of the
+test set only (training and calibration unshifted). Strengths
+$s\in\{0,1.0,1.5,2.5\}$. Ablations: quantile slice and exponential-tilt
+resampling on feature $0$; a control that instead shifts the \emph{last}
+four columns.
+
+\paragraph{Metrics.}
+15-bin equal-width confidence ECE, Brier, NLL, accuracy, and split
+conformal coverage with APS scores $1-p_y$ at $\alpha=\NumAlpha$.
+
+\paragraph{Protocol.}
+Each dataset is split $50\%$ train / $25\%$ calibrate / $25\%$ test,
+stratified, with seeds $\{0,1,2,3,4\}$. Results are written only by
+\texttt{calibshift.io.write\_result} to \texttt{results/*.json}. Paper
+macros in \texttt{paper/numbers.tex} are generated from those files.
+
+\section{Experiments}
+\paragraph{Datasets.}
+Offline-only: sklearn \texttt{breast\_cancer} (binary) and \texttt{wine}
+(3-class); two \texttt{make\_classification} sets (binary and 3-class).
+No OpenML, no paid APIs.
+
+\paragraph{Main grid (\texttt{exp04\_main\_h1}).}
+\NumExpFourN{} cells, \NumExpFourFailed{} failed, \NumExpFourSeconds{}
+seconds on CPU. This is the source of all headline numbers.
+
+\paragraph{Ablations.}
+\texttt{exp05}: quantile slice and importance resampling.
+\texttt{exp06}: $n_{\mathrm{cal}}\in\{50,100,200\}$ (killed primary H2).
+\texttt{exp07}: shift trailing columns.
+
+\paragraph{Sanity.}
+I.i.d.\ logistic regression on breast-cancer: accuracy \NumBcLogregAcc,
+ECE \NumBcLogregEce$\pm$\NumBcLogregEceStd (linear models on this set
+are typically $\gtrsim 0.95$ accurate). Wine random forests are
+overconfident i.i.d.\ (ECE \NumWineRfEceIid$\pm$\NumWineRfEceIidStd),
+matching the classical tree-calibration picture
+\cite{niculescumizil2005probabilities}. Split conformal coverage at
+$s{=}0$ is $0.90$--$0.92$ for $\alpha{=}0.1$. We do \emph{not} compare
+ECE magnitudes to ImageNet temperature scaling \cite{guo2017calibration}.
+
+\section{Results}
+\subsection{H1: ECE usually rises under mean-shift}
+Figure~\ref{fig:ece} plots shifted ECE against $s$.
+Figure~\ref{fig:heat} shows mean $\Delta\mathrm{ECE}$ at $s{=}1.5$.
+Pooled over \NumNoneN{} dataset$\times$model$\times$seed cells,
+uncalibrated $\Delta\mathrm{ECE}=\NumNoneDeltaMean\pm\NumNoneDeltaStd$
+(\NumNoneNPos{} positive, \NumNoneNNeg{} negative; Wilcoxon
+$p{=}$\NumNonePooledP). After i.i.d.\ temperature scaling the pooled mean
+is \NumTempDeltaMean$\pm$\NumTempDeltaStd ($p{=}$\NumTempPooledP).
+Isotonic and histogram are similar (\NumIsoDeltaMean{} and
+\NumHistDeltaMean). Synthetic logistic regression is the largest
+effect (\NumSynthLogregDelta$\pm$\NumSynthLogregDeltaStd) and also the
+noisiest; breast-cancer histogram boosting is the exception
+(\NumBcHgbDelta$\pm$\NumBcHgbDeltaStd, interval includes $0$).
+Table~\ref{tab:pooled} records the pooled statistics.
+
+\begin{table}[t]
+\centering
+\caption{Pooled $\Delta\mathrm{ECE}$ at $s{=}1.5$ ($n=\NumNoneN$ cells:
+4 datasets $\times$ 3 models $\times$ \NumNSeeds{} seeds).
+Source: \texttt{results/stats\_tests.json}, \texttt{summary\_main.json}.}
+\label{tab:pooled}
+\small
+\begin{tabular}{lcccc}
+\toprule
+Calibrator & mean $\Delta$ECE & std & $\#$pos/neg & Wilcoxon $p$ \\
+\midrule
+none & \NumNoneDeltaMean & \NumNoneDeltaStd & \NumNoneNPos/\NumNoneNNeg & \NumNonePooledP \\
+temperature & \NumTempDeltaMean & \NumTempDeltaStd & \NumTempNPos/\NumTempNNeg & \NumTempPooledP \\
+isotonic & \NumIsoDeltaMean & \NumIsoDeltaStd & \NumIsoNPos/\NumIsoNNeg & \NumIsoPooledP \\
+histogram & \NumHistDeltaMean & \NumHistDeltaStd & \NumHistNPos/\NumHistNNeg & \NumHistPooledP \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{../figures/png/ece_vs_shift.png}
+\caption{Shifted ECE vs.\ Gaussian mean-shift strength (mean $\pm$ sd over
+\NumNSeeds{} seeds). $s{=}0$ is i.i.d.\ Source:
+\texttt{results/exp04\_main\_h1.json}.}
+\label{fig:ece}
+\end{figure}
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{../figures/png/delta_ece_heatmap.png}
+\caption{Mean $\Delta\mathrm{ECE}$ at $s{=}1.5$. Positive (red) means
+the shifted test is \emph{worse} calibrated than the i.i.d.\ test.}
+\label{fig:heat}
+\end{figure}
+
+\subsection{Post-hoc maps are not a reliable remedy}
+Figure~\ref{fig:help} plots $\mathrm{ECE}_{\mathrm{shift}}(\mathrm{cal})-\mathrm{ECE}_{\mathrm{shift}}(\mathrm{none})$.
+Wine random forests \emph{benefit} from isotonic
+(\NumWineRfIsoHelp{} ECE; shifted ECE \NumWineRfNoneSh{} $\to$
+temperature \NumWineRfTempSh), because the uncalibrated forest was already
+badly calibrated. Breast-cancer logistic regression is \emph{hurt} by
+isotonic (\NumBcLogregIsoHelp). We therefore do not rank calibrators under
+shift.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{../figures/png/calibration_help_under_shift.png}
+\caption{Does i.i.d.\ calibration help on the shifted test? Negative bars
+mean the calibrator beats \texttt{none} under shift.}
+\label{fig:help}
+\end{figure}
+
+\subsection{Coverage tracks broken exchangeability}
+Unweighted split conformal (logreg, \texttt{none}) coverage at
+$\alpha=\NumAlpha$:
+breast-cancer \NumBcLogregCovSZero{} ($s{=}0$),
+\NumBcLogregCovSOneFive{} ($s{=}1.5$),
+\NumBcLogregCovSTwoFive{} ($s{=}2.5$);
+synthetic binary \NumSynthLogregCovSOneFive{} at $s{=}1.5$
+(Figure~\ref{fig:cov}). This is predicted by theory
+\cite{tibshirani2019covariate}; we are not claiming a new conformal
+method. A 1-D ``oracle'' density ratio on feature $0$ did \emph{not}
+restore coverage in the H3 pilot (killed).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{../figures/png/coverage_vs_shift.png}
+\caption{Unweighted split-conformal coverage vs.\ shift (logreg, no
+calibrator). Dashed line: $1-\alpha=0.9$.}
+\label{fig:cov}
+\end{figure}
+
+\subsection{Controls}
+Quantile slicing induces small $\Delta\mathrm{ECE}$ ($\approx 0.01$--$0.02$).
+Importance resampling can \emph{decrease} ECE on breast-cancer (the
+resampled test is not harder). Shifting trailing columns on
+\texttt{synthetic\_shift} yields RF $\Delta\mathrm{ECE}=\NumNoiseSynthRf$
+vs.\ \NumPredSynthRf{} when shifting the first four columns: trees are
+less sensitive to unused coordinates; logistic regression is not.
+H2 (isotonic vs.\ temperature vs.\ $n_{\mathrm{cal}}$) remains mixed
+and is not a paper claim.
+
+\section{Limitations}
+\begin{itemize}
+\item \textbf{Shift is synthetic.} A four-feature mean-shift is not WILDS
+\cite{koh2021wilds} and is entangled with accuracy drop (synthetic logreg
+accuracy $0.932\to 0.620$ at $s{=}1.5$).
+\item \textbf{Small tabular data only.} No ImageNet, no language models.
+\item \textbf{Multiclass isotonic/histogram} map \emph{confidence}, not a
+full Dirichlet map \cite{kull2019dirichlet}.
+\item \textbf{ECE estimator.} 15 equal-width bins; we also logged
+quantile-binned ECE in the JSON but did not promote it to a claim.
+\item \textbf{Temperature on probabilities.} Trees have no logits; we scale
+$\log p$. That is not identical to logit-temperature on a neural net.
+\item \textbf{H3 weights were misspecified.} A 1-D histogram ratio is not
+$p_{\mathrm{test}}(x)/p_{\mathrm{cal}}(x)$ for a 4-D shift.
+\item \textbf{Pooling.} The headline Wilcoxon pools heterogeneous
+dataset$\times$model cells. Per-dataset tests are in
+\texttt{results/stats\_tests.json}; we do not hide the HGB exception.
+\end{itemize}
+
+\section{Conclusion}
+For sklearn tabular models, i.i.d.\ post-hoc calibration is not a
+dependable answer to covariate shift of the kind we applied. ECE usually
+rises, conformal coverage falls, and the popular maps can make shifted ECE
+better \emph{or} worse than doing nothing. The honest exception (breast-cancer
+HGB) and the failed H2/H3 hypotheses are part of the result.
+
+\section*{AI-generation disclosure}
+This repository and draft were produced by a coding agent executing the
+user's \texttt{GOAL.md} protocol (literature verification via arXiv and
+Semantic Scholar APIs, experiments on CPU, no hand-edited
+\texttt{results/*.json}). Every numeric macro in \texttt{paper/numbers.tex}
+is generated from those files. Citations are restricted to
+\texttt{paper/verified.bib}. A human should still read the limitations
+and re-run \texttt{make fresh-clone-test} before treating the PDF as
+camera-ready.
+
+\bibliographystyle{unsrtnat}
+\bibliography{verified}
+\end{document}

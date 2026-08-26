@@ -26,3 +26,11 @@ fresh-clone-test:
 
 lint-results:
 	$(BIN)/python scripts/assert_results_are_code_generated.py
+
+summary:
+	$(BIN)/python scripts/stats_and_summary.py
+	$(BIN)/python scripts/make_paper_numbers.py
+	$(BIN)/python figures/make_all.py
+
+paper: summary
+	cd paper && latexmk -pdf main.tex
