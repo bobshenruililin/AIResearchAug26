@@ -117,6 +117,25 @@ def main() -> None:
             }
         )
 
+    # One ΔECE per (dataset, model), averaging seeds (n=12; less pseudo-replication).
+    cell_means_none = []
+    for ds in datasets:
+        for m in models:
+            diffs = [x["delta_ece"] for x in G[(ds, m, 1.5, "none")]]
+            cell_means_none.append(float(np.mean(diffs)))
+    tests["tests"].append(
+        {
+            "name": "wilcoxon_delta_ece_gt0_s1.5_none_dataset_model_means",
+            "calibrator": "none",
+            "shift_strength": 1.5,
+            "hypothesis": "seed-averaged delta_ece > 0 over dataset x model cells",
+            **wilcoxon_gt0(cell_means_none),
+            "n_pos": int(sum(d > 1e-12 for d in cell_means_none)),
+            "n_neg": int(sum(d < -1e-12 for d in cell_means_none)),
+            "delta_ece": mean_std(cell_means_none),
+        }
+    )
+
     # per-dataset pooled over models/seeds
     for ds in datasets:
         for cal in cals:
@@ -184,6 +203,10 @@ def main() -> None:
         ncal[(cell["dataset"], cell["model"], cell["n_cal"])].append(iso - tmp)
     ncal_out = {"|".join(map(str, k)): mean_std(xs) for k, xs in ncal.items()}
 
+    e5s = shift_kind_summary("exp05_ablate_shift_family.json")
+    qs_none = [v["mean"] for k, v in e5s["delta_ece"].items() if k.endswith("|quantile_slice|none")]
+    imp_none = [v["mean"] for k, v in e5s["delta_ece"].items() if k.endswith("|importance_resample|none")]
+
     from calibshift.io import write_result
 
     write_result(
@@ -200,12 +223,15 @@ def main() -> None:
             "exp04_n_failed": payload["n_failed"],
             "exp04_seconds": payload["seconds"],
             "pooled_delta_ece_s1.5": pooled,
+            "dataset_model_mean_delta_ece_s1.5_none": mean_std(cell_means_none),
             "cells": cells_summary,
             "ece_shifted_minus_none_s1.5": help_rows,
             "iid_sanity_s0_none": iid_sanity,
-            "exp05": shift_kind_summary("exp05_ablate_shift_family.json"),
+            "exp05": e5s,
             "exp06_isotonic_minus_temperature_shifted_ece": ncal_out,
             "exp07_noise_feature_delta_ece": noise_out,
+            "exp05_none_quantile_slice_cellmean_delta_ece": mean_std(qs_none),
+            "exp05_none_importance_resample_cellmean_delta_ece": mean_std(imp_none),
         },
     )
     write_result(ROOT / "results" / "stats_tests.json", tests)

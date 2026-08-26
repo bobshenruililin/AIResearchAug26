@@ -8,8 +8,8 @@
 \usepackage{hyperref}
 \usepackage[numbers,sort&compress]{natbib}
 
-\title{Post-hoc Calibration Under Covariate Shift:\\
-An Analysis of Classical Tabular Models}
+\title{Feature Perturbation vs.\ Selection Shift:\\
+Post-hoc Calibration of Classical Tabular Models}
 \author{Ruililin Shen\\
 \texttt{bobshenruililin@gmail.com}}
 \date{26 August 2026}
@@ -21,28 +21,24 @@ An Analysis of Classical Tabular Models}
 \begin{abstract}
 Temperature scaling and related post-hoc maps are often treated as a cheap
 fix for miscalibrated probabilities. We measure whether that fix
-\textit{transfers} when test covariates shift, for logistic regression,
+transfers under two different test-time changes, for logistic regression,
 random forests, and histogram gradient boosting on small tabular datasets
-(no deep nets, no API models). On a Gaussian mean-shift of four features
-at strength $1.5$, the difference $\Delta\mathrm{ECE}=\mathrm{ECE}_{\mathrm{shift}}-\mathrm{ECE}_{\mathrm{iid}}$
-is positive in \NumNoneNPos/\NumNoneN cells without calibration (mean
-\NumNoneDeltaMean, cell-to-cell sd \NumNoneDeltaStd) and remains positive after
-i.i.d.\ temperature, isotonic, or histogram calibration
-(\NumTempNPos, \NumIsoNPos, and \NumHistNPos of \NumNoneN cells).
-A pooled one-sided Wilcoxon on those cells is reported as a
-\emph{descriptive} summary, not as an independent-sample confirmatory test
-(\texttt{results/stats\_tests.json} contains \NumNTests{} related $p$-values
-with no multiplicity correction). The effect is \textbf{not}
-universal: histogram boosting on breast-cancer has mean
-$\Delta\mathrm{ECE}=\NumBcHgbDelta$ (seed sd \NumBcHgbDeltaStd).
-Post-hoc maps can help or hurt relative to doing nothing
-(wine random forests: isotonic changes shifted ECE by \NumWineRfIsoHelp;
-breast-cancer logistic regression: \NumBcLogregIsoHelp).
-Unweighted split-conformal coverage falls with shift strength
-(breast-cancer logistic regression: \NumBcLogregCovSZero{} at $s{=}0$ to
-\NumBcLogregCovSOneFive{} at $s{=}1.5$). We report all seeds, failed
-hypotheses, and shift-family controls. This is an analysis result, not a
-new calibrator.
+(no deep nets, no API models). \emph{Feature mean-shift with frozen
+labels}---a perturbation of $X$ that does \textbf{not} preserve
+$P(Y\mid X)$---raises ECE: at strength $1.5$,
+$\Delta\mathrm{ECE}=\mathrm{ECE}_{\mathrm{pert}}-\mathrm{ECE}_{\mathrm{iid}}$
+is positive in \NumNoneNPos/\NumNoneN seed-level cells without
+calibration (mean \NumNoneDeltaMean, cell-to-cell sd \NumNoneDeltaStd)
+and remains positive after i.i.d.\ temperature, isotonic, or histogram
+maps. Averaging seeds first, all \NumTwelveMeanNPos/\NumTwelveMeanN{}
+dataset$\times$model means are positive (exploratory Wilcoxon
+$p{=}$\NumTwelveMeanP). The same maps can help or hurt relative to
+doing nothing. By contrast, \emph{selection} on $X$ that keeps the
+original $(X,y)$ pairs---closer to covariate shift---yields much
+smaller $\Delta\mathrm{ECE}$ (quantile-slice cell-mean
+\NumQuantileSliceDeltaMean, sd \NumQuantileSliceDeltaStd). Unweighted
+split-conformal coverage falls under feature perturbation. This is an
+analysis result, not a new calibrator.
 \end{abstract}
 
 \section{Introduction}
@@ -59,16 +55,19 @@ i.i.d.\ calibration properties have been known for decades
 \cite{niculescumizil2005probabilities}. Within our API-verified set of
 47 papers---mostly deep-net calibration and conformal theory, not a
 systematic search of applied tabular-drift venues---we did not find this
-exact measurement (sklearn models, i.i.d.\ post-hoc maps, explicit
-$P(X)$ mean-shift). That is a scoped gap, not a proof of absence.
+exact measurement (sklearn models, i.i.d.\ post-hoc maps, test-time
+feature perturbation vs.\ selection). That is a scoped gap, not a proof
+of absence.
 
 We treat that as a measurement question. We do not introduce a new
 calibrator. A negative or mixed answer is an acceptable outcome.
 
-\paragraph{Primary hypothesis (H1).}
-Fitting temperature scaling, isotonic regression, or histogram binning on
-an i.i.d.\ validation split does not keep ECE from rising when test
-features are mean-shifted.
+\paragraph{Primary hypothesis (reframed).}
+I.i.d.-fitted post-hoc maps do not keep ECE from rising under a Gaussian
+mean-shift of test features with \emph{labels held fixed} (input
+perturbation / a change in $P(Y\mid X)$ at the observed $x$). We do
+\textbf{not} claim that genuine covariate shift---selection on $X$ that
+preserves pairings---has the same effect; that is tested as a control.
 
 Two other hypotheses were piloted and \emph{not} selected as the paper
 claim: isotonic overfit vs.\ temperature as a function of $n_{\mathrm{cal}}$
@@ -92,7 +91,9 @@ is studied by \cite{tomani2021posthoc}. Those papers already
 i.i.d.-fitted post-hoc maps should not be a complete fix. A surprising
 result here would have been that logistic regression, random forests, and
 histogram boosting \emph{stay} calibrated under a mean-shift of used
-covariates. We reuse the questions, not the model class.
+covariates \emph{with labels frozen}. Selection that preserves
+$(X,y)$ pairs is a different mechanism. We reuse the questions, not the
+model class.
 
 Conformal prediction has finite-sample coverage under exchangeability
 \cite{vovk2005algorithmic,lei2016distributionfree,angelopoulos2021gentle}
@@ -114,17 +115,20 @@ trees without logits still apply). \texttt{isotonic}: sklearn isotonic
 regression on $p(y{=}1)$ (binary) or on confidence (multiclass).
 \texttt{histogram}: equal-width binning of the same 1-D score.
 
-\paragraph{Shift.}
-Primary: add $s\cdot\hat\sigma_j$ to the test-set columns listed in the
-exp04 config (training and calibration unshifted). Strengths are those
-in the same config ($s{=}0$ is i.i.d.). Ablations: quantile slice and
-exponential-tilt resampling; a control that instead shifts trailing
-columns (exp07).
+\paragraph{Shifts.}
+\textit{Feature perturbation:} add $s\cdot\hat\sigma_j$ to listed test
+columns, \textbf{keeping the original labels}. This moves $x$ without
+moving $y$, so it is \emph{not} covariate shift ($P(Y\mid X)$ is not
+invariant). $\hat\sigma$ is the test-split feature sd.
+\textit{Selection:} quantile slice and importance resampling of existing
+$(X,y)$ pairs (closer to covariate shift). Trailing-column perturbation
+is a control.
 
 \paragraph{Metrics.}
 Equal-width confidence ECE with \NumEceBins{} bins (from the exp04
-config), Brier, NLL, accuracy, and split conformal coverage with APS
-scores $1-p_y$ at $\alpha=\NumAlpha$.
+config), Brier, NLL, accuracy, and split conformal coverage with the
+inverse-probability (LAC) score $1-p_y$ at $\alpha=\NumAlpha$
+(not APS).
 
 \paragraph{Protocol.}
 Train/calibration/test partitions follow \texttt{calibshift.runner}
@@ -159,34 +163,34 @@ $s{=}0$ is near the nominal $1-\alpha=0.9$ for $\alpha{=}\NumAlpha$. We do \emph
 ECE magnitudes to ImageNet temperature scaling \cite{guo2017calibration}.
 
 \section{Results}
-\subsection{H1: ECE usually rises under mean-shift}
-Figure~\ref{fig:ece} plots shifted ECE against $s$.
+\subsection{Feature perturbation usually raises ECE}
+Figure~\ref{fig:ece} plots shifted ECE against perturbation strength $s$.
 Figure~\ref{fig:heat} shows mean $\Delta\mathrm{ECE}$ at $s{=}1.5$.
 Pooled over \NumNoneN{} dataset$\times$model$\times$seed cells,
 uncalibrated mean $\Delta\mathrm{ECE}=\NumNoneDeltaMean$ with
 cell-to-cell sd \NumNoneDeltaStd{}
 (\NumNoneNPos{} positive, \NumNoneNNeg{} negative). After i.i.d.\
 temperature scaling the pooled mean is \NumTempDeltaMean{} (sd
-\NumTempDeltaStd). Isotonic and histogram are similar
-(\NumIsoDeltaMean{} and \NumHistDeltaMean). These sd figures describe
-heterogeneity across cells, not a confidence interval for the mean.
-A one-sided Wilcoxon signed-rank statistic on the pooled cells is
-exploratory: the \NumNoneN{} differences are not independent replicates
-(models share seeds and datasets). Synthetic logistic regression is the
-largest effect (mean \NumSynthLogregDelta, sd \NumSynthLogregDeltaStd);
-breast-cancer histogram boosting is the exception
-(mean \NumBcHgbDelta, seed sd \NumBcHgbDeltaStd; this is a descriptive
-spread, not an interval that ``includes 0'').
-Table~\ref{tab:pooled} records the pooled statistics.
+\NumTempDeltaStd). These sd figures describe heterogeneity, not a
+confidence interval for the mean. Averaging seeds first, all
+\NumTwelveMeanNPos{} of \NumTwelveMeanN{} dataset$\times$model means
+are positive (exploratory Wilcoxon $p{=}$\NumTwelveMeanP; still not
+independent across models that share a dataset). Breast-cancer histogram
+boosting is the smallest cell (mean \NumBcHgbDelta, seed sd
+\NumBcHgbDeltaStd). Synthetic logistic regression is the largest
+(mean \NumSynthLogregDelta, sd \NumSynthLogregDeltaStd) and coincides
+with a large accuracy drop. Table~\ref{tab:pooled} records seed-pooled
+statistics; \texttt{results/stats\_tests.json} contains \NumNTests{}
+related $p$-values with no multiplicity correction.
 
 \begin{table}[t]
 \centering
-\caption{Pooled $\Delta\mathrm{ECE}$ at $s{=}1.5$ ($n=\NumNoneN$ cells:
-4 datasets $\times$ 3 models $\times$ \NumNSeeds{} seeds).
-``std'' is the sample sd of the \NumNoneN{} cell differences (heterogeneity),
-not $\mathrm{se}$ of the mean. Wilcoxon $p$ is one-sided and
-\textit{unadjusted} among \NumNTests{} related tests in
-\texttt{results/stats\_tests.json}.}
+\caption{Seed-pooled $\Delta\mathrm{ECE}$ at feature-perturbation
+$s{=}1.5$ ($n=\NumNoneN$ cells). ``std'' is heterogeneity, not
+$\mathrm{se}$ of the mean. Wilcoxon $p$ on the 60 cells is
+exploratory; a seed-averaged $n=\NumTwelveMeanN$ test is
+$p{=}$\NumTwelveMeanP. \NumNTests{} tests in
+\texttt{results/stats\_tests.json}, unadjusted.}
 \label{tab:pooled}
 \small
 \begin{tabular}{lcccc}
@@ -204,9 +208,9 @@ histogram & \NumHistDeltaMean & \NumHistDeltaStd & \NumHistNPos/\NumHistNNeg & \
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{../figures/png/ece_vs_shift.png}
-\caption{Shifted ECE vs.\ Gaussian mean-shift strength (mean $\pm$ sd over
-\NumNSeeds{} seeds). $s{=}0$ is i.i.d.\ Source:
-\texttt{results/exp04\_main\_h1.json}.}
+\caption{Shifted ECE vs.\ Gaussian feature-perturbation strength (mean
+$\pm$ seed sd). $s{=}0$ is i.i.d.\ Labels are frozen; this is not
+covariate shift. Source: \texttt{results/exp04\_main\_h1.json}.}
 \label{fig:ece}
 \end{figure}
 
@@ -235,67 +239,75 @@ mean the calibrator beats \texttt{none} under shift.}
 \label{fig:help}
 \end{figure}
 
-\subsection{Coverage tracks broken exchangeability}
-Unweighted split conformal (logreg, \texttt{none}) coverage at
-$\alpha=\NumAlpha$:
+\subsection{Coverage under perturbation}
+Unweighted split conformal (logreg, \texttt{none}, LAC score $1-p_y$)
+coverage at $\alpha=\NumAlpha$:
 breast-cancer \NumBcLogregCovSZero{} ($s{=}0$),
 \NumBcLogregCovSOneFive{} ($s{=}1.5$),
 \NumBcLogregCovSTwoFive{} ($s{=}2.5$);
 synthetic binary \NumSynthLogregCovSOneFive{} at $s{=}1.5$
-(Figure~\ref{fig:cov}). This is predicted by theory
-\cite{tibshirani2019covariate}; we are not claiming a new conformal
-method. A 1-D ``oracle'' density ratio on feature $0$ did \emph{not}
+(Figure~\ref{fig:cov}). Exchangeability is broken by construction.
+A 1-D ``oracle'' density ratio on feature $0$ did \emph{not}
 restore coverage in the H3 pilot (killed).
 
 \begin{figure}[t]
 \centering
 \includegraphics[width=\linewidth]{../figures/png/coverage_vs_shift.png}
-\caption{Unweighted split-conformal coverage vs.\ shift (logreg, no
-calibrator). Dashed line: $1-\alpha=0.9$.}
+\caption{Unweighted split-conformal coverage vs.\ feature perturbation
+(logreg, no calibrator, LAC score). Dashed line: $1-\alpha=0.9$.}
 \label{fig:cov}
 \end{figure}
 
-\subsection{Controls}
-Quantile slicing induces small $\Delta\mathrm{ECE}$ relative to the
-Gaussian mean-shift (exp05 JSON).
-Importance resampling can \emph{decrease} ECE on breast-cancer (the
-resampled test is not harder). Shifting trailing columns on
-\texttt{synthetic\_shift} yields RF $\Delta\mathrm{ECE}=\NumNoiseSynthRf$
-vs.\ \NumPredSynthRf{} when shifting the first four columns: trees are
-less sensitive to unused coordinates; logistic regression is not.
-H2 (isotonic vs.\ temperature vs.\ $n_{\mathrm{cal}}$) remains mixed
-and is not a paper claim.
+\subsection{Selection shift is a different, weaker effect}
+Quantile slicing and importance resampling keep original $(X,y)$ pairs,
+so $P(Y\mid X)$ is preserved and the mechanism is closer to covariate
+shift. Mean $\Delta\mathrm{ECE}$ across dataset$\times$model cells
+(\texttt{none}) is \NumQuantileSliceDeltaMean{} (sd
+\NumQuantileSliceDeltaStd) for quantile slice and
+\NumImpResampleDeltaMean{} (sd \NumImpResampleDeltaStd) for importance
+resampling---an order of magnitude below the feature-perturbation pooled
+mean \NumNoneDeltaMean. Importance resampling can even \emph{decrease}
+ECE on breast-cancer. This control \textbf{does not support} a claim that
+i.i.d.\ post-hoc calibration fails under covariate shift in general.
+Trailing-column perturbation on \texttt{synthetic\_shift} yields RF
+$\Delta\mathrm{ECE}=\NumNoiseSynthRf$ vs.\ \NumPredSynthRf{} when
+perturbing the first four columns.
 
 \section{Limitations}
 \begin{itemize}
-\item \textbf{Shift is synthetic.} A four-feature mean-shift is not WILDS
-\cite{koh2021wilds} and is entangled with accuracy drop (synthetic logreg
-accuracy \NumSynthLogregAccIid$\to$\NumSynthLogregAccShifted{} at $s{=}1.5$).
-\item \textbf{Small tabular data only.} No ImageNet, no language models.
-\item \textbf{Multiclass isotonic/histogram} map \emph{confidence}, not a
-full Dirichlet map \cite{kull2019dirichlet}.
-\item \textbf{ECE estimator.} Equal-width bins (\NumEceBins{}, from the
-exp04 config); we also logged quantile-binned ECE in the JSON but did
-not promote it to a claim.
-\item \textbf{Temperature on probabilities.} Trees have no logits; we scale
-$\log p$. That is not identical to logit-temperature on a neural net.
+\item \textbf{The headline mechanism is not covariate shift.} Frozen-label
+feature mean-shift changes $P(Y\mid X)$ at the observed $x$ (input
+corruption). Selection controls that preserve pairings show small
+$\Delta\mathrm{ECE}$. Title and abstract are scoped accordingly.
+\item \textbf{Shift is synthetic} and, for feature perturbation, entangled
+with accuracy drop (synthetic logreg
+\NumSynthLogregAccIid$\to$\NumSynthLogregAccShifted{} at $s{=}1.5$).
+\item \textbf{Small tabular data only.} Wine test splits are $\sim$45 points
+with \NumEceBins{} ECE bins; those cells are noisy. No ImageNet, no LMs,
+no naturally occurring drift (no Folktables/WILDS).
+\item \textbf{Multiclass isotonic/histogram} map confidence, not a full
+Dirichlet map \cite{kull2019dirichlet}; argmax can flip after
+renormalization.
+\item \textbf{Temperature on probabilities.} Trees have no logits; RF
+$0/1$ probabilities saturate after clipping. This is not Guo logit
+temperature.
 \item \textbf{H3 weights were misspecified.} A 1-D histogram ratio is not
-$p_{\mathrm{test}}(x)/p_{\mathrm{cal}}(x)$ for a 4-D shift.
-\item \textbf{Pooling and tests.} The headline Wilcoxon pools heterogeneous
-dataset$\times$model cells that are not independent. We ran \NumNTests{}
-one-sided tests with no multiplicity correction; $p$-values are
-exploratory. Per-dataset tests are in \texttt{results/stats\_tests.json}.
+$p_{\mathrm{test}}(x)/p_{\mathrm{cal}}(x)$ for a 4-D perturbation.
+\item \textbf{Pooling and tests.} Seed-level $n=60$ Wilcoxon is
+pseudo-replicated. We also report $n=\NumTwelveMeanN$ seed-averaged
+dataset$\times$model means. \NumNTests{} tests, unadjusted.
 \item \textbf{Search scope.} Novelty is relative to
-\texttt{paper/verified.bib} (47 API-verified papers), not a systematic
-review of applied tabular-drift venues.
+\texttt{paper/verified.bib} (47 API-verified papers).
 \end{itemize}
 
 \section{Conclusion}
-For sklearn tabular models, i.i.d.\ post-hoc calibration is not a
-dependable answer to covariate shift of the kind we applied. ECE usually
-rises, conformal coverage falls, and the popular maps can make shifted ECE
-better \emph{or} worse than doing nothing. The honest exception (breast-cancer
-HGB) and the failed H2/H3 hypotheses are part of the result.
+For these sklearn models, i.i.d.\ post-hoc calibration is not a
+dependable answer to \emph{test-time feature perturbation with frozen
+labels}: ECE usually rises and conformal coverage falls, while the maps
+can make perturbed ECE better or worse than doing nothing. The same
+experiments \textbf{do not} show a comparable failure under selection
+on $X$. The HGB exception and the killed H2/H3 hypotheses are part of
+the result.
 
 \section*{AI-generation disclosure}
 This repository and draft were produced by a coding agent executing the

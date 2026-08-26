@@ -1,0 +1,33 @@
+{
+  "persona": "methods-skeptic",
+  "scores": {
+    "soundness": 6,
+    "experiment_design": 6,
+    "clarity": 8,
+    "overall": 6
+  },
+  "fabrication_flag": false,
+  "fabrication_evidence": [],
+  "must_fix": [
+    "The primary 'shift' is not covariate shift as claimed. gaussian_feature_shift (src/calibshift/shift.py) adds s*sigma to test features while KEEPING the original labels attached to the moved points. Under covariate shift P(Y|X) must be invariant; here P(Y|X=x+delta) in the shifted test equals the original P(Y|X=x), which differs from the true conditional at x+delta whenever the shifted features are predictive. This is input corruption / concept shift, and it mechanically miscalibrates even a Bayes-optimal, perfectly calibrated model. The paper's own genuine covariate-shift controls (quantile slice and importance resampling, which select/reweight on X and so DO preserve P(Y|X)) show near-zero or negative delta-ECE (~0.01-0.02, sometimes ECE decreases), which under a strict reading REFUTES rather than supports the headline 'calibration fails to transfer under covariate shift'. The limitation paragraph ('not causal identification of pure covariate shift') is not enough: the title, abstract, and H1 statement must be reframed (e.g. 'mean-shift corruption of used covariates') or the headline claim must be re-anchored on the selection-based shifts.",
+    "The Methods paragraph mislabels the conformal score: '1 - p_y' is the simple softmax/LAC (Sadinle-style) score, not APS. APS uses cumulative sorted probabilities. Rename or re-implement; as written the paper misdescribes what runner.py computes.",
+    "Pooled Wilcoxon over n=60 dataset x model x seed cells (and per-dataset tests pooling 3 models x 5 seeds) treats correlated cells as independent draws (pseudo-replication: same dataset shared across models and seeds). Reported p-values (2.2e-10 etc.) overstate evidence. Report a hierarchical/per-(dataset x model) analysis or at minimum test the 12 cell-means, and soften the p-value claims."
+  ],
+  "weaknesses": [
+    "Shift scale sigma-hat is estimated on the test split itself (X.std(axis=0) of X_test in gaussian_feature_shift), not on training data; harmless leakage-wise since it is a deterministic transform of test-only data, but it makes the shift magnitude a function of the test sample and should be stated.",
+    "'Temperature scaling' on log-probabilities is a materially different family from logit temperature for tree models: RF probabilities hit exactly 0/1, get clipped to 1e-12, so log p saturates at ~-27.6 and no T can desaturate them. Disclosed in limitations, but calling it 'Guo-style' invites misreading; Platt scaling on logit(p) would be the standard comparator.",
+    "Multiclass isotonic/histogram recalibrate only the confidence and smear the remainder uniformly over K-1 classes; after renormalization the argmax can flip when new confidence drops below 1/K, so accuracy is not invariant across calibrators, and Brier/NLL for multiclass cells partly reflect this artifact rather than calibration quality. Disclosed, but its effect on the multiclass rows is never quantified.",
+    "Severe small-sample ECE variance on wine: test split is ~45 points and the calibration split ~44 points, evaluated with 15 equal-width bins; the 15-bin histogram calibrator is fitted with ~3 points per bin. Wine cells (including the 'isotonic helps by -0.123' showcase) rest on very noisy estimators.",
+    "The headline effect size is dominated by the synthetic datasets (delta-ECE ~0.17-0.23 pooled per-dataset) where shifted accuracy collapses to ~0.62; the real-data effects are an order of magnitude smaller (breast_cancer ~0.04, wine ~0.04). The abstract's pooled +0.113 blends these regimes.",
+    "ECE_iid and ECE_shifted are compared on the same underlying test points (good pairing), but because delta_ece at s=0 is identically 0 by construction, the s=0 rows in the grid carry no information for H1 and inflate the '240 cells' framing (only 60 cells enter the headline test)."
+  ],
+  "strengths": [
+    "Every checked paper number traces to results JSON: pooled means/stds (0.113/0.149, 0.124/0.150, 0.141/0.151 x2), sign counts (51/9, 56/4, 53/7, 57/3), Wilcoxon p-values, per-cell numbers (BC HGB 0.002+/-0.009; synthetic logreg 0.292+/-0.214), coverage (0.913/0.778/0.608/0.634), wine RF iso help -0.123, BC logreg iso hurt +0.074, sanity numbers, 240/240 cells in 23.0s. Zero mismatches found; numbers.tex is consistent with summary_main.json and stats_tests.json.",
+    "All citations correspond to real, well-known papers (Guo 2017, Ovadia 2019, Niculescu-Mizil & Caruana 2005, Zadrozny & Elkan 2002, Tibshirani et al. 2019, Kull et al. 2019, Koh et al. 2021, etc.); nothing looks invented.",
+    "Clean split hygiene: model fit on train, calibrators fit and frozen on a held-out source calibration split, shift applied to test only; no train/cal/test leakage found in runner.py or calibrators.py.",
+    "Paired iid-vs-shifted design on identical test points, 5 seeds with dispersion reported, sign counts alongside p-values, and multiple metrics (ECE, Brier, NLL, coverage) rather than ECE alone.",
+    "Unusual honesty: killed hypotheses (H2, H3) reported with reasons, the counterexample cell (breast_cancer HGB) is highlighted rather than hidden, calibrators are explicitly not ranked, and the limitations section pre-empts several of this review's objections.",
+    "Fully reproducible offline pipeline (sklearn-only, seeds in config, results written by one IO path); the ECE, Brier, NLL, and calibrator implementations match their stated definitions on code inspection."
+  ],
+  "confidence": 0.85
+}

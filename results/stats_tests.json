@@ -48,6 +48,24 @@
       },
       {
         "calibrator": "none",
+        "delta_ece": {
+          "max": 0.2921412092589243,
+          "mean": 0.1133685899417277,
+          "min": 0.0016522510454739959,
+          "n": 12,
+          "std": 0.09964043224411889
+        },
+        "hypothesis": "seed-averaged delta_ece > 0 over dataset x model cells",
+        "n": 12,
+        "n_neg": 0,
+        "n_pos": 12,
+        "name": "wilcoxon_delta_ece_gt0_s1.5_none_dataset_model_means",
+        "p_greater": 0.000244140625,
+        "shift_strength": 1.5,
+        "stat": 78.0
+      },
+      {
+        "calibrator": "none",
         "dataset": "breast_cancer",
         "delta_ece": {
           "max": 0.136241258741028,
@@ -305,5 +323,5 @@
     ]
   },
   "schema": "calibshift.result.v1",
-  "written_at_utc": "2026-08-26T07:27:06.105426+00:00"
+  "written_at_utc": "2026-08-26T07:51:07.174525+00:00"
 }

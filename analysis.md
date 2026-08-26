@@ -20,14 +20,12 @@ columns `[0,1,2,3]` at strengths `{0, 1.0, 1.5, 2.5}`.
    is the Niculescu-Mizil/Caruana + Guo qualitative pattern, not ImageNet-scale
    ECE, but it is in the right ballpark for these models.
 
-2. **Gaussian covariate shift usually raises ECE relative to the matched i.i.d.
-   test set.** At strength 1.5, pooled over 4 datasets × 3 models × 5 seeds
-   (n=60): mean ΔECE = ECE_shifted − ECE_iid is
-   +0.113±0.149 (none), +0.124±0.150 (temperature), +0.141±0.151 (isotonic),
-   +0.141±0.151 (histogram). Sign counts: 51/60, 56/60, 53/60, 57/60 positive.
-   One-sided Wilcoxon vs 0: p = 2.2e-10, 3.1e-11, 4.6e-11, 3.3e-11
-   (`stats_tests.json` pooled tests). Per-dataset tests for `none` are also
-   p < 0.005 on breast_cancer, wine, synthetic_shift, synthetic_multiclass.
+2. **Gaussian feature perturbation (frozen labels) usually raises ECE**
+   relative to the matched i.i.d. test set. At strength 1.5, pooled over
+   4 datasets × 3 models × 5 seeds (n=60): mean ΔECE is
+   +0.113±0.149 (none). Sign counts: 51/60 positive. Seed-averaged
+   dataset×model means: 12/12 positive. Pooled n=60 Wilcoxon p-values
+   overstate independence and are exploratory.
 
 3. **i.i.d.-fitted post-hoc calibrators do not prevent that increase.**
    Temperature/isotonic/histogram still have large positive pooled ΔECE.
@@ -39,11 +37,12 @@ columns `[0,1,2,3]` at strengths `{0, 1.0, 1.5, 2.5}`.
    breast_cancer 0.913 → 0.778 (s=1.5) → 0.608 (s=2.5);
    synthetic_shift 0.896 → 0.634 (s=1.5). i.i.d. coverage is near 0.90–0.92.
 
-5. **Shift family matters.** Quantile slicing on feature 0 produces small
-   ΔECE (typically 0.01–0.02). Importance resampling is mixed and can even
-   *lower* ECE on breast_cancer (easier resampled subpopulation). The H1
-   story is about **mean-shift of several features**, not all selection
-   mechanisms.
+5. **Shift family matters, and the headline mechanism is not covariate
+   shift.** Frozen-label Gaussian feature mean-shift changes $P(Y|X)$.
+   Quantile slicing on feature 0 (selection; $P(Y|X)$ preserved) produces
+   small ΔECE (cell-mean ≈ 0.016). Importance resampling is mixed. The
+   H1 story as originally stated about covariate shift is **not
+   supported**; the supported story is feature perturbation.
 
 6. **On synthetic_shift, shifting trailing columns hurts RF/HGB less than
    shifting the first four** (exp07 RF none ΔECE 0.009 vs exp04 0.041).
@@ -53,9 +52,12 @@ columns `[0,1,2,3]` at strengths `{0, 1.0, 1.5, 2.5}`.
 
 ## What the evidence does **not** support
 
-1. **Not a universal law that “calibration always fails under covariate
-   shift.”** `breast_cancer` × HGB × none at s=1.5 has ΔECE 0.002±0.009
-   (crosses zero). Several cells have negative ΔECE (9/60 for none).
+1. **Not that i.i.d. post-hoc calibration fails under covariate shift.**
+   Selection shifts that preserve $(X,y)$ have small ΔECE. The original
+   H1 wording is withdrawn. Frozen-label feature perturbation is the
+   supported mechanism.
+2. **Not a universal law even for feature perturbation.**
+   `breast_cancer` × HGB × none at s=1.5 has ΔECE 0.002±0.009.
 
 2. **Not “post-hoc calibration helps under shift.”** Sign of
    ECE_shifted(cal) − ECE_shifted(none) is **dataset/model dependent**.
@@ -95,13 +97,14 @@ columns `[0,1,2,3]` at strengths `{0, 1.0, 1.5, 2.5}`.
 
 ## Paper claims allowed (abstract ⊆ this list)
 
-- Under a Gaussian mean-shift of four covariates, ECE on the shifted test
-  set is higher than i.i.d. ECE for sklearn LogReg/RF/HGB in most cells
-  (n=60 sign count; pooled Wilcoxon $p$-values are exploratory), including after i.i.d. temperature/isotonic/
-  histogram calibration.
-- That increase is **not** uniform: HGB on breast_cancer is a clear exception
-  (descriptive mean and seed sd, not a confidence interval).
-- i.i.d. post-hoc maps are **not** a reliable remedy; they can help or hurt.
-- Unweighted split-conformal coverage declines with shift strength.
-- Alternative shift families and noise-feature controls limit how far we
-  generalize.
+- Under frozen-label Gaussian feature perturbation at s=1.5, ECE on the
+  perturbed test is higher than i.i.d. ECE in most seed-level cells and in
+  all 12 dataset×model seed-averaged means (exploratory Wilcoxon).
+- i.i.d. post-hoc maps do not reliably prevent that increase; they can help
+  or hurt vs. none.
+- Selection-based shifts that preserve (X,y) pairs (closer to covariate
+  shift) yield much smaller ΔECE and do **not** support a general
+  “calibration fails under covariate shift” claim.
+- Unweighted split-conformal (LAC, not APS) coverage declines under
+  feature perturbation.
+- The HGB-on-breast-cancer cell is a small-effect exception.

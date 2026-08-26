@@ -12482,6 +12482,13 @@
         }
       }
     },
+    "dataset_model_mean_delta_ece_s1.5_none": {
+      "max": 0.2921412092589243,
+      "mean": 0.1133685899417277,
+      "min": 0.0016522510454739959,
+      "n": 12,
+      "std": 0.09964043224411889
+    },
     "ece_shifted_minus_none_s1.5": {
       "breast_cancer|hgb|histogram": {
         "max": 0.02944388374783976,
@@ -13082,6 +13089,20 @@
       "n_ok": 60,
       "seconds": 5.032357454299927
     },
+    "exp05_none_importance_resample_cellmean_delta_ece": {
+      "max": 0.049938620584275104,
+      "mean": 0.011007641900227278,
+      "min": -0.025575960114491612,
+      "n": 6,
+      "std": 0.03090138399067632
+    },
+    "exp05_none_quantile_slice_cellmean_delta_ece": {
+      "max": 0.021567732447246225,
+      "mean": 0.01566860085503607,
+      "min": 0.00447062841381999,
+      "n": 6,
+      "std": 0.00635343091703713
+    },
     "exp06_isotonic_minus_temperature_shifted_ece": {
       "breast_cancer|logreg|100": {
         "max": 0.12652256638910125,
@@ -13679,5 +13700,5 @@
     "status": "ok"
   },
   "schema": "calibshift.result.v1",
-  "written_at_utc": "2026-08-26T07:27:06.095332+00:00"
+  "written_at_utc": "2026-08-26T07:51:07.162253+00:00"
 }

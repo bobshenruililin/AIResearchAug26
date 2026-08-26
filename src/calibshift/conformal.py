@@ -1,8 +1,9 @@
-"""Split conformal prediction with APS nonconformity scores.
+"""Split conformal prediction with inverse-probability (LAC) scores.
 
-Score = 1 - p_trueclass. Coverage is P(true label in prediction set).
-For binary/multiclass, the set is {k : p_k >= 1 - q_hat} which is equivalent
-to including y iff 1 - p_y <= q_hat.
+Score = 1 - p_trueclass (Sadinle-style least-ambiguous-set / inverse
+probability). This is *not* APS, which cumulates sorted class
+probabilities. Coverage is P(true label in the prediction set),
+equivalent to 1 - p_y <= q_hat.
 """
 
 from __future__ import annotations

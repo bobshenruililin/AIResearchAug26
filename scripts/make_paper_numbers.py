@@ -84,6 +84,13 @@ def main() -> None:
         "Alpha": str(cfg["alpha"]),
         "EceBins": str(cfg["ece_bins"]),
         "NTests": str(len(st["tests"])),
+        "TwelveMeanP": pfmt(tests["wilcoxon_delta_ece_gt0_s1.5_none_dataset_model_means"]["p_greater"]),
+        "TwelveMeanNPos": str(tests["wilcoxon_delta_ece_gt0_s1.5_none_dataset_model_means"]["n_pos"]),
+        "TwelveMeanN": str(tests["wilcoxon_delta_ece_gt0_s1.5_none_dataset_model_means"]["n"]),
+        "QuantileSliceDeltaMean": fmt(s["exp05_none_quantile_slice_cellmean_delta_ece"]["mean"]),
+        "QuantileSliceDeltaStd": fmt(s["exp05_none_quantile_slice_cellmean_delta_ece"]["std"]),
+        "ImpResampleDeltaMean": fmt(s["exp05_none_importance_resample_cellmean_delta_ece"]["mean"]),
+        "ImpResampleDeltaStd": fmt(s["exp05_none_importance_resample_cellmean_delta_ece"]["std"]),
         "SynthLogregAccIid": fmt(cell("synthetic_shift", "logreg", "s0.0", "none")["acc_iid"]["mean"]),
         "SynthLogregAccShifted": fmt(cell("synthetic_shift", "logreg", "s1.5", "none")["acc_shifted"]["mean"]),
     }
