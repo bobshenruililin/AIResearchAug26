@@ -1,0 +1,20 @@
+dataset_list:
+  - breast_cancer
+  - wine
+  - synthetic_shift
+  - synthetic_multiclass
+model_list:
+  - logreg
+  - rf
+  - hgb
+seeds: [0, 1, 2, 3, 4]
+calibrators:
+  - none
+  - temperature
+  - isotonic
+  - histogram
+shift_strengths: [0.0, 1.0, 1.5, 2.5]
+shift_cols: [0, 1, 2, 3]
+alpha: 0.1
+ece_bins: 15
+hypothesis: H1

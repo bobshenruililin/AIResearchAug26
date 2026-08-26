@@ -14,12 +14,19 @@ def gaussian_feature_shift(
     rng: np.random.Generator,
     strength: float,
     n_features: int | None = None,
+    cols: list[int] | None = None,
 ) -> tuple[np.ndarray, np.ndarray, dict]:
-    """Add a mean shift to a random subset of features (test-time only)."""
+    """Add a mean shift to a subset of features (test-time only)."""
     X = np.asarray(X, dtype=np.float64).copy()
     d = X.shape[1]
-    k = d if n_features is None else min(n_features, d)
-    cols = rng.choice(d, size=k, replace=False)
+    if cols is not None:
+        cols = np.asarray(cols, dtype=int)
+        cols = cols[(cols >= 0) & (cols < d)]
+        if cols.size == 0:
+            cols = np.array([0], dtype=int)
+    else:
+        k = d if n_features is None else min(n_features, d)
+        cols = rng.choice(d, size=k, replace=False)
     scales = X.std(axis=0)
     scales = np.where(scales < 1e-8, 1.0, scales)
     X[:, cols] = X[:, cols] + strength * scales[cols]

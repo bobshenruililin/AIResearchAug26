@@ -106,3 +106,13 @@ def test_datasets_load(name):
     assert ds.X.ndim == 2
     assert len(ds.y) == len(ds.X)
     assert ds.n_classes >= 2
+
+
+def test_gaussian_shift_fixed_cols():
+    ds = load_dataset("synthetic_shift", seed=0)
+    rng = np.random.default_rng(0)
+    Xs, ys, meta = gaussian_feature_shift(
+        ds.X[:50], ds.y[:50], rng, strength=2.0, cols=[0, 1]
+    )
+    assert meta["cols"] == [0, 1]
+    assert not np.allclose(Xs[:, 0], ds.X[:50, 0])

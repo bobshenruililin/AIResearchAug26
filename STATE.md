@@ -1,9 +1,13 @@
 # STATE.md
 
-**Phase:** P1 GATE ready to close; P2 pilots coded, not yet run
-**Last completed step:** 47 verified papers; lit_review.md with H1/H2/H3; shared runner
-**Next action:** Run exp01–exp03 pilots; pick one hypothesis; log kill decisions
+**Phase:** P3 Main experiments (P0–P2 gates passed; H1 selected)
+**Last completed step:** Pilots complete; H2 primary killed; H3-as-stated killed
+**Next action:** Run exp04–exp07; then P4 analysis + figures
 **Updated:** 2026-08-26
+
+## Selected hypothesis
+
+H1: i.i.d.-fitted post-hoc calibrators do not preserve ECE under covariate shift.
 
 ## Locked topic
 

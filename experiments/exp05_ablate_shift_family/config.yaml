@@ -1,0 +1,24 @@
+dataset_list:
+  - breast_cancer
+  - synthetic_shift
+model_list:
+  - logreg
+  - rf
+  - hgb
+seeds: [0, 1, 2, 3, 4]
+calibrators:
+  - none
+  - temperature
+  - isotonic
+  - histogram
+shifts:
+  - kind: quantile_slice
+    feature_index: 0
+    upper: true
+    quantile: 0.5
+  - kind: importance_resample
+    feature_index: 0
+    tilt: 1.5
+alpha: 0.1
+ece_bins: 15
+hypothesis: H1-ablation

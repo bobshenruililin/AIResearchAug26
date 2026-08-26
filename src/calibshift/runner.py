@@ -31,7 +31,12 @@ def apply_shift(kind: str, X, y, rng, cfg: dict) -> tuple[np.ndarray, np.ndarray
         return np.asarray(X), np.asarray(y), {"kind": "none"}
     if kind == "gaussian_feature_shift":
         return gaussian_feature_shift(
-            X, y, rng, strength=float(cfg.get("strength", 1.5)), n_features=cfg.get("n_features")
+            X,
+            y,
+            rng,
+            strength=float(cfg.get("strength", 1.5)),
+            n_features=cfg.get("n_features"),
+            cols=cfg.get("cols"),
         )
     if kind == "quantile_slice":
         return quantile_slice(

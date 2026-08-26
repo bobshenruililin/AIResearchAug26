@@ -1,0 +1,21 @@
+dataset_list:
+  - breast_cancer
+  - synthetic_shift
+model_list:
+  - logreg
+  - rf
+  - hgb
+seeds: [0, 1, 2, 3, 4]
+calibrators:
+  - none
+  - temperature
+  - isotonic
+  - histogram
+shift_strength: 1.5
+# last-four columns: breast_cancer has 30 feats; synthetic_shift has 12
+shift_cols_by_dataset:
+  breast_cancer: [26, 27, 28, 29]
+  synthetic_shift: [8, 9, 10, 11]
+alpha: 0.1
+ece_bins: 15
+hypothesis: H1-control
