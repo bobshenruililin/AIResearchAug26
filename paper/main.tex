@@ -144,7 +144,7 @@ are typically $\gtrsim 0.95$ accurate). Wine random forests are
 overconfident i.i.d.\ (ECE \NumWineRfEceIid$\pm$\NumWineRfEceIidStd),
 matching the classical tree-calibration picture
 \cite{niculescumizil2005probabilities}. Split conformal coverage at
-$s{=}0$ is $0.90$--$0.92$ for $\alpha{=}0.1$. We do \emph{not} compare
+$s{=}0$ is near the nominal $1-\alpha=0.9$ for $\alpha{=}\NumAlpha$. We do \emph{not} compare
 ECE magnitudes to ImageNet temperature scaling \cite{guo2017calibration}.
 
 \section{Results}
@@ -237,7 +237,8 @@ calibrator). Dashed line: $1-\alpha=0.9$.}
 \end{figure}
 
 \subsection{Controls}
-Quantile slicing induces small $\Delta\mathrm{ECE}$ ($\approx 0.01$--$0.02$).
+Quantile slicing induces small $\Delta\mathrm{ECE}$ relative to the
+Gaussian mean-shift (exp05 JSON).
 Importance resampling can \emph{decrease} ECE on breast-cancer (the
 resampled test is not harder). Shifting trailing columns on
 \texttt{synthetic\_shift} yields RF $\Delta\mathrm{ECE}=\NumNoiseSynthRf$
@@ -250,7 +251,7 @@ and is not a paper claim.
 \begin{itemize}
 \item \textbf{Shift is synthetic.} A four-feature mean-shift is not WILDS
 \cite{koh2021wilds} and is entangled with accuracy drop (synthetic logreg
-accuracy $0.932\to 0.620$ at $s{=}1.5$).
+accuracy \NumSynthLogregAccIid$\to$\NumSynthLogregAccShifted{} at $s{=}1.5$).
 \item \textbf{Small tabular data only.} No ImageNet, no language models.
 \item \textbf{Multiclass isotonic/histogram} map \emph{confidence}, not a
 full Dirichlet map \cite{kull2019dirichlet}.
