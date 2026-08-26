@@ -67,7 +67,7 @@ shift/calibration literature is almost entirely vision/language neural nets.
 **Gap statement (honest):** We do **not** claim a new calibrator. The gap is
 *measurement*: classical post-hoc maps + classical tabular models + explicit
 covariate shift, with conformal coverage as a second lens. Closest prior work
-is Tomani et al. and Pampari & Pfister (neural, often domain/label mix). If
+is Tomani et al. and Pampari \& Ermon (neural, often domain/label mix). If
 our numbers merely reproduce their qualitative story on a smaller model class,
 that is still a valid analysis/negative-supporting result.
 

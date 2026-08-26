@@ -24,6 +24,8 @@ def pfmt(p: float) -> str:
 def main() -> None:
     s = json.loads((ROOT / "results" / "summary_main.json").read_text())["payload"]
     st = json.loads((ROOT / "results" / "stats_tests.json").read_text())["payload"]
+    exp04 = json.loads((ROOT / "results" / "exp04_main_h1.json").read_text())["payload"]
+    cfg = exp04["config"]
     p = s["pooled_delta_ece_s1.5"]
     tests = {t["name"]: t for t in st["tests"]}
     iid = s["iid_sanity_s0_none"]
@@ -78,8 +80,10 @@ def main() -> None:
         "HistNNeg": str(p["histogram"]["n_neg"]),
         "NoiseSynthRf": fmt(s["exp07_noise_feature_delta_ece"]["synthetic_shift|rf|none"]["mean"]),
         "PredSynthRf": fmt(cell("synthetic_shift", "rf", "s1.5", "none")["delta_ece"]["mean"]),
-        "NSeeds": "5",
-        "Alpha": "0.1",
+        "NSeeds": str(len(cfg["seeds"])),
+        "Alpha": str(cfg["alpha"]),
+        "EceBins": str(cfg["ece_bins"]),
+        "NTests": str(len(st["tests"])),
         "SynthLogregAccIid": fmt(cell("synthetic_shift", "logreg", "s0.0", "none")["acc_iid"]["mean"]),
         "SynthLogregAccShifted": fmt(cell("synthetic_shift", "logreg", "s1.5", "none")["acc_shifted"]["mean"]),
     }

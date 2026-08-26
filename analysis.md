@@ -97,9 +97,10 @@ columns `[0,1,2,3]` at strengths `{0, 1.0, 1.5, 2.5}`.
 
 - Under a Gaussian mean-shift of four covariates, ECE on the shifted test
   set is higher than i.i.d. ECE for sklearn LogReg/RF/HGB in most cells
-  (n=60, Wilcoxon p ≪ 0.001), including after i.i.d. temperature/isotonic/
+  (n=60 sign count; pooled Wilcoxon $p$-values are exploratory), including after i.i.d. temperature/isotonic/
   histogram calibration.
-- That increase is **not** uniform: HGB on breast_cancer is a clear exception.
+- That increase is **not** uniform: HGB on breast_cancer is a clear exception
+  (descriptive mean and seed sd, not a confidence interval).
 - i.i.d. post-hoc maps are **not** a reliable remedy; they can help or hurt.
 - Unweighted split-conformal coverage declines with shift strength.
 - Alternative shift families and noise-feature controls limit how far we

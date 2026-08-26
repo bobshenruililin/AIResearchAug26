@@ -64,7 +64,14 @@ plot from the main grid; do not claim weighted conformal recovery.
 synthetic_shift often had ΔECE≈0 because random columns missed predictive
 features). Add a noise-feature-shift *control*.
 
-## 2026-08-26 — P3 complete / P4 analysis
+## 2026-08-26 — P6 review cycle 1 (partial)
+
+Novelty-cynic overall 6, fabrication_flag false. Stats-pedant overall 5,
+fabrication_flag false (file present; methods-skeptic still outstanding).
+Applied: scoped novelty claim; Pampari \& Ermon; prior work predicts
+headlines; Wilcoxon described as exploratory; sd labelled as heterogeneity;
+HGB ``interval includes 0'' removed; protocol numbers taken from exp04
+JSON where possible.
 
 exp04 240/240 ok (23s); exp05 60/60; exp06 60/60; exp07 30/30. No failed
 runs. Headline: pooled ΔECE at s=1.5 is +0.113 (none) with 51/60 positive,

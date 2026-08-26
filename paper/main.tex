@@ -26,12 +26,15 @@ random forests, and histogram gradient boosting on small tabular datasets
 (no deep nets, no API models). On a Gaussian mean-shift of four features
 at strength $1.5$, the difference $\Delta\mathrm{ECE}=\mathrm{ECE}_{\mathrm{shift}}-\mathrm{ECE}_{\mathrm{iid}}$
 is positive in \NumNoneNPos/\NumNoneN cells without calibration (mean
-\NumNoneDeltaMean$\pm$\NumNoneDeltaStd) and remains positive after
+\NumNoneDeltaMean, cell-to-cell sd \NumNoneDeltaStd) and remains positive after
 i.i.d.\ temperature, isotonic, or histogram calibration
-(\NumTempNPos, \NumIsoNPos, and \NumHistNPos of \NumNoneN cells;
-one-sided Wilcoxon $p{=}$\NumNonePooledP). The effect is \textbf{not}
-universal: histogram boosting on breast-cancer has
-$\Delta\mathrm{ECE}=\NumBcHgbDelta\pm\NumBcHgbDeltaStd$.
+(\NumTempNPos, \NumIsoNPos, and \NumHistNPos of \NumNoneN cells).
+A pooled one-sided Wilcoxon on those cells is reported as a
+\emph{descriptive} summary, not as an independent-sample confirmatory test
+(\texttt{results/stats\_tests.json} contains \NumNTests{} related $p$-values
+with no multiplicity correction). The effect is \textbf{not}
+universal: histogram boosting on breast-cancer has mean
+$\Delta\mathrm{ECE}=\NumBcHgbDelta$ (seed sd \NumBcHgbDeltaStd).
 Post-hoc maps can help or hurt relative to doing nothing
 (wine random forests: isotonic changes shifted ECE by \NumWineRfIsoHelp;
 breast-cancer logistic regression: \NumBcLogregIsoHelp).
@@ -53,9 +56,11 @@ under dataset shift \cite{ovadia2019trust,minderer2021revisiting,tomani2021posth
 Almost all of that evidence is vision-scale neural nets. Tree ensembles
 remain strong on tabular data \cite{grinsztajn2022trees}, and their
 i.i.d.\ calibration properties have been known for decades
-\cite{niculescumizil2005probabilities}, but we found no verified paper
-that measures whether i.i.d.-fitted post-hoc maps still work for these
-models under an explicit covariate shift of $P(X)$.
+\cite{niculescumizil2005probabilities}. Within our API-verified set of
+47 papers---mostly deep-net calibration and conformal theory, not a
+systematic search of applied tabular-drift venues---we did not find this
+exact measurement (sklearn models, i.i.d.\ post-hoc maps, explicit
+$P(X)$ mean-shift). That is a scoped gap, not a proof of absence.
 
 We treat that as a measurement question. We do not introduce a new
 calibrator. A negative or mixed answer is an acceptable outcome.
@@ -82,8 +87,12 @@ NLL \cite{gneiting2007scoring}. Temperature scaling
 \cite{kull2019dirichlet} target neural nets. Unsupervised recalibration
 under covariate shift exists for neural models
 \cite{pampari2020unsupervised}. Domain-drift post-hoc calibration of CNNs
-is studied by \cite{tomani2021posthoc}. We reuse those \emph{questions},
-not their model class.
+is studied by \cite{tomani2021posthoc}. Those papers already
+\textit{predict} our headline outcomes: ECE should rise under shift, and
+i.i.d.-fitted post-hoc maps should not be a complete fix. A surprising
+result here would have been that logistic regression, random forests, and
+histogram boosting \emph{stay} calibrated under a mean-shift of used
+covariates. We reuse the questions, not the model class.
 
 Conformal prediction has finite-sample coverage under exchangeability
 \cite{vovk2005algorithmic,lei2016distributionfree,angelopoulos2021gentle}
@@ -93,9 +102,9 @@ secondary diagnostic, not as a proposed fix.
 
 \section{Methods}
 \paragraph{Models.}
-Scikit-learn logistic regression (with standard scaling), random forests
-($100$ trees), and \texttt{HistGradientBoostingClassifier}. All expose
-\texttt{predict\_proba}.
+Scikit-learn logistic regression (with standard scaling), random forests,
+and \texttt{HistGradientBoostingClassifier}, with hyperparameters as in
+\texttt{src/calibshift/models.py}. All expose \texttt{predict\_proba}.
 
 \paragraph{Calibrators.}
 Fitted on a held-out calibration split of the \emph{source} distribution,
@@ -106,21 +115,23 @@ regression on $p(y{=}1)$ (binary) or on confidence (multiclass).
 \texttt{histogram}: equal-width binning of the same 1-D score.
 
 \paragraph{Shift.}
-Primary: add $s\cdot\hat\sigma_j$ to features $j\in\{0,1,2,3\}$ of the
-test set only (training and calibration unshifted). Strengths
-$s\in\{0,1.0,1.5,2.5\}$. Ablations: quantile slice and exponential-tilt
-resampling on feature $0$; a control that instead shifts the \emph{last}
-four columns.
+Primary: add $s\cdot\hat\sigma_j$ to the test-set columns listed in the
+exp04 config (training and calibration unshifted). Strengths are those
+in the same config ($s{=}0$ is i.i.d.). Ablations: quantile slice and
+exponential-tilt resampling; a control that instead shifts trailing
+columns (exp07).
 
 \paragraph{Metrics.}
-15-bin equal-width confidence ECE, Brier, NLL, accuracy, and split
-conformal coverage with APS scores $1-p_y$ at $\alpha=\NumAlpha$.
+Equal-width confidence ECE with \NumEceBins{} bins (from the exp04
+config), Brier, NLL, accuracy, and split conformal coverage with APS
+scores $1-p_y$ at $\alpha=\NumAlpha$.
 
 \paragraph{Protocol.}
-Each dataset is split $50\%$ train / $25\%$ calibrate / $25\%$ test,
-stratified, with seeds $\{0,1,2,3,4\}$. Results are written only by
-\texttt{calibshift.io.write\_result} to \texttt{results/*.json}. Paper
-macros in \texttt{paper/numbers.tex} are generated from those files.
+Train/calibration/test partitions follow \texttt{calibshift.runner}
+(source-distribution splits; calibration data never includes the test
+set), stratified, with the \NumNSeeds{} seeds listed in the exp04 config.
+Results are written only by \texttt{calibshift.io.write\_result}.
+\texttt{paper/numbers.tex} is generated from those JSON files.
 
 \section{Experiments}
 \paragraph{Datasets.}
@@ -134,7 +145,7 @@ seconds on CPU. This is the source of all headline numbers.
 
 \paragraph{Ablations.}
 \texttt{exp05}: quantile slice and importance resampling.
-\texttt{exp06}: $n_{\mathrm{cal}}\in\{50,100,200\}$ (killed primary H2).
+\texttt{exp06}: calibration-set size (killed primary H2).
 \texttt{exp07}: shift trailing columns.
 
 \paragraph{Sanity.}
@@ -152,22 +163,30 @@ ECE magnitudes to ImageNet temperature scaling \cite{guo2017calibration}.
 Figure~\ref{fig:ece} plots shifted ECE against $s$.
 Figure~\ref{fig:heat} shows mean $\Delta\mathrm{ECE}$ at $s{=}1.5$.
 Pooled over \NumNoneN{} dataset$\times$model$\times$seed cells,
-uncalibrated $\Delta\mathrm{ECE}=\NumNoneDeltaMean\pm\NumNoneDeltaStd$
-(\NumNoneNPos{} positive, \NumNoneNNeg{} negative; Wilcoxon
-$p{=}$\NumNonePooledP). After i.i.d.\ temperature scaling the pooled mean
-is \NumTempDeltaMean$\pm$\NumTempDeltaStd ($p{=}$\NumTempPooledP).
-Isotonic and histogram are similar (\NumIsoDeltaMean{} and
-\NumHistDeltaMean). Synthetic logistic regression is the largest
-effect (\NumSynthLogregDelta$\pm$\NumSynthLogregDeltaStd) and also the
-noisiest; breast-cancer histogram boosting is the exception
-(\NumBcHgbDelta$\pm$\NumBcHgbDeltaStd, interval includes $0$).
+uncalibrated mean $\Delta\mathrm{ECE}=\NumNoneDeltaMean$ with
+cell-to-cell sd \NumNoneDeltaStd{}
+(\NumNoneNPos{} positive, \NumNoneNNeg{} negative). After i.i.d.\
+temperature scaling the pooled mean is \NumTempDeltaMean{} (sd
+\NumTempDeltaStd). Isotonic and histogram are similar
+(\NumIsoDeltaMean{} and \NumHistDeltaMean). These sd figures describe
+heterogeneity across cells, not a confidence interval for the mean.
+A one-sided Wilcoxon signed-rank statistic on the pooled cells is
+exploratory: the \NumNoneN{} differences are not independent replicates
+(models share seeds and datasets). Synthetic logistic regression is the
+largest effect (mean \NumSynthLogregDelta, sd \NumSynthLogregDeltaStd);
+breast-cancer histogram boosting is the exception
+(mean \NumBcHgbDelta, seed sd \NumBcHgbDeltaStd; this is a descriptive
+spread, not an interval that ``includes 0'').
 Table~\ref{tab:pooled} records the pooled statistics.
 
 \begin{table}[t]
 \centering
 \caption{Pooled $\Delta\mathrm{ECE}$ at $s{=}1.5$ ($n=\NumNoneN$ cells:
 4 datasets $\times$ 3 models $\times$ \NumNSeeds{} seeds).
-Source: \texttt{results/stats\_tests.json}, \texttt{summary\_main.json}.}
+``std'' is the sample sd of the \NumNoneN{} cell differences (heterogeneity),
+not $\mathrm{se}$ of the mean. Wilcoxon $p$ is one-sided and
+\textit{unadjusted} among \NumNTests{} related tests in
+\texttt{results/stats\_tests.json}.}
 \label{tab:pooled}
 \small
 \begin{tabular}{lcccc}
@@ -255,15 +274,20 @@ accuracy \NumSynthLogregAccIid$\to$\NumSynthLogregAccShifted{} at $s{=}1.5$).
 \item \textbf{Small tabular data only.} No ImageNet, no language models.
 \item \textbf{Multiclass isotonic/histogram} map \emph{confidence}, not a
 full Dirichlet map \cite{kull2019dirichlet}.
-\item \textbf{ECE estimator.} 15 equal-width bins; we also logged
-quantile-binned ECE in the JSON but did not promote it to a claim.
+\item \textbf{ECE estimator.} Equal-width bins (\NumEceBins{}, from the
+exp04 config); we also logged quantile-binned ECE in the JSON but did
+not promote it to a claim.
 \item \textbf{Temperature on probabilities.} Trees have no logits; we scale
 $\log p$. That is not identical to logit-temperature on a neural net.
 \item \textbf{H3 weights were misspecified.} A 1-D histogram ratio is not
 $p_{\mathrm{test}}(x)/p_{\mathrm{cal}}(x)$ for a 4-D shift.
-\item \textbf{Pooling.} The headline Wilcoxon pools heterogeneous
-dataset$\times$model cells. Per-dataset tests are in
-\texttt{results/stats\_tests.json}; we do not hide the HGB exception.
+\item \textbf{Pooling and tests.} The headline Wilcoxon pools heterogeneous
+dataset$\times$model cells that are not independent. We ran \NumNTests{}
+one-sided tests with no multiplicity correction; $p$-values are
+exploratory. Per-dataset tests are in \texttt{results/stats\_tests.json}.
+\item \textbf{Search scope.} Novelty is relative to
+\texttt{paper/verified.bib} (47 API-verified papers), not a systematic
+review of applied tabular-drift venues.
 \end{itemize}
 
 \section{Conclusion}
