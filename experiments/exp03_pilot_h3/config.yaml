@@ -1,0 +1,14 @@
+dataset_list:
+  - breast_cancer
+  - synthetic_shift
+model_list:
+  - logreg
+seeds: [0, 1, 2]
+calibrators:
+  - none
+  - temperature
+shift_strengths: [0.0, 0.75, 1.5, 2.5]
+n_shift_features: 4
+alpha: 0.1
+ece_bins: 15
+hypothesis: H3

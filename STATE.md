@@ -1,8 +1,8 @@
 # STATE.md
 
-**Phase:** P0 Setup (in progress); P1 literature agents running in parallel
-**Last completed step:** Locked topic; created branch `cursor/calibration-shift-tabular-6026`
-**Next action:** Finish repo layout, pin requirements, pass `make fresh-clone-test`
+**Phase:** P1 GATE ready to close; P2 pilots coded, not yet run
+**Last completed step:** 47 verified papers; lit_review.md with H1/H2/H3; shared runner
+**Next action:** Run exp01–exp03 pilots; pick one hypothesis; log kill decisions
 **Updated:** 2026-08-26
 
 ## Locked topic
