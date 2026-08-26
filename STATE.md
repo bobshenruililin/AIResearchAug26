@@ -1,17 +1,17 @@
 # STATE.md
 
-**Phase:** P6 internal review (cycle 1 in progress)
-**Last completed step:** Novelty-cynic and stats-pedant scored; paper revised for positioning and stats wording
-**Next action:** Wait for methods-skeptic; then compute mean overall and fabrication flags
+**Phase:** P6 review cycle 2 (revised paper; three independent reviewers in flight)
+**Last completed step:** Cycle 1 mean overall 5.67 (<6). No fabrication flags. Paper reframed as feature perturbation vs selection; LAC not APS; n=12 seed-averaged test. Cycle-1 reviews archived under `logs/reviews/cycle1/`.
+**Next action:** Wait for cycle-2 reviewers; mean ≥ 6 and no fabrication → P6 done; else cycle 3 or HANDOFF.md
 **Updated:** 2026-08-26
 
 ## Selected hypothesis
 
-H1: i.i.d.-fitted post-hoc calibrators do not preserve ECE under covariate shift.
+H1 (reframed): i.i.d.-fitted post-hoc maps do not keep ECE from rising under Gaussian mean-shift of test features with labels held fixed. Genuine covariate shift (selection on X) is a control, not the headline.
 
 ## Locked topic
 
-Post-hoc calibration under covariate shift on small tabular data (CPU, $0 API).
+Post-hoc calibration under feature perturbation vs selection shift on small tabular data (CPU, $0 API).
 
 ## Budget tracker
 
@@ -19,24 +19,24 @@ Post-hoc calibration under covariate shift on small tabular data (CPU, $0 API).
 |---|---|---|---|
 | API USD | 0 | 0 | n/a |
 | GPU-hours | 0 | 0 | n/a |
-| Experiment CPU-minutes | 0 | 120 | 96 |
-| Wall clock | just started | this agent run | n/a |
+| Experiment CPU-minutes | ~1 (all grids <1 min wall) | 120 | 96 |
+| Wall clock | this agent run | this agent run | n/a |
 
-## Open risks
+## Cycle 1 scores (no fabrication)
 
-- No GPU; cannot study deep nets (accepted; topic locked around this).
-- sklearn/LaTeX not preinstalled; must pin and bootstrap in-repo.
-- Semantic Scholar rate limits may shrink the verified bibliography.
-- OpenML downloads may fail; must have fully offline synthetic + sklearn datasets.
-- Engineer and writer must not share a working directory later (P5).
+| Persona | Overall |
+|---|---|
+| methods-skeptic | 6 |
+| stats-pedant | 5 |
+| novelty-cynic | 6 |
+| **mean** | **5.67** |
 
-## Subagents in flight
+## Cycle 2 reviewers (in flight)
 
-- lit fable: bc-208be551-b978-59e0-87b7-526c0da3b51e → /tmp/lit_fable
-- lit sol: bc-ea8c22ae-e7f2-5404-9d14-38ee18999b63 → /tmp/lit_sol
-- eng fable: bc-edfbf654-c900-537e-b39b-1f7a881e2b0c → /tmp/eng_fable
-- eng sol: bc-14fa3032-3916-53f8-af6c-a01e5bb68966 → /tmp/eng_sol
+Independent; must not see cycle-1 reviews.
 
 ## Hypothesis status
 
-Not yet gated (P1). Draft H1/H2/H3 in GOAL.md.
+- H1 as originally worded (covariate shift): **withdrawn**; supported claim is frozen-label feature perturbation.
+- H2: **killed** as primary (heterogeneous).
+- H3: **killed** as stated (1-D weights misspecified).

@@ -64,10 +64,19 @@ plot from the main grid; do not claim weighted conformal recovery.
 synthetic_shift often had ΔECE≈0 because random columns missed predictive
 features). Add a noise-feature-shift *control*.
 
-## 2026-08-26 — P6 review cycle 1 (partial)
+## 2026-08-26 — P6 cycle 1 scores and pivot
+
+Overall: methods 6, stats 5, novelty 6. Mean **5.67 < 6**. No fabrication
+flags. Methods-skeptic: frozen-label Gaussian mean-shift is input
+corruption, not covariate shift; selection controls that preserve
+P(Y|X) show ΔECE ≈ 0.016. **We weaken the claim** to that distinction
+rather than defending the original H1 wording. Also rename conformal
+score from APS to LAC; add n=12 seed-averaged Wilcoxon (p=2.4e-4).
 
 Novelty-cynic overall 6, fabrication_flag false. Stats-pedant overall 5,
-fabrication_flag false (file present; methods-skeptic still outstanding).
+fabrication_flag false. Methods-skeptic overall 6, fabrication_flag false
+(cycle-1 set complete; mean 5.67). Cycle-2 independent re-review launched
+on the reframed PDF.
 Applied: scoped novelty claim; Pampari \& Ermon; prior work predicts
 headlines; Wilcoxon described as exploratory; sd labelled as heterogeneity;
 HGB ``interval includes 0'' removed; protocol numbers taken from exp04
