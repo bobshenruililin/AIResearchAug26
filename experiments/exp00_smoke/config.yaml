@@ -1,0 +1,11 @@
+dataset: breast_cancer
+model: logreg
+seed: 0
+calibrators:
+  - none
+  - temperature
+  - isotonic
+  - histogram
+shift_strength: 1.5
+n_shift_features: 4
+alpha: 0.1
