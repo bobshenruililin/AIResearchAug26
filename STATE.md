@@ -1,8 +1,8 @@
 # STATE.md
 
-**Phase:** P6 cycle 2 passed; applying must-fixes then closing
-**Last completed step:** Cycle 2 mean overall 6.67 (≥6). No fabrication flags (methods 7, stats 6, novelty 7). Paper updates for remaining must-fixes in flight (corpus split, wine RF calibrator match, exp05 n=6, one-sided tests, author names).
-**Next action:** Integrity tests + compile PDF; mark goal complete.
+**Phase:** P6 complete (gate passed)
+**Last completed step:** Cycle 2 mean overall 6.67 (≥6), no fabrication flags. Must-fixes applied; `paper/main.pdf` is 5 pages; pytest 18/18.
+**Next action:** none (research run complete).
 **Updated:** 2026-08-26
 
 ## Selected hypothesis
