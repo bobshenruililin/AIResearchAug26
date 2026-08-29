@@ -229,7 +229,7 @@
         } catch (e) {}
       });
       this.es.onerror = () => {
-        setTimeout(() => this.stream(), 1200);
+        /* native EventSource retry; do not open a second socket */
       };
     }
   }

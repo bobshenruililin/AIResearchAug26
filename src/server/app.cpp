@@ -396,6 +396,7 @@ int run_server(const std::string& web_root, const std::string& data_dir, const s
   std::signal(SIGINT, on_sig);
   std::signal(SIGTERM, on_sig);
 
+  std::cout << std::unitbuf;
   std::cout << "StormClass 暴雨课堂  http://" << host << ":" << port << "\n"
             << "  demo     /demo\n"
             << "  teacher  /t/FENZHI\n"
