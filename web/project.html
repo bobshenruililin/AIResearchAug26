@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>投屏 · 暴雨课堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/static/storm.css"/>
+</head>
+<body class="project-mode">
+<canvas id="rain"></canvas>
+<div class="shell">
+  <div class="topbar">
+    <div class="brand">暴雨课堂<small>PROJECTION</small></div>
+    <div class="code-pill" id="code"></div>
+    <div class="spacer"></div>
+    <div class="stat">在场 <b id="present">0</b></div>
+  </div>
+  <div class="stage" style="grid-template-columns:1fr">
+    <div class="cinema">
+      <div class="slide-visual" id="visual"></div>
+      <div class="slide-body">
+        <div class="slide-kicker" id="kicker"></div>
+        <div class="slide-title" id="title"></div>
+        <div class="slide-text" id="body"></div>
+        <div id="quizbar" class="quiz-bar"></div>
+        <div class="cloud" id="cloud" style="padding:8px 4px 16px"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/static/js/storm.js"></script>
+<script>
+Storm.rain(document.getElementById('rain'));
+const code = Storm.codeFromPath('p');
+document.getElementById('code').textContent = code;
+const c = new Storm.Client({code, role:'spectator', id:'proj-1', name:'投屏'});
+c.on(() => {
+  const room = c.room; if (!room) return;
+  const sl = Storm.currentSlide(room);
+  document.getElementById('present').textContent = room.present;
+  document.getElementById('kicker').textContent = `${room.slide_index+1}/${room.slides.length}`;
+  document.getElementById('title').textContent = sl.title_zh;
+  document.getElementById('body').textContent = sl.body_zh;
+  document.getElementById('visual').className = 'slide-visual vis-' + (sl.visual||'');
+  const q = room.quiz;
+  const qb = document.getElementById('quizbar');
+  if (!q) qb.innerHTML = '';
+  else {
+    qb.innerHTML = `<div class="quiz-prompt">${Storm.esc(q.prompt_zh)} · ${q.answered}/${q.present}</div>` +
+      (q.options||[]).map((o,i)=>`<div class="opt">${Storm.optionLabel(i)} ${Storm.esc(o.text_zh)} · ${(q.histogram&&q.histogram[o.id])||0}</div>`).join('');
+  }
+  Storm.renderCloud(document.getElementById('cloud'), room.wordcloud);
+});
+c.snapshot().then(() => c.stream());
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>演示 · 暴雨课堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/static/storm.css"/>
+</head>
+<body>
+<canvas id="rain"></canvas>
+<div class="shell">
+  <div class="topbar">
+    <div class="brand">暴雨课堂<small>SPLIT INSPECTOR</small></div>
+    <div class="code-pill">FENZHI</div>
+    <div class="stat">教师 ← 左 · 学生手机 → 右</div>
+    <div class="spacer"></div>
+    <a class="iconbtn" href="/t/FENZHI" target="_blank">教师全屏</a>
+    <a class="iconbtn" href="/s/FENZHI" target="_blank">学生全屏</a>
+    <a class="iconbtn" href="/p/FENZHI" target="_blank">投屏</a>
+    <a class="iconbtn" href="/report/FENZHI" target="_blank">报告</a>
+    <a class="iconbtn" href="/">首页</a>
+  </div>
+  <div class="demo-grid">
+    <iframe src="/t/FENZHI?embed=1" title="teacher"></iframe>
+    <iframe src="/s/FENZHI?name=%E6%97%81%E5%90%AC%E7%94%9F&embed=1" title="student"></iframe>
+  </div>
+  <div class="demo-tools">
+    打开这一页即可检查整堂课。左侧是教师投影台，右侧是学生机。32 名模拟同学正在答题与发弹幕。键盘：← → 翻页 · Space 发题 · R 点名。
+  </div>
+</div>
+<script src="/static/js/storm.js"></script>
+<script>Storm.rain(document.getElementById('rain')); fetch('/api/demo/start', {method:'POST'});</script>
+</body>
+</html>

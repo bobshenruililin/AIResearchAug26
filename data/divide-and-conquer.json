@@ -1,0 +1,8 @@
+{
+  "id": "dac-01",
+  "title_zh": "算法导论 · 分治",
+  "title_en": "CLRS · Divide and Conquer",
+  "note": "Canonical copy of the seeded lecture. The running binary uses the compiled deck in src/engine/seed.cpp (same content). 12 slides, quizzes q1–q8, knowledge points dac-structure / merge-cost / master-theorem / recognize-dac / dac-vs-dp / recurrences.",
+  "slides": 12,
+  "quizzes": ["q1", "q2", "q3", "q4", "q5", "q6", "q7", "q8"]
+}

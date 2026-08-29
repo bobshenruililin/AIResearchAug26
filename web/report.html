@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>课堂报告 · 暴雨课堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/static/storm.css"/>
+</head>
+<body style="overflow:auto">
+<canvas id="rain"></canvas>
+<div class="report">
+  <div class="en" style="letter-spacing:.3em;color:#e8c07a">CLASSROOM REPORT</div>
+  <h1 id="title">课堂报告</h1>
+  <p id="sub" style="color:#8a9aab"></p>
+  <div class="cards" id="cards"></div>
+  <h3>习题</h3>
+  <table id="quizzes"></table>
+  <h3>名册</h3>
+  <table id="people"></table>
+  <h3>词云</h3>
+  <div class="cloud" id="cloud"></div>
+</div>
+<script src="/static/js/storm.js"></script>
+<script>
+Storm.rain(document.getElementById('rain'));
+const code = Storm.codeFromPath('report');
+(async () => {
+  const r = await fetch('/api/rooms/' + code + '/report');
+  const j = await r.json();
+  const rep = j.report;
+  document.getElementById('title').textContent = rep.title_zh;
+  document.getElementById('sub').textContent = code + ' · events ' + rep.event_count;
+  const a = rep.attendance;
+  document.getElementById('cards').innerHTML = `
+    <div class="card"><div class="n">${a.checked_in}/${a.total}</div>签到</div>
+    <div class="card"><div class="n">${a.present}</div>在场</div>
+    <div class="card"><div class="n">${rep.pk.red}</div>红队 XP</div>
+    <div class="card"><div class="n">${rep.pk.blue}</div>蓝队 XP</div>`;
+  document.getElementById('quizzes').innerHTML = '<tr><th>题</th><th>作答</th><th>正确</th><th>正确率</th></tr>' +
+    (rep.quizzes||[]).map(q => `<tr><td>${Storm.esc(q.prompt_zh)}</td><td>${q.answered}</td><td>${q.correct}</td><td>${q.accuracy==null?'—':Math.round(q.accuracy*100)+'%'}</td></tr>`).join('');
+  document.getElementById('people').innerHTML = '<tr><th>姓名</th><th>队</th><th>XP</th><th>答对</th><th>不懂</th></tr>' +
+    (rep.students||[]).map(s => `<tr><td>${Storm.esc(s.name)}</td><td>${s.team}</td><td>${s.xp}</td><td>${s.answers_correct}/${s.answers_total}</td><td>${s.confused_count}</td></tr>`).join('');
+  Storm.renderCloud(document.getElementById('cloud'), rep.top_words);
+})();
+</script>
+</body>
+</html>
