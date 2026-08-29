@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>暴雨课堂 · StormClass</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/static/storm.css"/>
+</head>
+<body>
+<canvas id="rain"></canvas>
+<div class="land">
+  <div class="hero">
+    <div class="en">STORMCLASS</div>
+    <h1>暴雨课堂</h1>
+    <p id="tag">比雨课堂更重的一场课。幻灯片、限时题、弹幕词云、随机点名、不懂热力、掌握度雷达、红蓝 PK —— 全部在本地 C++ 内核里，开这一页就能检查。</p>
+    <div class="cta">
+      <a href="/demo" id="demo">开始演示课堂</a>
+      <button class="ghost" id="create">创建空白教室</button>
+      <button class="ghost" id="lang">EN</button>
+    </div>
+    <p style="margin-top:28px;font-size:13px;color:#8a9aab" id="foot">本地二进制 · 无云 · 无微信 · 课堂码 FENZHI</p>
+  </div>
+</div>
+<script src="/static/js/storm.js"></script>
+<script>
+Storm.rain(document.getElementById('rain'));
+const langBtn = document.getElementById('lang');
+let loc = localStorage.getItem('storm_locale') || 'zh';
+function paint() {
+  const t = Storm.T[loc];
+  document.getElementById('tag').textContent = loc === 'zh'
+    ? '比雨课堂更重的一场课。幻灯片、限时题、弹幕词云、随机点名、不懂热力、掌握度雷达、红蓝 PK —— 全部在本地 C++ 内核里，开这一页就能检查。'
+    : 'Heavier weather than Rain Classroom. Slides, timed items, danmaku clouds, roll call, confusion heat, mastery radar, team PK — a local C++ kernel you can open and inspect.';
+  document.getElementById('demo').textContent = t.startDemo;
+  document.getElementById('create').textContent = t.create;
+  langBtn.textContent = t.lang;
+  document.getElementById('foot').textContent = t.footer;
+}
+paint();
+langBtn.onclick = () => { loc = loc === 'zh' ? 'en' : 'zh'; localStorage.setItem('storm_locale', loc); paint(); };
+document.getElementById('create').onclick = async () => {
+  const r = await fetch('/api/rooms', {method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({title_zh:'新课堂', title_en:'New room'})});
+  const j = await r.json();
+  location.href = '/t/' + j.code;
+};
+</script>
+</body>
+</html>

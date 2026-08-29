@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>学生 · 暴雨课堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/static/storm.css"/>
+</head>
+<body>
+<canvas id="rain"></canvas>
+<div class="phone-wrap">
+  <div class="phone" id="app">
+    <div class="notch">暴雨课堂 · <span id="code"></span></div>
+    <div class="content">
+      <div class="slide-kicker" id="kicker"></div>
+      <div class="slide-title" id="title" style="font-size:26px"></div>
+      <div class="slide-text" id="body"></div>
+      <div id="quiz" style="margin-top:16px"></div>
+      <button class="confused" id="confused" style="margin-top:16px">不懂</button>
+    </div>
+    <div class="composer">
+      <input id="dan" placeholder="弹幕…"/>
+      <button class="iconbtn gold" id="send">发送</button>
+    </div>
+    <div class="called" id="called">被点到了</div>
+  </div>
+</div>
+<script src="/static/js/storm.js"></script>
+<script src="/static/js/student.js"></script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+build/
+*.db
+*.db-journal
+.cache/
+.cursor/
+*.o
+.DS_Store
+compile_commands.json
+cmake-build-*/
+/tmp/

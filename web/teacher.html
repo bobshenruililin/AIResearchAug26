@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="zh">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>教师 · 暴雨课堂</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,560;9..144,700&family=IBM+Plex+Mono:wght@400;500&family=Noto+Sans+SC:wght@400;500;700&family=Noto+Serif+SC:wght@500;700&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="/static/storm.css"/>
+</head>
+<body>
+<canvas id="rain"></canvas>
+<div class="shell" id="app">
+  <div class="topbar">
+    <div class="brand">暴雨课堂<small>STORMCLASS</small></div>
+    <div class="code-pill" id="code">------</div>
+    <div class="stat"><span data-i="present">在场</span> <b id="present">0</b></div>
+    <div class="stat"><span data-i="checked">签到</span> <b id="checked">0</b></div>
+    <div class="stat">seq <b id="seq">0</b></div>
+    <div class="spacer"></div>
+    <a class="iconbtn" id="proj" href="#" target="_blank">投屏</a>
+    <a class="iconbtn" id="rep" href="#" target="_blank">报告</a>
+    <a class="iconbtn" id="stu" href="#" target="_blank">学生</a>
+    <button class="iconbtn" id="lang">EN</button>
+  </div>
+  <div class="stage">
+    <div class="cinema">
+      <div class="slide-visual" id="visual"></div>
+      <div class="slide-body">
+        <div class="slide-kicker" id="kicker"></div>
+        <div class="slide-title" id="title"></div>
+        <div class="slide-text" id="body"></div>
+      </div>
+      <div class="heat-row" id="heat"></div>
+      <div class="quiz-bar" id="quizbar"></div>
+      <div class="lottery" id="lottery"></div>
+    </div>
+    <div class="side">
+      <div class="tabs">
+        <button class="on" data-tab="roster">名册</button>
+        <button data-tab="dan">弹幕</button>
+        <button data-tab="cloud">词云</button>
+        <button data-tab="mastery">掌握</button>
+        <button data-tab="posts">投稿</button>
+      </div>
+      <div class="side-body" id="side"></div>
+      <div class="controls">
+        <button class="iconbtn" id="prev">上一页</button>
+        <button class="iconbtn" id="next">下一页</button>
+        <button class="iconbtn gold" id="push">发送此题</button>
+        <button class="iconbtn" id="lock">收卷</button>
+        <button class="iconbtn" id="reveal">揭晓</button>
+        <button class="iconbtn gold" id="roll">随机点名</button>
+        <button class="iconbtn" id="mute">弹幕</button>
+        <button class="iconbtn" id="pk">PK</button>
+        <button class="iconbtn" id="bots">模拟学生</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/static/js/storm.js"></script>
+<script src="/static/js/teacher.js"></script>
+</body>
+</html>
