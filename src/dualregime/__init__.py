@@ -1,24 +1,43 @@
-"""Dual-regime act/abort stack: sensor perturbation vs selection.
+"""Dual-regime insert/abort: sensor perturbation vs workspace selection.
 
-The structure is a regime detector plus two different policies.
-Perturbation path switches to redundant (camera / gauge) channels.
-Selection path keeps the i.i.d. calibrator. That is not a single
-OOD-threshold abort.
+Identifying claim: frozen-label encoder perturbation breaks P(Y|X) at
+the observed pose; pairing-preserving fixture selection does not. Those
+regimes need opposite legal moves, not a shared i.i.d. temperature on
+raw encoder probabilities.
+
+Honesty: planar peg-in-hole kinematic cartoon, not a robot.
 """
 
-from .detector import RegimeDetector, REGIME_IID, REGIME_PERTURB, REGIME_SELECT
-from .policies import DualRegimePolicy
-from .world import CLEAN_IDX, COLS, DEPLOY_IDX, GraspWorld, generate_batch
+from .detector import REGIME_IID, REGIME_PERTURB, REGIME_SELECT, RegimeDetector, physics_residual
+from .metrics import ABORT, ACT, DEFER, decision_summary
+from .policies import DualRegimePolicy, fit_policy
+from .world import (
+    CAM_IDX,
+    COLS,
+    DEPLOY_IDX,
+    ENC_IDX,
+    PegWorld,
+    generate_batch,
+    project_encoder_to_camera,
+)
 
 __all__ = [
+    "ABORT",
+    "ACT",
+    "CAM_IDX",
     "COLS",
-    "CLEAN_IDX",
+    "DEFER",
     "DEPLOY_IDX",
-    "GraspWorld",
-    "generate_batch",
-    "RegimeDetector",
+    "ENC_IDX",
+    "DualRegimePolicy",
+    "PegWorld",
     "REGIME_IID",
     "REGIME_PERTURB",
     "REGIME_SELECT",
-    "DualRegimePolicy",
+    "RegimeDetector",
+    "decision_summary",
+    "fit_policy",
+    "generate_batch",
+    "physics_residual",
+    "project_encoder_to_camera",
 ]

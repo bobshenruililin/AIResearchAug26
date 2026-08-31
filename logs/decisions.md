@@ -108,10 +108,24 @@ numpy grasp proxy (not wine). 强结构 is residual routing
 exp08 5/5 seeds: perturb router utility +93 vs always_iid −184 vs
 abort-all 0. Locked into GOAL.md. Not a physical robot.
 
-Swarm + implementation: 强任务 is act/abort with asymmetric cost on a
-numpy grasp proxy (not wine). 强结构 is residual routing
-(encoder vs camera) plus channel-switch, not a single OOD abort.
-exp08 5/5 seeds: perturb router utility +93 vs always_iid −184 vs
-abort-all 0. Locked into GOAL.md. Not a physical robot.
+## 2026-08-31 — Swarm GO bar: peg-in-hole, opposite moves, projection
+
+Four swarm personas finished after the grasp stack shipped. Combined lock:
+
+- **Task:** planar peg-in-hole insert vs abort (geometric clearance), not
+  grasp close/regrasp and not wine. Honest kinematic cartoon, not a robot.
+- **Structure:** physics residual (encoder vs camera) and density ratio
+  (camera xy) are separate channels with opposite legal moves.
+  Perturbation: project encoder onto camera, then source T; never T on
+  raw corrupted p. Selection: keep T, multivariate weighted LAC, defer
+  not abort.
+- **Lit:** do not claim an ICLR method gap. Tibshirani weights are invalid
+  under frozen-label perturbation, so unlabeled identification is a
+  precondition for using them.
+- **Skeptic kill:** numpy grasp + OOD + abort more is a template. PCA
+  residual is the wrong channel for optimistic encoder bias (near-origin
+  is on the training manifold; PCA residual falls).
+
+exp08 grasp JSON is frozen and superseded. Headline stack is exp09.
 
 

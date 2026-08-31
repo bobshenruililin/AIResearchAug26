@@ -21,6 +21,9 @@ def test_every_macro_is_traceable_to_json():
     exp08 = ROOT / "results" / "exp08_dual_regime.json"
     if exp08.exists():
         blob += exp08.read_text()
+    exp09 = ROOT / "results" / "exp09_peg_insert.json"
+    if exp09.exists():
+        blob += exp09.read_text()
     missing = []
     for key, val in macros.items():
         if val in blob:

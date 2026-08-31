@@ -200,29 +200,90 @@ def make_ablation_shift_family():
 
 
 def make_dual_utility():
-    path = ROOT / "results" / "exp08_dual_regime.json"
+    path = ROOT / "results" / "exp09_peg_insert.json"
     if not path.exists():
+        path = ROOT / "results" / "exp08_dual_regime.json"
+        if not path.exists():
+            return
+        cells = json.loads(path.read_text())["payload"]["cells"]
+        modes = ["always_abort", "always_iid", "always_clean", "router"]
+        splits = ["iid", "perturb", "select"]
+        G = defaultdict(list)
+        for cell in cells:
+            for row in cell["rows"]:
+                G[(row["split"], row["mode"])].append(row["utility"])
+        fig, ax = plt.subplots(figsize=(6.4, 3.2))
+        x = np.arange(len(splits))
+        w = 0.18
+        for i, mode in enumerate(modes):
+            means = [float(np.mean(G[(s, mode)])) for s in splits]
+            ax.bar(x + (i - 1.5) * w, means, w, label=mode.replace("_", " "))
+        ax.axhline(0, color="black", lw=0.8)
+        ax.set_xticks(x, splits)
+        ax.set_ylabel("mean utility (5 seeds)")
+        ax.legend(fontsize=7, ncol=2)
+        ax.grid(True, axis="y", alpha=0.3)
+        fig.tight_layout()
+        fig.savefig(OUT / "dual_regime_utility.png", dpi=150)
+        plt.close(fig)
         return
     cells = json.loads(path.read_text())["payload"]["cells"]
-    modes = ["always_abort", "always_iid", "always_clean", "router"]
+    modes = ["always_abort", "detector_off", "illegal_T", "denoise_off", "router", "oracle"]
     splits = ["iid", "perturb", "select"]
     G = defaultdict(list)
+    F = defaultdict(list)
     for cell in cells:
         for row in cell["rows"]:
-            G[(row["split"], row["mode"])].append(row["utility"])
-    fig, ax = plt.subplots(figsize=(6.4, 3.2))
+            G[(row["split"], row["mode"])].append(row["mean_utility"])
+            F[(row["split"], row["mode"])].append(row["false_confident_act_rate"])
+    fig, ax = plt.subplots(figsize=(6.8, 3.3))
     x = np.arange(len(splits))
-    w = 0.18
+    w = 0.13
     for i, mode in enumerate(modes):
         means = [float(np.mean(G[(s, mode)])) for s in splits]
-        ax.bar(x + (i - 1.5) * w, means, w, label=mode.replace("_", " "))
+        ax.bar(x + (i - 2.5) * w, means, w, label=mode.replace("_", " "))
     ax.axhline(0, color="black", lw=0.8)
-    ax.set_xticks(x, splits)
-    ax.set_ylabel("mean utility (5 seeds)")
-    ax.legend(fontsize=7, ncol=2)
+    ax.set_xticks(x, ["i.i.d.", "encoder bias", "fixture slice"])
+    ax.set_ylabel("mean utility / episode")
+    ax.legend(fontsize=6, ncol=3)
     ax.grid(True, axis="y", alpha=0.3)
     fig.tight_layout()
     fig.savefig(OUT / "dual_regime_utility.png", dpi=150)
+    plt.close(fig)
+
+    fig, ax = plt.subplots(figsize=(6.8, 3.0))
+    for i, mode in enumerate(["detector_off", "illegal_T", "router", "denoise_off", "always_abort"]):
+        means = [float(np.mean(F[(s, mode)])) for s in splits]
+        ax.bar(x + (i - 2) * w, means, w, label=mode.replace("_", " "))
+    ax.set_xticks(x, ["i.i.d.", "encoder bias", "fixture slice"])
+    ax.set_ylabel("false-confident insert rate")
+    ax.legend(fontsize=6, ncol=3)
+    ax.grid(True, axis="y", alpha=0.3)
+    fig.tight_layout()
+    fig.savefig(OUT / "dual_regime_fcar.png", dpi=150)
+    plt.close(fig)
+
+    # Stream path mix
+    S = defaultdict(list)
+    for cell in cells:
+        for br in cell["stream"]["blocks"]:
+            S[br["block"]].append(br)
+    fig, ax = plt.subplots(figsize=(6.4, 3.0))
+    blocks = ["iid", "select", "perturb"]
+    labels = ["i.i.d. block", "slice block", "bias block"]
+    xb = np.arange(len(blocks))
+    proj = [float(np.mean([r["n_path_project"] / max(r["n"], 1) for r in S[b]])) for b in blocks]
+    abort = [float(np.mean([r["abort_rate"] for r in S[b]])) for b in blocks]
+    act = [float(np.mean([r["act_rate"] for r in S[b]])) for b in blocks]
+    ax.bar(xb - 0.2, act, 0.2, label="insert")
+    ax.bar(xb, proj, 0.2, label="project-then-T")
+    ax.bar(xb + 0.2, abort, 0.2, label="abort")
+    ax.set_xticks(xb, labels)
+    ax.set_ylabel("rate (mixed stream)")
+    ax.legend(fontsize=7)
+    ax.grid(True, axis="y", alpha=0.3)
+    fig.tight_layout()
+    fig.savefig(OUT / "dual_regime_stream.png", dpi=150)
     plt.close(fig)
 
 

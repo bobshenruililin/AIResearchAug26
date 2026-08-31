@@ -126,20 +126,51 @@ def main() -> None:
     if dual_path.exists():
         d = json.loads(dual_path.read_text())["payload"]["cells"]
 
-        def du(split: str, mode: str, field: str) -> str:
-            return fmt(d[f"{split}|{mode}"][field]["mean"], 1 if field == "utility" else 3)
+        def du(split: str, mode: str, field: str, nd: int = 3) -> str:
+            cell = d[f"{split}|{mode}"]
+            # Prefer mean_utility; fall back to legacy utility sums.
+            key = field
+            if field == "utility" and "mean_utility" in cell:
+                key = "mean_utility"
+            if field == "false_confident_rate" and "false_confident_act_rate" in cell:
+                key = "false_confident_act_rate"
+            return fmt(cell[key]["mean"], nd)
 
+        src = json.loads(dual_path.read_text())["payload"]
         macros.update(
             {
                 "PertRouterUtil": du("perturb", "router", "utility"),
-                "PertIidUtil": du("perturb", "always_iid", "utility"),
+                "PertIidUtil": du("perturb", "detector_off", "utility")
+                if "perturb|detector_off" in d
+                else du("perturb", "always_iid", "utility"),
                 "PertAbortUtil": du("perturb", "always_abort", "utility"),
+                "PertIllegalUtil": du("perturb", "illegal_T", "utility")
+                if "perturb|illegal_T" in d
+                else du("perturb", "always_iid", "utility"),
+                "PertDenoiseOffUtil": du("perturb", "denoise_off", "utility")
+                if "perturb|denoise_off" in d
+                else "nan",
                 "PertRouterFcr": du("perturb", "router", "false_confident_rate"),
-                "PertIidFcr": du("perturb", "always_iid", "false_confident_rate"),
+                "PertIidFcr": du("perturb", "detector_off", "false_confident_rate")
+                if "perturb|detector_off" in d
+                else du("perturb", "always_iid", "false_confident_rate"),
+                "PertIllegalFcr": du("perturb", "illegal_T", "false_confident_rate")
+                if "perturb|illegal_T" in d
+                else du("perturb", "always_iid", "false_confident_rate"),
                 "PertRouterRec": du("perturb", "router", "recall_success"),
+                "PertRouterAct": du("perturb", "router", "act_rate"),
+                "PertRouterAbort": du("perturb", "router", "abort_rate"),
+                "SelRouterAbort": du("select", "router", "abort_rate"),
+                "SelRouterUtil": du("select", "router", "utility"),
+                "SelAbortUtil": du("select", "always_abort", "utility"),
                 "IidRouterUtil": du("iid", "router", "utility"),
-                "IidIidUtil": du("iid", "always_iid", "utility"),
-                "DualNSeeds": str(json.loads(dual_path.read_text())["payload"]["n_seeds"]),
+                "IidIidUtil": du("iid", "detector_off", "utility")
+                if "iid|detector_off" in d
+                else du("iid", "always_iid", "utility"),
+                "DualNSeeds": str(src.get("n_seeds", 5)),
+                "DualPosIid": fmt(src["pos_rate"]["iid"]["mean"]) if "pos_rate" in src else "nan",
+                "DualPosSel": fmt(src["pos_rate"]["sel"]["mean"]) if "pos_rate" in src else "nan",
+                "DualKillsFired": src.get("kills_fired", "none"),
             }
         )
     lines = [

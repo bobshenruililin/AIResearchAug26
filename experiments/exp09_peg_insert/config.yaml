@@ -1,0 +1,10 @@
+seeds: [0, 1, 2, 3, 4]
+n_train: 800
+n_cal: 400
+n_test: 500
+n_stream_block: 160
+alpha: 0.1
+tau_act: 0.8
+enc_xy_scale: 0.40
+select_x_lo: 0.0
+hypothesis: dual-regime-peg-insert

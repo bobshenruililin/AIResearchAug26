@@ -10,45 +10,64 @@ ordinary statistics; no theorem-only contribution).
 A well-executed negative or mixed result is a SUCCESS.
 A hollow "novel method" with weak evidence is a FAILURE.
 
-## Topic & scope (LOCKED 2026-08-31 — hope found)
+## Topic & scope (LOCKED 2026-08-31 — swarm GO bar)
 
-**Direction:** Dual-regime act/abort for a contact/grasp success decision.
-Two test-time changes that the previous workshop analysis showed are *not*
-the same thing:
+**Direction:** Dual-regime *insert vs abort* on a **planar peg-in-hole**
+kinematic cartoon (geometric clearance). Not wine/breast_cancer as the
+headline task. Not a physical robot.
 
-1. **Sensor perturbation** (frozen-label encoder/motor bias). \(P(Y\mid X_{\mathrm{enc}})\)
-   breaks. The deployed policy only sees encoder + motor + appearance.
-2. **Workspace selection** (pairs kept; camera and encoder still agree).
-   Closer to covariate shift.
+Two test-time changes that the tabular measurement already showed are
+*not* the same thing:
 
-**Structure (the paper claim):** a residual detector (encoder vs camera,
-motor vs gauge) routes to *different policies*:
+1. **Sensor perturbation** (optimistic encoder: reports the peg closer to
+   the hole than the true pose; labels frozen). \(P(Y\mid X_{\mathrm{enc}})\)
+   breaks. Near-origin poses exist in training, so PCA/OOD on encoder
+   coordinates need not fire.
+2. **Workspace selection** (keep pairs with \(x\ge 0\), right-half fixture).
+   Encoder and camera still agree. \(P(Y\mid X)\) preserved. Difficulty-
+   matched success rate vs i.i.d.
 
-- **Perturb:** switch to the watchdog channels (camera + gauge) and a
-  failure-controlling probability gate fitted on those channels.
-- **Select / i.i.d.:** keep the deployed-channel gate.
-- This is **not** a single \(\|x-\mu\|\) abort threshold: selection moves
-  location without raising residual; perturbation raises residual without
-  requiring the location to be OOD.
+**Structure (the paper claim — opposite legal moves):**
 
-**Task:** act vs abort with asymmetric cost (false-confident act costs
-`cost_fail=8`, successful act rewards 1). Primary metrics: utility,
-false-confident-act rate, recall of successes. ECE is secondary.
+- **Channel 1, physics residual** (encoder vs camera, plus
+  \(p(\mathrm{raw})\) vs \(p(\mathrm{projected})\)). Routes to
+  **project encoder onto the camera pose, then apply source \(T\)**
+  (same deployed model). Abort only if residual is huge. **Forbidden:**
+  source \(T\) on raw corrupted encoder probabilities; Tibshirani weights
+  on \(X\).
+- **Channel 2, density ratio** (camera-\(xy\) domain classifier / kNN).
+  Routes to **the same \(T\) + multivariate weighted LAC**. Act or
+  **defer**. **Forbidden:** abort-as-sensor-fault; project-as-if-the-encoder-lied.
+- i.i.d.: source \(T\) + unweighted LAC → act / defer.
 
-**Honesty:** this is a **numpy structural proxy** for a robot, not MuJoCo
-and not hardware. We do not claim DexNet/GQ-CNN numbers.
+This is not a single \(\|x-\mu\|\) abort threshold and not a second
+classifier on camera features.
+
+**Task:** INSERT vs ABORT/DEFER with asymmetric cost
+(`u_wrong_act=-10`, `u_correct_act=+1`, `u_defer=-0.2`, `u_abort=-0.5`).
+Primary metrics: mean utility, FCAR, act/abort/defer rates,
+coverage-of-safety. ECE is secondary.
+
+**Honesty:** planar geometric clearance, not MuJoCo, not DexNet, not
+hardware. We do **not** claim an ICLR method gap versus DetectShift /
+Tibshirani / Luo abort; the contribution is the *routed decision stack*
+on an identifying DGP, using redundant sensors to separate unlabeled
+perturbation from selection.
 
 **Hard constraints:** CPU-only, $0 API, sklearn/numpy/scipy, no paid APIs.
 Reuse `calibshift` I/O, calibrators, and conformal helpers.
 
 **Target venue profile:** ICLR / robotics-adjacent workshop; analysis +
-system, ordinary math (quantile failure gate, residual routing).
+system; ordinary math.
 
-**Why this topic (hope):** exp08 (5/5 seeds) on `results/exp08_dual_regime.json`
-shows the router recovering utility under encoder bias where the deployed
-i.i.d. gate does not, while matching i.i.d. utility when sensors agree.
-That is the 强结构 signature a simple abort-all baseline cannot claim
-(abort-all utility is 0; router is positive under perturbation).
+**Ablations that must exist in JSON:** detector_off, always_abort,
+illegal_T (source \(T\) on raw encoder), denoise_off (abort, no project),
+always_project, oracle.
+
+**Kill criteria (from the structure spec):** policy collapse vs illegal_T;
+ECE-only win; always-abort wins utility; selection abort_rate > 0.25;
+no action difference under perturbation; Tibshirani weights as the
+perturbation fix.
 
 ## Non-negotiable integrity rules
 
@@ -72,10 +91,7 @@ That is the 强结构 signature a simple abort-all baseline cannot claim
 
 - **P0 Setup:** env reproducible from scratch (fresh-clone test passes).
 - **P1 Literature:** 20–40 verified papers → `lit_review.md` with a gap table.
-  GATE: 3 candidate hypotheses, each with (a) falsifiable prediction,
-  (b) kill criterion, (c) compute estimate, (d) novelty check.
-- **P2 Pilot:** cheapest experiment per hypothesis (<10% budget each).
-  GATE: pick ONE hypothesis; kill the rest; record why in `logs/decisions.md`.
+- **P2 Pilot:** cheapest experiment per hypothesis.
 - **P3 Main experiments:** baselines first, then treatment, ≥3 seeds, ablations.
 - **P4 Analysis:** figures from `figures/make_*.py` only; `analysis.md`.
 - **P5 Paper:** full LaTeX draft. Abstract claims ⊆ analysis.md claims.
@@ -83,13 +99,14 @@ That is the 强结构 signature a simple abort-all baseline cannot claim
 
 ## Candidate hypotheses (dual-regime)
 
-- **H-R (router helps under perturbation):** on the grasp proxy, mean utility
-  of `router` under encoder/motor bias exceeds `always_iid` and exceeds
-  `always_abort` (so it is not “just abort”) over ≥3 seeds.
-- **H-S (selection is not perturbation):** residual stays low under workspace
-  slice; detector labels selection as `select`/`iid` not `perturb`.
-- **H-K (kill if always_clean equals router for the wrong reason):** if the
-  detector never fires, router ≡ always_iid and H-R is void.
+- **H-R (project, don't trust raw \(T\)):** under optimistic encoder bias,
+  `router` mean utility exceeds `illegal_T` / `detector_off` and exceeds
+  `always_abort`. FCAR drops vs illegal_T. Projection path is used.
+- **H-S (selection is not a sensor fault):** residual stays low; abort_rate
+  on the right-half fixture stays ≈ 0; success rate is difficulty-matched
+  to i.i.d.
+- **H-K:** if `router` ≡ `illegal_T` on FCAR and utility, the stack is a
+  template. Kill.
 
 ## Budget
 

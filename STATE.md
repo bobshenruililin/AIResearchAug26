@@ -1,17 +1,23 @@
 # STATE.md
 
-**Phase:** P5 dual-regime (hope locked; paper being updated)
-**Last completed step:** Dual-regime stack implemented; exp08 5/5 seeds; GOAL.md relocked to 强任务+强结构.
-**Next action:** Compile paper; integrity tests; then P6 if time.
+**Phase:** P3 dual-regime upgrade (swarm GO bar)
+**Last completed step:** Replaced grasp costume with planar peg-in-hole;
+physics residual vs density-ratio as opposite channels; projection onto
+camera pose; unit tests passing (8/8 dual-regime).
+**Next action:** Run exp09 (5 seeds); summarize; rewrite dual paper section
+from JSON; compile PDF.
 **Updated:** 2026-08-31
 
 ## Selected hypothesis
 
-H-R: residual router + channel switch recovers act/abort utility under encoder/motor bias vs deployed-channel i.i.d. gating, and is not abort-all.
+H-R: under optimistic encoder bias, residual→project-then-\(T\) beats
+illegal source \(T\) on raw encoder probabilities and beats abort-all.
+H-S: right-half fixture selection is not labeled a sensor fault.
 
 ## Locked topic
 
-Dual-regime act/abort: sensor perturbation vs workspace selection on a numpy grasp proxy (CPU, $0 API). Previous tabular ECE study is the motivating measurement.
+Dual-regime insert/abort on a planar peg-in-hole kinematic cartoon
+(CPU, $0 API). Tabular ECE study is the motivating measurement.
 
 ## Budget tracker
 
@@ -24,5 +30,5 @@ Dual-regime act/abort: sensor perturbation vs workspace selection on a numpy gra
 ## Hypothesis status
 
 - Tabular H1 (covariate shift): **withdrawn**; perturbation vs selection split kept as motivation.
-- Dual-regime H-R: **supported** in exp08 (proxy only).
-- Dual-regime far-band selection: **not** solved; all policies have bad utility.
+- Grasp-costume exp08: **superseded** (swarm: costume + abort-more = template).
+- Peg-in-hole H-R/H-S: **in progress** (unit tests pass; exp09 not yet run).

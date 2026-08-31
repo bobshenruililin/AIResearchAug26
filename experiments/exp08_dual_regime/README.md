@@ -1,8 +1,6 @@
-# Dual-regime act/abort (perturbation vs selection)
+# Dual-regime act/abort (grasp costume; SUPERSEDED)
 
-CPU numpy contact/grasp proxy. Regime detector uses encoder–camera and
-motor–gauge residuals, not a single OOD norm. Perturbation policy
-switches to the clean sensor suite; selection keeps the i.i.d. conformal
-gate.
-
-This is a structural proxy, not a physical robot.
+Frozen JSON from the first numpy grasp proxy (`results/exp08_dual_regime.json`).
+The world API was replaced by planar peg-in-hole (`exp09_peg_insert`).
+Do not re-run this script against the current `src/dualregime`.
+Headline numbers for the paper come from exp09.

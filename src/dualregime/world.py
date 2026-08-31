@@ -1,12 +1,26 @@
-"""Contact/grasp generative process with redundant sensors.
+"""Planar peg-in-hole insert vs abort (kinematic cartoon, not a robot).
 
-True success depends on workspace pose, yaw alignment, and force window.
-Encoder and motor-current channels can be biased (perturbation) while
-camera and force-gauge stay honest. Selection keeps (X, y) and restricts
-the workspace. Labels always come from true physics, never from the
-biased sensors.
+True pose is (x, y, θ) relative to a round hole at the origin.
+Success Y=1 iff geometric clearance:
 
-This is a structural proxy for a robot, not a robot.
+    hypot(x, y) + k_theta * |θ|  <=  r_clear
+
+The deployed policy sees encoder pose + an unused appearance channel.
+A camera pose is a watchdog: it is *not* a training feature of the
+deployed model. Labels always come from true seating, never from the
+encoder.
+
+Two test-time operators that the tabular paper already distinguished:
+
+- Perturbation (optimistic encoder): scale encoder (x,y) toward the
+  origin so the sensor reports a pose closer to seated than the truth.
+  Frozen labels. P(Y | X_enc) breaks. Encoder–camera residual rises.
+  Near-origin poses exist in training, so a PCA residual on encoder
+  coordinates need not fire.
+- Selection: keep (x, y, θ, Y) pairs with x >= x_lo (right-half fixture).
+  Encoder and camera still agree. P(Y|X) is preserved.
+
+Honesty: planar geometric clearance, not MuJoCo, not DexNet, not hardware.
 """
 
 from __future__ import annotations
@@ -15,126 +29,149 @@ from dataclasses import dataclass
 
 import numpy as np
 
-# Observation layout
-ENC_X, ENC_Y, ENC_YAW = 0, 1, 2
-CAM_X, CAM_Y, CAM_YAW = 3, 4, 5
-FORCE_GAUGE, FORCE_MOTOR, APPEAR = 6, 7, 8
-N_FEATURES = 9
+ENC_X, ENC_Y, ENC_TH = 0, 1, 2
+CAM_X, CAM_Y, CAM_TH = 3, 4, 5
+APPEAR = 6
+N_FEATURES = 7
 
 COLS = {
     "enc_x": ENC_X,
     "enc_y": ENC_Y,
-    "enc_yaw": ENC_YAW,
+    "enc_th": ENC_TH,
     "cam_x": CAM_X,
     "cam_y": CAM_Y,
-    "cam_yaw": CAM_YAW,
-    "force_gauge": FORCE_GAUGE,
-    "force_motor": FORCE_MOTOR,
+    "cam_th": CAM_TH,
     "appearance": APPEAR,
 }
 
-CLEAN_IDX = np.array([CAM_X, CAM_Y, CAM_YAW, FORCE_GAUGE], dtype=int)
-DEPLOY_IDX = np.array([ENC_X, ENC_Y, ENC_YAW, FORCE_MOTOR, APPEAR], dtype=int)
-CORRUPTIBLE_IDX = DEPLOY_IDX
-
+# Deployed model: encoder + unused appearance. Camera is watchdog only.
+DEPLOY_IDX = np.array([ENC_X, ENC_Y, ENC_TH, APPEAR], dtype=int)
+CAM_IDX = np.array([CAM_X, CAM_Y, CAM_TH], dtype=int)
+ENC_IDX = np.array([ENC_X, ENC_Y, ENC_TH], dtype=int)
+CAM_XY_IDX = np.array([CAM_X, CAM_Y], dtype=int)
+ENC_XY_IDX = np.array([ENC_X, ENC_Y], dtype=int)
 
 @dataclass
-class GraspWorld:
-    workspace: float = 1.0
-    yaw_tol: float = 0.35
-    force_rel_tol: float = 0.28
-    cam_noise: float = 0.02
-    enc_noise: float = 0.02
-    force_noise: float = 0.04
+class PegWorld:
+    r_clear: float = 0.42
+    k_theta: float = 0.55
+    r_near: float = 0.50
+    r_far: float = 1.10
+    near_frac: float = 0.55
+    theta_std: float = 0.22
+    cam_noise: float = 0.03
+    enc_noise: float = 0.03
 
 
-def _physics_success(
-    gx: np.ndarray,
-    gy: np.ndarray,
-    yaw: np.ndarray,
-    force: np.ndarray,
-    mass: np.ndarray,
-    world: GraspWorld,
+def seating_success(
+    x: np.ndarray,
+    y: np.ndarray,
+    th: np.ndarray,
+    world: PegWorld,
 ) -> np.ndarray:
-    in_ws = (gx >= 0.0) & (gx <= world.workspace) & (gy >= 0.0) & (gy <= world.workspace)
-    aligned = np.abs(yaw) <= world.yaw_tol
-    need = 0.8 + 1.6 * mass
-    lo = need * (1.0 - world.force_rel_tol)
-    hi = need * (1.0 + world.force_rel_tol)
-    force_ok = (force >= lo) & (force <= hi)
-    return (in_ws & aligned & force_ok).astype(int)
+    radial = np.hypot(x, y) + world.k_theta * np.abs(th)
+    return (radial <= world.r_clear).astype(int)
+
+
+def sample_true_pose(
+    n: int,
+    rng: np.random.Generator,
+    world: PegWorld,
+    x_lo: float | None = None,
+    x_hi: float | None = None,
+    oversample: int = 6,
+) -> tuple[np.ndarray, np.ndarray, np.ndarray]:
+    """Draw n true (x, y, θ). Optional half-plane slice is selection."""
+    xs: list[np.ndarray] = []
+    ys: list[np.ndarray] = []
+    ths: list[np.ndarray] = []
+    tries = 0
+    max_tries = max(8, oversample * 3)
+    while sum(v.size for v in xs) < n and tries < max_tries:
+        tries += 1
+        m = n * oversample
+        near = rng.random(m) < world.near_frac
+        r = np.where(
+            near,
+            rng.uniform(0.0, world.r_near, size=m),
+            rng.uniform(0.15, world.r_far, size=m),
+        )
+        phi = rng.uniform(-np.pi, np.pi, size=m)
+        x = r * np.cos(phi)
+        y = r * np.sin(phi)
+        th = rng.normal(0.0, world.theta_std, size=m)
+        mask = np.ones(m, dtype=bool)
+        if x_lo is not None:
+            mask &= x >= x_lo
+        if x_hi is not None:
+            mask &= x <= x_hi
+        xs.append(x[mask])
+        ys.append(y[mask])
+        ths.append(th[mask])
+    x = np.concatenate(xs)[:n]
+    y = np.concatenate(ys)[:n]
+    th = np.concatenate(ths)[:n]
+    if x.size < n:
+        raise RuntimeError(f"pose sampler only produced {x.size}/{n}")
+    return x, y, th
+
+
+def project_encoder_to_camera(X: np.ndarray) -> np.ndarray:
+    """Physics repair: replace lying encoder with camera pose.
+
+    Appearance is left as-is. This is an observation projection onto the
+    camera-consistent pose, not a closed-loop regrasp.
+    """
+    Xp = np.array(X, dtype=np.float64, copy=True)
+    Xp[:, ENC_IDX] = Xp[:, CAM_IDX]
+    return Xp
 
 
 def generate_batch(
     n: int,
     rng: np.random.Generator,
-    world: GraspWorld | None = None,
+    world: PegWorld | None = None,
+    enc_xy_scale: float = 1.0,
     enc_bias: tuple[float, float, float] = (0.0, 0.0, 0.0),
-    motor_bias: float = 0.0,
-    gx_lo: float | None = None,
-    gx_hi: float | None = None,
-    oversample: int = 8,
+    x_lo: float | None = None,
+    x_hi: float | None = None,
+    oversample: int = 6,
 ) -> tuple[np.ndarray, np.ndarray, dict]:
     """Draw n labeled observations.
 
-    enc_bias / motor_bias: frozen-label sensor perturbation.
-    gx_lo / gx_hi: restrict true gx (selection; pairs kept). Train on a
-    lower band and test on a higher band to leave support.
+    enc_xy_scale < 1: optimistic frozen-label perturbation (encoder
+    reports the peg closer to the hole than it is).
+    x_lo / x_hi: pairing-preserving workspace slice (selection).
     """
-    world = world or GraspWorld()
-    bx, by, byaw = enc_bias
-    xs: list[np.ndarray] = []
-    ys: list[np.ndarray] = []
-    meta_gx: list[np.ndarray] = []
-    target = n
-    tries = 0
-    max_tries = max(4, oversample)
-    lo = -0.15 if gx_lo is None else gx_lo
-    hi = world.workspace + 0.15 if gx_hi is None else gx_hi
-    while sum(v.shape[0] for v in ys) < target and tries < max_tries:
-        tries += 1
-        m = n * oversample
-        gx = rng.uniform(lo, hi, size=m)
-        gy = rng.uniform(-0.15, world.workspace + 0.15, size=m)
-        yaw = rng.normal(0.0, 0.28, size=m)
-        mass = rng.uniform(0.2, 1.0, size=m)
-        need = 0.8 + 1.6 * mass
-        force_true = need + rng.normal(0.0, 0.18, size=m)
-
-        y = _physics_success(gx, gy, yaw, force_true, mass, world)
-        cam = np.column_stack(
-            [
-                gx + rng.normal(0.0, world.cam_noise, size=gx.size),
-                gy + rng.normal(0.0, world.cam_noise, size=gx.size),
-                yaw + rng.normal(0.0, world.cam_noise, size=gx.size),
-            ]
-        )
-        enc = np.column_stack(
-            [
-                gx + bx + rng.normal(0.0, world.enc_noise, size=gx.size),
-                gy + by + rng.normal(0.0, world.enc_noise, size=gx.size),
-                yaw + byaw + rng.normal(0.0, world.enc_noise, size=gx.size),
-            ]
-        )
-        gauge = force_true + rng.normal(0.0, world.force_noise, size=gx.size)
-        motor = force_true + motor_bias + rng.normal(0.0, world.force_noise, size=gx.size)
-        appear = rng.normal(0.0, 1.0, size=gx.size)
-        X = np.column_stack([enc, cam, gauge, motor, appear])
-        xs.append(X)
-        ys.append(y)
-        meta_gx.append(gx)
-
-    X = np.concatenate(xs, axis=0)[:n]
-    y = np.concatenate(ys, axis=0)[:n]
-    gx_all = np.concatenate(meta_gx, axis=0)[:n]
+    world = world or PegWorld()
+    bx, by, bth = enc_bias
+    x, y, th = sample_true_pose(n, rng, world, x_lo=x_lo, x_hi=x_hi, oversample=oversample)
+    lab = seating_success(x, y, th, world)
+    cam = np.column_stack(
+        [
+            x + rng.normal(0.0, world.cam_noise, size=n),
+            y + rng.normal(0.0, world.cam_noise, size=n),
+            th + rng.normal(0.0, world.cam_noise, size=n),
+        ]
+    )
+    enc = np.column_stack(
+        [
+            enc_xy_scale * x + bx + rng.normal(0.0, world.enc_noise, size=n),
+            enc_xy_scale * y + by + rng.normal(0.0, world.enc_noise, size=n),
+            th + bth + rng.normal(0.0, world.enc_noise, size=n),
+        ]
+    )
+    appear = rng.normal(0.0, 1.0, size=n)
+    X = np.column_stack([enc, cam, appear])
     meta = {
-        "kind": "grasp_world",
-        "n": int(len(y)),
+        "kind": "peg_in_hole",
+        "n": int(n),
+        "enc_xy_scale": float(enc_xy_scale),
         "enc_bias": list(enc_bias),
-        "motor_bias": float(motor_bias),
-        "gx_lo": lo,
-        "gx_hi": hi,
-        "pos_rate": float(y.mean()) if len(y) else None,
-        "gx_mean": float(gx_all.mean()) if len(gx_all) else None,
+        "x_lo": x_lo,
+        "x_hi": x_hi,
+        "pos_rate": float(lab.mean()),
+        "x_mean": float(x.mean()),
+        "r_median": float(np.median(np.hypot(x, y))),
     }
-    return X, y, meta
+    return X, lab, meta

@@ -13,6 +13,13 @@ This repository is the source of truth. Paper numbers come only from
 `results/*.json` written by experiment scripts. Citations come only from
 `paper/verified.bib` after live API verification. Draft: `paper/main.pdf`.
 
+A second stack (`src/dualregime/`, `experiments/exp09_peg_insert/`) turns
+that measurement into an **insert vs abort** decision on a planar
+peg-in-hole cartoon: physics residual (encoder vs camera) projects then
+applies source \(T\); a density-ratio channel on camera \(xy\) defers
+under workspace selection and never aborts as if the encoder lied.
+This is not a robot.
+
 ## Constraints
 
 - CPU-only, $0 API spend
@@ -32,6 +39,7 @@ make summary            # stats + figures + paper/numbers.tex
 ## Layout
 
 - `src/calibshift/` — metrics, calibrators, shift mechanisms, conformal
+- `src/dualregime/` — peg-in-hole DGP, two-channel detector, opposite policies
 - `experiments/expNN_*/` — one experiment per directory (`config.yaml`, `run.py`)
 - `results/` — code-generated JSON only (never hand-edit)
 - `paper/` — LaTeX + `verified.bib`
