@@ -119,3 +119,37 @@ columns `[0,1,2,3]` at strengths `{0, 1.0, 1.5, 2.5}`.
 - The HGB-on-breast-cancer cell is a small-effect exception.
 - Pooled ΔBrier and ΔNLL on the same uncalibrated s=1.5 cells are
   positive; mean accuracy change is negative.
+
+## Dual-regime act/abort (exp08; 强任务+强结构)
+
+Source: `results/exp08_dual_regime.json` / `results/summary_dual.json`.
+Numpy grasp proxy; 5 seeds; HistGradientBoosting; failure-controlling
+gate on calibration negatives (α=0.1); false-confident act costs 8.
+
+**Does support**
+
+- Under encoder/motor bias, `router` utility is positive and beats
+  `always_iid` (which stays on the deployed encoder channels) and
+  `always_abort` (utility 0). So the structure is not “just abort.”
+- Residual (encoder−camera, motor−gauge) is high under perturbation and
+  low under workspace selection. The detector’s job is that split.
+- On in-support i.i.d. tests, router ≈ always_iid (no large tax).
+
+**Does not support**
+
+- Not a physical robot / DexNet result.
+- Not that selection is easy: the far workspace slice has bad utility
+  for every mode (model scores do not transfer even though pairs are
+  kept). Do not claim the i.i.d. gate is sufficient under out-of-support
+  selection.
+- Not that always_clean is free: it is the perturb policy applied
+  everywhere; on i.i.d. it happens to match because camera is a good
+  sensor in this proxy.
+
+**Paper claims allowed (dual section)**
+
+- Router recovers utility under sensor perturbation vs deployed-channel
+  i.i.d. gating, and beats abort-all.
+- The detector uses residual, not a single location threshold.
+- Numpy proxy only.
+

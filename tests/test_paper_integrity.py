@@ -15,6 +15,12 @@ def test_every_macro_is_traceable_to_json():
     assert macros, "numbers.tex missing macros"
     blob = (ROOT / "results" / "summary_main.json").read_text()
     blob += (ROOT / "results" / "stats_tests.json").read_text()
+    dual = ROOT / "results" / "summary_dual.json"
+    if dual.exists():
+        blob += dual.read_text()
+    exp08 = ROOT / "results" / "exp08_dual_regime.json"
+    if exp08.exists():
+        blob += exp08.read_text()
     missing = []
     for key, val in macros.items():
         if val in blob:

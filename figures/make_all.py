@@ -199,12 +199,40 @@ def make_ablation_shift_family():
     plt.close(fig)
 
 
+def make_dual_utility():
+    path = ROOT / "results" / "exp08_dual_regime.json"
+    if not path.exists():
+        return
+    cells = json.loads(path.read_text())["payload"]["cells"]
+    modes = ["always_abort", "always_iid", "always_clean", "router"]
+    splits = ["iid", "perturb", "select"]
+    G = defaultdict(list)
+    for cell in cells:
+        for row in cell["rows"]:
+            G[(row["split"], row["mode"])].append(row["utility"])
+    fig, ax = plt.subplots(figsize=(6.4, 3.2))
+    x = np.arange(len(splits))
+    w = 0.18
+    for i, mode in enumerate(modes):
+        means = [float(np.mean(G[(s, mode)])) for s in splits]
+        ax.bar(x + (i - 1.5) * w, means, w, label=mode.replace("_", " "))
+    ax.axhline(0, color="black", lw=0.8)
+    ax.set_xticks(x, splits)
+    ax.set_ylabel("mean utility (5 seeds)")
+    ax.legend(fontsize=7, ncol=2)
+    ax.grid(True, axis="y", alpha=0.3)
+    fig.tight_layout()
+    fig.savefig(OUT / "dual_regime_utility.png", dpi=150)
+    plt.close(fig)
+
+
 def main():
     make_ece_vs_shift()
     make_delta_heatmap()
     make_coverage()
     make_help_under_shift()
     make_ablation_shift_family()
+    make_dual_utility()
     print("wrote", list(OUT.glob("*.png")))
 
 

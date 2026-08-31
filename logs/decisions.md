@@ -100,3 +100,18 @@ reported; Pampari and Ermon / Tomani et al. named in running text;
 dataset-level sign test n=4 p=0.0625 disclosed; wine n_test/n_cal from
 JSON. NumNTests is now 22.
 
+## 2026-08-31 — Hope: dual-regime act/abort
+
+Swarm + implementation: 强任务 is act/abort with asymmetric cost on a
+numpy grasp proxy (not wine). 强结构 is residual routing
+(encoder vs camera) plus channel-switch, not a single OOD abort.
+exp08 5/5 seeds: perturb router utility +93 vs always_iid −184 vs
+abort-all 0. Locked into GOAL.md. Not a physical robot.
+
+Swarm + implementation: 强任务 is act/abort with asymmetric cost on a
+numpy grasp proxy (not wine). 强结构 is residual routing
+(encoder vs camera) plus channel-switch, not a single OOD abort.
+exp08 5/5 seeds: perturb router utility +93 vs always_iid −184 vs
+abort-all 0. Locked into GOAL.md. Not a physical robot.
+
+

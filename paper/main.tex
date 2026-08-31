@@ -8,11 +8,11 @@
 \usepackage{hyperref}
 \usepackage[numbers,sort&compress]{natbib}
 
-\title{Feature Perturbation vs.\ Selection Shift:\\
-Post-hoc Calibration of Classical Tabular Models}
+\title{Dual-Regime Act/Abort:\\
+Sensor Perturbation vs.\ Selection Shift}
 \author{Ruililin Shen\\
 \texttt{bobshenruililin@gmail.com}}
-\date{26 August 2026}
+\date{31 August 2026}
 
 \input{numbers}
 
@@ -43,8 +43,12 @@ to covariate shift, but a milder change in accuracy---yields smaller
 $\Delta\mathrm{ECE}$ (quantile-slice cell-mean
 \NumQuantileSliceDeltaMean{} on \NumExpFiveN{} dataset$\times$model cells
 from \NumExpFiveNDs{} datasets). Unweighted split-conformal coverage
-falls under feature perturbation. This is an analysis result, not a new
-calibrator.
+falls under feature perturbation. On a contact/grasp \emph{act vs.\ abort}
+proxy with redundant sensors, a residual router that \emph{switches
+channels} under perturbation recovers utility (\NumPertRouterUtil{} vs.\
+deployed-channel gating \NumPertIidUtil, \NumDualNSeeds{} seeds) and
+beats abort-all (\NumPertAbortUtil). This is an analysis-plus-system
+result, not a new calibrator and not a physical robot.
 \end{abstract}
 
 \section{Introduction}
@@ -58,10 +62,9 @@ under dataset shift \cite{ovadia2019trust,minderer2021revisiting,tomani2021posth
 Almost all of that evidence is vision-scale neural nets. Tree ensembles
 remain strong on tabular data \cite{grinsztajn2022trees}, and their
 i.i.d.\ calibration properties have been known for decades
-\cite{niculescumizil2005probabilities}. Within our API-verified set of
-47 papers---mostly deep-net calibration and conformal theory, not a
-systematic search of applied tabular-drift venues---we did not find this
-exact measurement (sklearn models, i.i.d.\ post-hoc maps, test-time
+\cite{niculescumizil2005probabilities}. Within our API-verified bibliography---mostly deep-net calibration and
+conformal theory, not a systematic search of applied tabular-drift
+venues---we did not find this exact measurement (sklearn models, i.i.d.\ post-hoc maps, test-time
 feature perturbation vs.\ selection). That is a scoped gap, not a proof
 of absence.
 
@@ -108,6 +111,11 @@ Conformal prediction has finite-sample coverage under exchangeability
 and requires density-ratio weights under covariate shift
 \cite{tibshirani2019covariate}. We use unweighted split conformal as a
 secondary diagnostic, not as a proposed fix.
+Conformal warning systems for grasping and driving
+\cite{luo2021conformal} and perception-based safe control
+\cite{yang2023safeperception,huang2023conformalpolicy} treat shift as
+one blob. They do not route different act/abort policies for sensor
+disagreement vs.\ workspace selection.
 
 \section{Methods}
 \paragraph{Models.}
@@ -331,18 +339,58 @@ dataset-level one-sided sign test has $n=\NumDatasetSignN$ and
 $p{=}$\NumDatasetSignP. \NumNTests{} tests, unadjusted. Selection
 comparisons use \NumExpFiveN{} cells on \NumExpFiveNDs{} datasets and
 are not strength-matched to $s{=}1.5$ perturbation.
+\item \textbf{Numpy grasp proxy, not a robot.} Dual-regime numbers are
+from \texttt{exp08\_dual\_regime} (HistGradientBoosting, five seeds).
+No MuJoCo, no DexNet.
 \item \textbf{Search scope.} Novelty is relative to
-\texttt{paper/verified.bib} (47 API-verified papers).
+\texttt{paper/verified.bib}.
 \end{itemize}
 
+\section{Dual-regime act/abort}
+The tabular measurement says i.i.d.\ maps fail under frozen-label
+perturbation, not under pairing-preserving selection. A hiring-relevant
+task is whether that split changes \emph{what the agent does}.
+
+We use a contact/grasp proxy (\texttt{src/dualregime/}): success is
+physics on true pose, yaw, and force. The \emph{deployed} policy sees
+only encoder, motor current, and an unused appearance channel. Camera
+pose and a force gauge are a watchdog. Perturbation biases encoder and
+motor; labels stay on true physics. Selection restricts true $g_x$ to a
+far band (pairs kept). A residual detector (encoder$-$camera,
+motor$-$gauge) labels regimes. Under perturbation the policy
+\emph{switches channels} and applies a failure-controlling gate
+$P(\mathrm{act}\mid y{=}0)\approx\alpha$ fitted on the watchdog
+features. Under i.i.d./selection it keeps the deployed-channel gate.
+Abort-all and always-watchdog are ablations.
+
+Figure~\ref{fig:dual} and \texttt{results/summary\_dual.json}:
+under encoder/motor bias, router mean utility is \NumPertRouterUtil{}
+vs.\ deployed i.i.d.\ gating \NumPertIidUtil{} vs.\ abort-all
+\NumPertAbortUtil{} (\NumDualNSeeds{} seeds). False-confident-act rate
+\NumPertRouterFcr{} vs.\ \NumPertIidFcr; success recall
+\NumPertRouterRec. On in-support i.i.d.\ tests the router does not
+pay a large tax (\NumIidRouterUtil{} vs.\ \NumIidIidUtil). Far-band
+selection is hard for every mode; we do not claim the i.i.d.\ gate
+transfers out of support. This is a structural proxy, not hardware
+\cite{luo2021conformal}.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\linewidth]{../figures/png/dual_regime_utility.png}
+\caption{Mean act/abort utility by test split and policy (five seeds).
+Sensor perturbation is not the same as workspace selection.}
+\label{fig:dual}
+\end{figure}
+
 \section{Conclusion}
-For these sklearn models, i.i.d.\ post-hoc calibration is not a
-dependable answer to \emph{test-time feature perturbation with frozen
-labels}: ECE usually rises and conformal coverage falls, while the maps
-can make perturbed ECE better or worse than doing nothing. The same
-experiments \textbf{do not} show a comparable failure under selection
-on $X$. The HGB exception and the killed H2/H3 hypotheses are part of
-the result.
+I.i.d.\ post-hoc maps are not a dependable answer to frozen-label
+feature perturbation on these sklearn models, and they are not a
+dependable \emph{decision} policy when the deployed sensors are the
+ones that moved. A residual router that switches to watchdog channels
+recovers utility under that perturbation and is not equivalent to
+abort-all. Pairing-preserving selection is a different mechanism.
+The HGB exception and the killed H2/H3 hypotheses remain part of the
+tabular measurement.
 
 \section*{AI-generation disclosure}
 This repository and draft were produced by a coding agent executing the

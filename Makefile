@@ -29,6 +29,7 @@ lint-results:
 
 summary:
 	$(BIN)/python scripts/stats_and_summary.py
+	$(BIN)/python scripts/summarize_dual.py
 	$(BIN)/python scripts/make_paper_numbers.py
 	$(BIN)/python figures/make_all.py
 

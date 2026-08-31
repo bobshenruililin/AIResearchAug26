@@ -1,0 +1,13 @@
+seeds: [0, 1, 2, 3, 4]
+n_train: 800
+n_cal: 400
+n_test: 500
+alpha: 0.1
+cost_fail: 8.0
+enc_bias: [0.55, 0.0, 0.15]
+motor_bias: 0.7
+select_gx_lo: 0.72
+select_gx_hi: 1.15
+train_gx_lo: -0.05
+train_gx_hi: 0.55
+hypothesis: dual-regime-router
