@@ -171,6 +171,17 @@ def main() -> None:
                 "DualPosIid": fmt(src["pos_rate"]["iid"]["mean"]) if "pos_rate" in src else "nan",
                 "DualPosSel": fmt(src["pos_rate"]["sel"]["mean"]) if "pos_rate" in src else "nan",
                 "DualKillsFired": src.get("kills_fired", "none"),
+                "PertOracleUtil": du("perturb", "oracle", "utility") if "perturb|oracle" in d else "nan",
+                "PertProjectUtil": du("perturb", "always_project", "utility") if "perturb|always_project" in d else "nan",
+                "StreamPertPredP": fmt(src["stream_blocks"]["perturb"]["frac_pred_perturb"]["mean"])
+                if "stream_blocks" in src
+                else "nan",
+                "StreamSelPredS": fmt(src["stream_blocks"]["select"]["frac_pred_select"]["mean"])
+                if "stream_blocks" in src
+                else "nan",
+                "StreamPertProj": fmt(src["stream_blocks"]["perturb"]["frac_path_project"]["mean"])
+                if "stream_blocks" in src
+                else "nan",
             }
         )
     lines = [

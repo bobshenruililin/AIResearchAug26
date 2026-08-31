@@ -120,36 +120,48 @@ columns `[0,1,2,3]` at strengths `{0, 1.0, 1.5, 2.5}`.
 - Pooled ΔBrier and ΔNLL on the same uncalibrated s=1.5 cells are
   positive; mean accuracy change is negative.
 
-## Dual-regime act/abort (exp08; 强任务+强结构)
+## Dual-regime insert/abort (exp09; peg-in-hole)
 
-Source: `results/exp08_dual_regime.json` / `results/summary_dual.json`.
-Numpy grasp proxy; 5 seeds; HistGradientBoosting; failure-controlling
-gate on calibration negatives (α=0.1); false-confident act costs 8.
+Source: `results/exp09_peg_insert.json` / `results/summary_dual.json`.
+Planar geometric clearance; 5 seeds; HistGradientBoosting; costs
+u_wrong=-10, u_correct=1, u_defer=-0.2, u_abort=-0.5; tau_act=0.8.
+Optimistic encoder scale 0.4 vs right-half fixture `x>=0`.
+Kill criteria fired: none.
+
+Success rates (difficulty match): i.i.d. 0.458, perturb 0.464, select 0.426.
 
 **Does support**
 
-- Under encoder/motor bias, `router` utility is positive and beats
-  `always_iid` (which stays on the deployed encoder channels) and
-  `always_abort` (utility 0). So the structure is not “just abort.”
-- Residual (encoder−camera, motor−gauge) is high under perturbation and
-  low under workspace selection. The detector’s job is that split.
-- On in-support i.i.d. tests, router ≈ always_iid (no large tax).
+- Under optimistic encoder bias, `router` mean utility +0.093 beats
+  `illegal_T` / `detector_off` (−3.000, FCAR 0.342) and `always_abort`
+  (−0.500). FCAR drops to 0.014. Insert rate 0.396 (not abort-all).
+  Project-then-T path rate 0.890; abort 0.110 is the huge-residual tail.
+- `denoise_off` under perturbation equals abort-all (−0.500): the utility
+  comes from **projection**, not from refusing more.
+- PCA residual on encoder xy *falls* under optimistic bias; physics
+  residual rises. The detector is not reconstruction OOD.
+- Selection abort rate 0.000; utility +0.158 vs abort-all −0.500.
+  Residual false-perturbation on the slice is ~0.012. Weighted conformal
+  does not need to beat detector_off on this DGP; the legal move is
+  “do not abort as a sensor fault.”
+- i.i.d. router +0.177 vs detector_off +0.176 (no large tax).
+- Mixed stream: slice block 0.949 density-labeled; bias block 0.929
+  residual-labeled, 0.804 project-then-T.
 
 **Does not support**
 
-- Not a physical robot / DexNet result.
-- Not that selection is easy: the far workspace slice has bad utility
-  for every mode (model scores do not transfer even though pairs are
-  kept). Do not claim the i.i.d. gate is sufficient under out-of-support
-  selection.
-- Not that always_clean is free: it is the perturb policy applied
-  everywhere; on i.i.d. it happens to match because camera is a good
-  sensor in this proxy.
+- Not a physical robot / DexNet / MuJoCo result.
+- Not that multivariate weighted conformal *helps* selection utility
+  (router 0.158 vs detector_off 0.160; within seed noise).
+- Not that the router beats always-project under perturbation (oracle /
+  always_project 0.126 vs router 0.093 because of the huge-residual abort
+  tail). Disclose the gap.
+- Not an ICLR method gap vs Tibshirani / Luo abort / DetectShift.
+- No receding delayed-label calibrator in the homogeneous grid.
 
 **Paper claims allowed (dual section)**
 
-- Router recovers utility under sensor perturbation vs deployed-channel
-  i.i.d. gating, and beats abort-all.
-- The detector uses residual, not a single location threshold.
-- Numpy proxy only.
-
+- Source T on raw optimistic-encoder probabilities is a false-confident
+  insert policy; project-then-T is not, and is not abort-all.
+- Fixture-slice selection is not aborted as a sensor fault.
+- Numpy kinematic cartoon only. Kill criteria: none fired.
