@@ -20,6 +20,8 @@ applies source \(T\); a density-ratio channel on camera \(xy\) defers
 under workspace selection and never aborts as if the encoder lied.
 This is not a robot.
 
+Pre-seminar leftover briefs live in [`seminars/`](seminars/README.md) (repo-only; no Notion). Dump a talk, run `/seminar`.
+
 ## Constraints
 
 - CPU-only, $0 API spend
@@ -45,7 +47,8 @@ make summary            # stats + figures + paper/numbers.tex
 - `paper/` — LaTeX + `verified.bib`
 - `STATE.md` — current phase (read this first in a new session)
 - `GOAL.md` — mission and gates
-- `logs/decisions.md` — append-only kill/pivot log
+- `seminars/` — leftover-identification pockets (`/seminar`); no Notion
+- `.cursor/skills/seminar*` — pocket, after-log, gated deep
 
 ## Integrity
 

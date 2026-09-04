@@ -128,4 +128,12 @@ Four swarm personas finished after the grasp stack shipped. Combined lock:
 
 exp08 grasp JSON is frozen and superseded. Headline stack is exp09.
 
+## 2026-09-04 — Seminar briefs: repo-only leftover identification
+
+OpenAI / Jane Street / IAS / YC signed: not 3–5 AI directions, not Notion.
+Object is leftover identification + one decision. Skills in
+`.cursor/skills/seminar*`; files in `seminars/`. Pilot
+`2026-09-01-pagliarini.md` is SKIP on a thin listing (legal).
+
+
 
