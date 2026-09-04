@@ -1,0 +1,30 @@
+{
+  "persona": "stats-pedant",
+  "scores": {
+    "statistical_rigor": 4,
+    "multiple_testing": 3,
+    "uncertainty_reporting": 5,
+    "overall": 5
+  },
+  "fabrication_flag": false,
+  "fabrication_evidence": [],
+  "must_fix": [
+    "Do not present the pooled Wilcoxon p-values as if n=60 independent replicates supported the claim. The pool mixes 4 datasets, 3 models, and 5 seeds; observations sharing a dataset/seed and observations from different models are dependent, while the signed-rank test also needs a defensible common, approximately symmetric difference distribution. The current abstract and headline table overstate what p=2.2e-10 establishes.",
+    "Explicitly disclose that stats_tests.json contains 20 one-sided tests (4 pooled plus 16 dataset-by-calibrator tests) with no multiple-testing control, and do not treat the resulting p-values as confirmatory across that family.",
+    "Remove the statement that the breast-cancer HGB mean-plus/minus-SD 'interval includes 0.' The reported 0.002 plus/minus 0.009 is a descriptive mean plus/minus seed SD, not an uncertainty interval for the effect. Likewise, label pooled SD as heterogeneity/spread rather than uncertainty of the pooled mean.",
+    "Close numeric provenance gaps. NumNSeeds and NumAlpha are hard-coded in make_paper_numbers.py rather than read from the two result JSON files, and main.tex contains raw methodological numbers absent from those JSONs (100 trees, 15 ECE bins, 50/25/25 split, and explicit feature/seed indices). These are fabrication-risk under the stated JSON-backed-number policy even though no contradiction was found."
+  ],
+  "weaknesses": [
+    "The per-dataset Wilcoxon tests still pool 3 models times 5 seeds (n=15), so they do not resolve the dependence or model heterogeneity in the headline analysis.",
+    "One-sided alternatives are used throughout without a documented multiplicity family or a statistical justification for treating the highly heterogeneous, skewed pooled differences as a signed-rank sample from one distribution.",
+    "Five seeds satisfy the requested minimum, but n=5 gives only a coarse view of seed variability; the text reports no confidence intervals and sometimes uses SD as if it were inferential.",
+    "The abstract's sole p-value is NumNonePooledP, but its placement after claims about all three calibrated conditions can make its scope ambiguous."
+  ],
+  "strengths": [
+    "The study uses five seeds, reports seed SDs, sign counts, failures, and an explicit exception rather than claiming universality.",
+    "The JSON values support the substantive abstract claims, and the abstract stays within the claims allowed by analysis.md.",
+    "All result-derived macros checked against summary_main.json and stats_tests.json round correctly, including pooled means/SDs, sign counts, p-values, cell examples, coverage, and shifted-accuracy values.",
+    "The paper openly acknowledges heterogeneous pooling, reports per-dataset results, and distinguishes descriptive help/harm from a calibrator ranking."
+  ],
+  "confidence": 0.97
+}

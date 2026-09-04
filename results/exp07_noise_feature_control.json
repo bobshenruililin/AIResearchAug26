@@ -1,0 +1,4977 @@
+{
+  "payload": {
+    "cells": [
+      {
+        "dataset": "breast_cancer",
+        "model": "logreg",
+        "n_cal": 142,
+        "n_classes": 2,
+        "n_shifted": 143,
+        "n_test": 143,
+        "n_train": 284,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9020979020979021,
+              "coverage_shifted": 0.6643356643356644,
+              "coverage_shifted_weighted": 0.7412587412587412,
+              "q_hat": 0.17683187204767803,
+              "q_hat_weighted": 0.25577993798763465,
+              "set_size_iid": 0.9020979020979021,
+              "set_size_shifted": 0.7342657342657343,
+              "set_size_shifted_weighted": 0.8531468531468531
+            },
+            "delta_brier": 0.2312825750653362,
+            "delta_ece": 0.053607461488741084,
+            "iid": {
+              "accuracy": 0.993006993006993,
+              "brier": 0.022236716302723912,
+              "ece": 0.03581406367965924,
+              "ece_quantile": 0.03581406367965937,
+              "mce": 0.3789695948349667,
+              "n": 143,
+              "nll": 0.05109208899942581
+            },
+            "shifted": {
+              "accuracy": 0.8321678321678322,
+              "brier": 0.2535192913680601,
+              "ece": 0.08942152516840032,
+              "ece_quantile": 0.08008054460528441,
+              "mce": 0.4835762115306107,
+              "n": 143,
+              "nll": 0.38666771232198305
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9020979020979021,
+              "coverage_shifted": 0.6643356643356644,
+              "coverage_shifted_weighted": 0.7412587412587412,
+              "q_hat": 0.13859633247137848,
+              "q_hat_weighted": 0.21947346337148765,
+              "set_size_iid": 0.9020979020979021,
+              "set_size_shifted": 0.7342657342657343,
+              "set_size_shifted_weighted": 0.8531468531468531
+            },
+            "delta_brier": 0.24461491158344612,
+            "delta_ece": 0.08378695540259155,
+            "iid": {
+              "accuracy": 0.993006993006993,
+              "brier": 0.018539513506203097,
+              "ece": 0.027528591524072114,
+              "ece_quantile": 0.027528591524072145,
+              "mce": 0.35743648579762555,
+              "n": 143,
+              "nll": 0.04179491093492466
+            },
+            "shifted": {
+              "accuracy": 0.8321678321678322,
+              "brier": 0.2631544250896492,
+              "ece": 0.11131554692666366,
+              "ece_quantile": 0.08669881792407678,
+              "mce": 0.4975975244350961,
+              "n": 143,
+              "nll": 0.41934531367293965
+            },
+            "temperature_T": 0.8417969769138544
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9790209790209791,
+              "coverage_shifted": 0.8321678321678322,
+              "coverage_shifted_weighted": 0.8321678321678322,
+              "q_hat": 0.16666666666666663,
+              "q_hat_weighted": 0.16666666666666663,
+              "set_size_iid": 0.9790209790209791,
+              "set_size_shifted": 0.972027972027972,
+              "set_size_shifted_weighted": 0.972027972027972
+            },
+            "delta_brier": 0.2794150518711363,
+            "delta_ece": 0.1647902072364442,
+            "iid": {
+              "accuracy": 0.986013986013986,
+              "brier": 0.017482517482517484,
+              "ece": 0.017482517483433543,
+              "ece_quantile": 0.017482517483433293,
+              "mce": 0.3333333333333333,
+              "n": 143,
+              "nll": 0.029675410466580236
+            },
+            "shifted": {
+              "accuracy": 0.8601398601398601,
+              "brier": 0.2968975693536538,
+              "ece": 0.18227272471987774,
+              "ece_quantile": 0.11593715961466292,
+              "mce": 0.33333333333333337,
+              "n": 143,
+              "nll": 3.9121543630812683
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.916083916083916,
+              "coverage_shifted": 0.7272727272727273,
+              "coverage_shifted_weighted": 0.7272727272727273,
+              "q_hat": 9.999778782798785e-13,
+              "q_hat_weighted": 9.999778782798785e-13,
+              "set_size_iid": 0.9230769230769231,
+              "set_size_shifted": 0.8251748251748252,
+              "set_size_shifted_weighted": 0.8251748251748252
+            },
+            "delta_brier": 0.24371406371370008,
+            "delta_ece": 0.12284382284392106,
+            "iid": {
+              "accuracy": 0.986013986013986,
+              "brier": 0.03448329448326652,
+              "ece": 0.02447552447460142,
+              "ece_quantile": 0.017948717947795168,
+              "mce": 0.3666666666666667,
+              "n": 143,
+              "nll": 0.22766471255557014
+            },
+            "shifted": {
+              "accuracy": 0.8531468531468531,
+              "brier": 0.2781973581969666,
+              "ece": 0.14731934731852248,
+              "ece_quantile": 0.1766899766891519,
+              "mce": 0.7666666666666666,
+              "n": 143,
+              "nll": 2.8232140894798494
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.017391681671142578,
+        "seed": 0,
+        "shift": {
+          "cols": [
+            26,
+            27,
+            28,
+            29
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "breast_cancer",
+        "model": "logreg",
+        "n_cal": 142,
+        "n_classes": 2,
+        "n_shifted": 143,
+        "n_test": 143,
+        "n_train": 284,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9370629370629371,
+              "coverage_shifted": 0.7622377622377622,
+              "coverage_shifted_weighted": 0.7272727272727273,
+              "q_hat": 0.1369407947897957,
+              "q_hat_weighted": 0.07639050229992705,
+              "set_size_iid": 0.958041958041958,
+              "set_size_shifted": 0.8181818181818182,
+              "set_size_shifted_weighted": 0.7482517482517482
+            },
+            "delta_brier": 0.1216390291178249,
+            "delta_ece": 0.026226160985191732,
+            "iid": {
+              "accuracy": 0.972027972027972,
+              "brier": 0.06093511071808227,
+              "ece": 0.03701412635674173,
+              "ece_quantile": 0.028695520448967744,
+              "mce": 0.468532379910806,
+              "n": 143,
+              "nll": 0.12566163774395206
+            },
+            "shifted": {
+              "accuracy": 0.8811188811188811,
+              "brier": 0.18257413983590717,
+              "ece": 0.06324028734193346,
+              "ece_quantile": 0.06308828419115528,
+              "mce": 0.5408545727733023,
+              "n": 143,
+              "nll": 0.29846188831666703
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9370629370629371,
+              "coverage_shifted": 0.7622377622377622,
+              "coverage_shifted_weighted": 0.7272727272727273,
+              "q_hat": 0.12169301402502508,
+              "q_hat_weighted": 0.06440660054214142,
+              "set_size_iid": 0.958041958041958,
+              "set_size_shifted": 0.8181818181818182,
+              "set_size_shifted_weighted": 0.7482517482517482
+            },
+            "delta_brier": 0.123702995916851,
+            "delta_ece": 0.04154243333704525,
+            "iid": {
+              "accuracy": 0.972027972027972,
+              "brier": 0.06132691424000868,
+              "ece": 0.03245300318627078,
+              "ece_quantile": 0.028154172894950584,
+              "mce": 0.4596954644575795,
+              "n": 143,
+              "nll": 0.13118898312346916
+            },
+            "shifted": {
+              "accuracy": 0.8811188811188811,
+              "brier": 0.18502991015685968,
+              "ece": 0.07399543652331603,
+              "ece_quantile": 0.06471832530892548,
+              "mce": 0.7746948890343123,
+              "n": 143,
+              "nll": 0.3088224495243616
+            },
+            "temperature_T": 0.9314139456419739
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.916083916083916,
+              "coverage_shifted": 0.6923076923076923,
+              "coverage_shifted_weighted": 0.6923076923076923,
+              "q_hat": 9.999778782798785e-13,
+              "q_hat_weighted": 9.999778782798785e-13,
+              "set_size_iid": 0.9440559440559441,
+              "set_size_shifted": 0.8671328671328671,
+              "set_size_shifted_weighted": 0.8671328671328671
+            },
+            "delta_brier": 0.2845185885859653,
+            "delta_ece": 0.15278188008067345,
+            "iid": {
+              "accuracy": 0.951048951048951,
+              "brier": 0.08671360028224125,
+              "ece": 0.0395331370453732,
+              "ece_quantile": 0.03953313704537331,
+              "mce": 0.20665482470291807,
+              "n": 143,
+              "nll": 0.8163180660371698
+            },
+            "shifted": {
+              "accuracy": 0.8111888111888111,
+              "brier": 0.3712321888682065,
+              "ece": 0.19231501712604665,
+              "ece_quantile": 0.19231501712604665,
+              "mce": 0.6420770298473604,
+              "n": 143,
+              "nll": 4.87085659808511
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.951048951048951,
+              "coverage_shifted": 0.8041958041958042,
+              "coverage_shifted_weighted": 0.8041958041958042,
+              "q_hat": 0.011627906976744207,
+              "q_hat_weighted": 0.011627906976744207,
+              "set_size_iid": 0.993006993006993,
+              "set_size_shifted": 0.916083916083916,
+              "set_size_shifted_weighted": 0.916083916083916
+            },
+            "delta_brier": 0.18532483801241384,
+            "delta_ece": 0.0934406678591116,
+            "iid": {
+              "accuracy": 0.951048951048951,
+              "brier": 0.08659944706447943,
+              "ece": 0.03846153846114693,
+              "ece_quantile": 0.03846153846114693,
+              "mce": 0.5,
+              "n": 143,
+              "nll": 0.684755410611916
+            },
+            "shifted": {
+              "accuracy": 0.8321678321678322,
+              "brier": 0.27192428507689326,
+              "ece": 0.13190220632025854,
+              "ece_quantile": 0.13190220632025854,
+              "mce": 0.5,
+              "n": 143,
+              "nll": 3.1610508930140337
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.013096809387207031,
+        "seed": 1,
+        "shift": {
+          "cols": [
+            26,
+            27,
+            28,
+            29
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "breast_cancer",
+        "model": "logreg",
+        "n_cal": 142,
+        "n_classes": 2,
+        "n_shifted": 143,
+        "n_test": 143,
+        "n_train": 284,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9020979020979021,
+              "coverage_shifted": 0.6713286713286714,
+              "coverage_shifted_weighted": 0.6713286713286714,
+              "q_hat": 0.09465611254803463,
+              "q_hat_weighted": 0.08137527384898213,
+              "set_size_iid": 0.9090909090909091,
+              "set_size_shifted": 0.7482517482517482,
+              "set_size_shifted_weighted": 0.7342657342657343
+            },
+            "delta_brier": 0.23445851636126985,
+            "delta_ece": 0.11657495404891566,
+            "iid": {
+              "accuracy": 0.965034965034965,
+              "brier": 0.05033735309006182,
+              "ece": 0.0246747906126436,
+              "ece_quantile": 0.013608255572911825,
+              "mce": 0.4744882285227422,
+              "n": 143,
+              "nll": 0.0805254452292862
+            },
+            "shifted": {
+              "accuracy": 0.8251748251748252,
+              "brier": 0.2847958694513317,
+              "ece": 0.14124974466155926,
+              "ece_quantile": 0.13369347733735854,
+              "mce": 0.6967432074982405,
+              "n": 143,
+              "nll": 0.5089566789141102
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9020979020979021,
+              "coverage_shifted": 0.6713286713286714,
+              "coverage_shifted_weighted": 0.6713286713286714,
+              "q_hat": 0.15931705263221907,
+              "q_hat_weighted": 0.14363690706591037,
+              "set_size_iid": 0.9090909090909091,
+              "set_size_shifted": 0.7482517482517482,
+              "set_size_shifted_weighted": 0.7342657342657343
+            },
+            "delta_brier": 0.21595428756246188,
+            "delta_ece": 0.08020587295678959,
+            "iid": {
+              "accuracy": 0.965034965034965,
+              "brier": 0.05069376642299479,
+              "ece": 0.03515459068791664,
+              "ece_quantile": 0.01914785962879788,
+              "mce": 0.5839183355496214,
+              "n": 143,
+              "nll": 0.08497870081195007
+            },
+            "shifted": {
+              "accuracy": 0.8251748251748252,
+              "brier": 0.26664805398545666,
+              "ece": 0.11536046364470623,
+              "ece_quantile": 0.11440659284530705,
+              "mce": 0.4766160356222018,
+              "n": 143,
+              "nll": 0.4265318664551351
+            },
+            "temperature_T": 1.357565989142227
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9230769230769231,
+              "coverage_shifted": 0.7062937062937062,
+              "coverage_shifted_weighted": 0.7062937062937062,
+              "q_hat": 0.0714285714285714,
+              "q_hat_weighted": 0.0714285714285714,
+              "set_size_iid": 0.9440559440559441,
+              "set_size_shifted": 0.8811188811188811,
+              "set_size_shifted_weighted": 0.8811188811188811
+            },
+            "delta_brier": 0.320934992677901,
+            "delta_ece": 0.19767054091907207,
+            "iid": {
+              "accuracy": 0.958041958041958,
+              "brier": 0.06587948852391097,
+              "ece": 0.015618097226949932,
+              "ece_quantile": 0.0230514145039597,
+              "mce": 0.5759589179264113,
+              "n": 143,
+              "nll": 0.4519265829109093
+            },
+            "shifted": {
+              "accuracy": 0.8111888111888111,
+              "brier": 0.38681448120181194,
+              "ece": 0.213288638146022,
+              "ece_quantile": 0.21139380672357355,
+              "mce": 0.4949204129408742,
+              "n": 143,
+              "nll": 4.732684588354983
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9020979020979021,
+              "coverage_shifted": 0.6783216783216783,
+              "coverage_shifted_weighted": 0.6783216783216783,
+              "q_hat": 0.023809523809523836,
+              "q_hat_weighted": 0.023809523809523836,
+              "set_size_iid": 0.9230769230769231,
+              "set_size_shifted": 0.8181818181818182,
+              "set_size_shifted_weighted": 0.8181818181818182
+            },
+            "delta_brier": 0.2729242186380008,
+            "delta_ece": 0.16726606726590643,
+            "iid": {
+              "accuracy": 0.958041958041958,
+              "brier": 0.06777095919947466,
+              "ece": 0.015850815850452404,
+              "ece_quantile": 0.015784215783852338,
+              "mce": 0.5,
+              "n": 143,
+              "nll": 0.4655440522578679
+            },
+            "shifted": {
+              "accuracy": 0.8111888111888111,
+              "brier": 0.3406951778374755,
+              "ece": 0.18311688311635882,
+              "ece_quantile": 0.1588744588739346,
+              "mce": 0.7,
+              "n": 143,
+              "nll": 3.9624463704129234
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.01298666000366211,
+        "seed": 2,
+        "shift": {
+          "cols": [
+            26,
+            27,
+            28,
+            29
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "breast_cancer",
+        "model": "logreg",
+        "n_cal": 142,
+        "n_classes": 2,
+        "n_shifted": 143,
+        "n_test": 143,
+        "n_train": 284,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.916083916083916,
+              "coverage_shifted": 0.7412587412587412,
+              "coverage_shifted_weighted": 0.7412587412587412,
+              "q_hat": 0.17333771030074785,
+              "q_hat_weighted": 0.1727637232395467,
+              "set_size_iid": 0.9370629370629371,
+              "set_size_shifted": 0.8041958041958042,
+              "set_size_shifted_weighted": 0.8041958041958042
+            },
+            "delta_brier": 0.150750389753135,
+            "delta_ece": 0.028983547481738696,
+            "iid": {
+              "accuracy": 0.9790209790209791,
+              "brier": 0.049753523605663895,
+              "ece": 0.04300513972893346,
+              "ece_quantile": 0.0442013589352971,
+              "mce": 0.4225108422192224,
+              "n": 143,
+              "nll": 0.08470967378710913
+            },
+            "shifted": {
+              "accuracy": 0.8461538461538461,
+              "brier": 0.2005039133587989,
+              "ece": 0.07198868721067216,
+              "ece_quantile": 0.07267895404008043,
+              "mce": 0.6398988410937096,
+              "n": 143,
+              "nll": 0.3070115024727335
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.916083916083916,
+              "coverage_shifted": 0.7412587412587412,
+              "coverage_shifted_weighted": 0.7412587412587412,
+              "q_hat": 0.06965989105275083,
+              "q_hat_weighted": 0.06922983048038878,
+              "set_size_iid": 0.9370629370629371,
+              "set_size_shifted": 0.8041958041958042,
+              "set_size_shifted_weighted": 0.8041958041958042
+            },
+            "delta_brier": 0.1722911042012501,
+            "delta_ece": 0.0632284695273383,
+            "iid": {
+              "accuracy": 0.9790209790209791,
+              "brier": 0.04921980794861095,
+              "ece": 0.034127939701317424,
+              "ece_quantile": 0.036781454002251426,
+              "mce": 0.40659465850348775,
+              "n": 143,
+              "nll": 0.09187388212101215
+            },
+            "shifted": {
+              "accuracy": 0.8461538461538461,
+              "brier": 0.22151091214986104,
+              "ece": 0.09735640922865571,
+              "ece_quantile": 0.09758144828213318,
+              "mce": 0.7218930226504621,
+              "n": 143,
+              "nll": 0.4016607233673373
+            },
+            "temperature_T": 0.6027003728424835
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9230769230769231,
+              "coverage_shifted": 0.6993006993006993,
+              "coverage_shifted_weighted": 0.6993006993006993,
+              "q_hat": 9.999778782798785e-13,
+              "q_hat_weighted": 9.999778782798785e-13,
+              "set_size_iid": 0.9230769230769231,
+              "set_size_shifted": 0.8671328671328671,
+              "set_size_shifted_weighted": 0.8671328671328671
+            },
+            "delta_brier": 0.3063231214502148,
+            "delta_ece": 0.17152946271765956,
+            "iid": {
+              "accuracy": 0.9790209790209791,
+              "brier": 0.036582585456525686,
+              "ece": 0.015437816490126387,
+              "ece_quantile": 0.0154378164882805,
+              "mce": 0.4576077579560759,
+              "n": 143,
+              "nll": 0.054439232300823565
+            },
+            "shifted": {
+              "accuracy": 0.8321678321678322,
+              "brier": 0.3429057069067405,
+              "ece": 0.18696727920778594,
+              "ece_quantile": 0.18696727920778594,
+              "mce": 0.48632092683735373,
+              "n": 143,
+              "nll": 4.658840758247786
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9370629370629371,
+              "coverage_shifted": 0.7902097902097902,
+              "coverage_shifted_weighted": 0.7902097902097902,
+              "q_hat": 9.999778782798785e-13,
+              "q_hat_weighted": 9.999778782798785e-13,
+              "set_size_iid": 0.9440559440559441,
+              "set_size_shifted": 0.9300699300699301,
+              "set_size_shifted_weighted": 0.9300699300699301
+            },
+            "delta_brier": 0.26601398601345455,
+            "delta_ece": 0.14358974358975757,
+            "iid": {
+              "accuracy": 0.972027972027972,
+              "brier": 0.047428127428099466,
+              "ece": 0.02564102564008172,
+              "ece_quantile": 0.01631701631607252,
+              "mce": 0.3666666666666667,
+              "n": 143,
+              "nll": 0.24032655622771357
+            },
+            "shifted": {
+              "accuracy": 0.8251748251748252,
+              "brier": 0.31344211344155404,
+              "ece": 0.1692307692298393,
+              "ece_quantile": 0.15757575757482764,
+              "mce": 0.6999999999999998,
+              "n": 143,
+              "nll": 3.9101437254081053
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.012767314910888672,
+        "seed": 3,
+        "shift": {
+          "cols": [
+            26,
+            27,
+            28,
+            29
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "breast_cancer",
+        "model": "logreg",
+        "n_cal": 142,
+        "n_classes": 2,
+        "n_shifted": 143,
+        "n_test": 143,
+        "n_train": 284,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9090909090909091,
+              "coverage_shifted": 0.6923076923076923,
+              "coverage_shifted_weighted": 0.6923076923076923,
+              "q_hat": 0.08175894976108722,
+              "q_hat_weighted": 0.08175894976108722,
+              "set_size_iid": 0.916083916083916,
+              "set_size_shifted": 0.7342657342657343,
+              "set_size_shifted_weighted": 0.7342657342657343
+            },
+            "delta_brier": 0.18243621197771387,
+            "delta_ece": 0.06435567130955785,
+            "iid": {
+              "accuracy": 0.986013986013986,
+              "brier": 0.02724854120249294,
+              "ece": 0.018247029731504556,
+              "ece_quantile": 0.01663908432216857,
+              "mce": 0.43641217940394705,
+              "n": 143,
+              "nll": 0.05229348321997904
+            },
+            "shifted": {
+              "accuracy": 0.8671328671328671,
+              "brier": 0.20968475318020682,
+              "ece": 0.08260270104106242,
+              "ece_quantile": 0.08719199912208805,
+              "mce": 0.5669750782358309,
+              "n": 143,
+              "nll": 0.33274612839157053
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9090909090909091,
+              "coverage_shifted": 0.6923076923076923,
+              "coverage_shifted_weighted": 0.6923076923076923,
+              "q_hat": 0.16705802464435748,
+              "q_hat_weighted": 0.16705802464435748,
+              "set_size_iid": 0.916083916083916,
+              "set_size_shifted": 0.7342657342657343,
+              "set_size_shifted_weighted": 0.7342657342657343
+            },
+            "delta_brier": 0.16271314169413095,
+            "delta_ece": 0.026644593887997343,
+            "iid": {
+              "accuracy": 0.986013986013986,
+              "brier": 0.03255986722920499,
+              "ece": 0.037980681657400546,
+              "ece_quantile": 0.03257710171717176,
+              "mce": 0.3832660943974643,
+              "n": 143,
+              "nll": 0.06835340547353519
+            },
+            "shifted": {
+              "accuracy": 0.8671328671328671,
+              "brier": 0.19527300892333593,
+              "ece": 0.06462527554539789,
+              "ece_quantile": 0.06878395223936953,
+              "mce": 0.436838065034061,
+              "n": 143,
+              "nll": 0.2909211639605282
+            },
+            "temperature_T": 1.505446512608518
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.8811188811188811,
+              "coverage_shifted": 0.6573426573426573,
+              "coverage_shifted_weighted": 0.6573426573426573,
+              "q_hat": 0.03125,
+              "q_hat_weighted": 0.03125,
+              "set_size_iid": 0.8881118881118881,
+              "set_size_shifted": 0.7762237762237763,
+              "set_size_shifted_weighted": 0.7762237762237763
+            },
+            "delta_brier": 0.2940475816336113,
+            "delta_ece": 0.17493379948705143,
+            "iid": {
+              "accuracy": 0.951048951048951,
+              "brier": 0.048515498373840914,
+              "ece": 0.03077322084393456,
+              "ece_quantile": 0.025950476149732025,
+              "mce": 0.5,
+              "n": 143,
+              "nll": 0.2528164368662209
+            },
+            "shifted": {
+              "accuracy": 0.7342657342657343,
+              "brier": 0.34256308000745217,
+              "ece": 0.20570702033098598,
+              "ece_quantile": 0.19207512954176792,
+              "mce": 0.8676028720256131,
+              "n": 143,
+              "nll": 3.4405874545981256
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9300699300699301,
+              "coverage_shifted": 0.7062937062937062,
+              "coverage_shifted_weighted": 0.7062937062937062,
+              "q_hat": 0.023255813953488413,
+              "q_hat_weighted": 0.023255813953488413,
+              "set_size_iid": 0.9370629370629371,
+              "set_size_shifted": 0.8111888111888111,
+              "set_size_shifted_weighted": 0.8111888111888111
+            },
+            "delta_brier": 0.23454334080035766,
+            "delta_ece": 0.11354149726156065,
+            "iid": {
+              "accuracy": 0.958041958041958,
+              "brier": 0.03843905208426572,
+              "ece": 0.027787716160172612,
+              "ece_quantile": 0.016598904971361426,
+              "mce": 0.5,
+              "n": 143,
+              "nll": 0.07574726383505498
+            },
+            "shifted": {
+              "accuracy": 0.8251748251748252,
+              "brier": 0.2729823928846234,
+              "ece": 0.14132921342173327,
+              "ece_quantile": 0.13993061202313187,
+              "mce": 0.5,
+              "n": 143,
+              "nll": 3.002689949793288
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.012856245040893555,
+        "seed": 4,
+        "shift": {
+          "cols": [
+            26,
+            27,
+            28,
+            29
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "breast_cancer",
+        "model": "rf",
+        "n_cal": 142,
+        "n_classes": 2,
+        "n_shifted": 143,
+        "n_test": 143,
+        "n_train": 284,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9230769230769231,
+              "coverage_shifted": 0.8461538461538461,
+              "coverage_shifted_weighted": 0.8881118881118881,
+              "q_hat": 0.38516666666666666,
+              "q_hat_weighted": 0.43533333333333335,
+              "set_size_iid": 0.951048951048951,
+              "set_size_shifted": 0.8881118881118881,
+              "set_size_shifted_weighted": 0.9440559440559441
+            },
+            "delta_brier": 0.07616954961704962,
+            "delta_ece": 0.07019064269043998,
+            "iid": {
+              "accuracy": 0.9370629370629371,
+              "brier": 0.06982564573521717,
+              "ece": 0.039732600732922334,
+              "ece_quantile": 0.03712720612752776,
+              "mce": 0.5665,
+              "n": 143,
+              "nll": 0.11575445702369455
+            },
+            "shifted": {
+              "accuracy": 0.9230769230769231,
+              "brier": 0.1459951953522668,
+              "ece": 0.10992324342336231,
+              "ece_quantile": 0.10202813852825744,
+              "mce": 0.21442857142857152,
+              "n": 143,
+              "nll": 0.2559067784818057
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9230769230769231,
+              "coverage_shifted": 0.8461538461538461,
+              "coverage_shifted_weighted": 0.8881118881118881,
+              "q_hat": 0.3720475937931297,
+              "q_hat_weighted": 0.42772436571311945,
+              "set_size_iid": 0.951048951048951,
+              "set_size_shifted": 0.8881118881118881,
+              "set_size_shifted_weighted": 0.9440559440559441
+            },
+            "delta_brier": 0.06943332873561149,
+            "delta_ece": 0.05699437551636424,
+            "iid": {
+              "accuracy": 0.9370629370629371,
+              "brier": 0.0684662780423781,
+              "ece": 0.03853164474035756,
+              "ece_quantile": 0.033452368023595795,
+              "mce": 0.5743078431198456,
+              "n": 143,
+              "nll": 0.1101828053932798
+            },
+            "shifted": {
+              "accuracy": 0.9230769230769231,
+              "brier": 0.1378996067779896,
+              "ece": 0.0955260202567218,
+              "ece_quantile": 0.08752346787904139,
+              "mce": 0.28223959924721453,
+              "n": 143,
+              "nll": 0.2421155263528156
+            },
+            "temperature_T": 0.8934601338250612
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9300699300699301,
+              "coverage_shifted": 0.916083916083916,
+              "coverage_shifted_weighted": 0.9230769230769231,
+              "q_hat": 0.25,
+              "q_hat_weighted": 0.4285714285714286,
+              "set_size_iid": 0.965034965034965,
+              "set_size_shifted": 0.958041958041958,
+              "set_size_shifted_weighted": 0.993006993006993
+            },
+            "delta_brier": 0.025083358929286537,
+            "delta_ece": 0.013894930327308864,
+            "iid": {
+              "accuracy": 0.951048951048951,
+              "brier": 0.07621648481973532,
+              "ece": 0.016594830305596005,
+              "ece_quantile": 0.024187237899177996,
+              "mce": 0.39137818504594846,
+              "n": 143,
+              "nll": 0.1292413906862097
+            },
+            "shifted": {
+              "accuracy": 0.9300699300699301,
+              "brier": 0.10129984374902186,
+              "ece": 0.03048976063290487,
+              "ece_quantile": 0.06442241294719687,
+              "mce": 0.47002262443439147,
+              "n": 143,
+              "nll": 0.6937332394695769
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9090909090909091,
+              "coverage_shifted": 0.9020979020979021,
+              "coverage_shifted_weighted": 0.9230769230769231,
+              "q_hat": 0.33333333333333326,
+              "q_hat_weighted": 0.33333333333333337,
+              "set_size_iid": 0.951048951048951,
+              "set_size_shifted": 0.951048951048951,
+              "set_size_shifted_weighted": 0.986013986013986
+            },
+            "delta_brier": 0.007320298748898141,
+            "delta_ece": -0.0073926073929709395,
+            "iid": {
+              "accuracy": 0.9440559440559441,
+              "brier": 0.08640343783195333,
+              "ece": 0.02094572094536429,
+              "ece_quantile": 0.025607725607368965,
+              "mce": 0.16666666666666663,
+              "n": 143,
+              "nll": 0.48010042516370866
+            },
+            "shifted": {
+              "accuracy": 0.9300699300699301,
+              "brier": 0.09372373658085147,
+              "ece": 0.013553113552393352,
+              "ece_quantile": 0.04618714618642602,
+              "mce": 0.1428571428571429,
+              "n": 143,
+              "nll": 0.3109192410569134
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.10217523574829102,
+        "seed": 0,
+        "shift": {
+          "cols": [
+            26,
+            27,
+            28,
+            29
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "breast_cancer",
+        "model": "rf",
+        "n_cal": 142,
+        "n_classes": 2,
+        "n_shifted": 143,
+        "n_test": 143,
+        "n_train": 284,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.8881118881118881,
+              "coverage_shifted": 0.6153846153846154,
+              "coverage_shifted_weighted": 0.5174825174825175,
+              "q_hat": 0.24850000000000005,
+              "q_hat_weighted": 0.23316666666666663,
+              "set_size_iid": 0.9090909090909091,
+              "set_size_shifted": 0.6433566433566433,
+              "set_size_shifted_weighted": 0.5454545454545454
+            },
+            "delta_brier": 0.06303380591630592,
+            "delta_ece": 0.09525857475902923,
+            "iid": {
+              "accuracy": 0.9440559440559441,
+              "brier": 0.08834925828932971,
+              "ece": 0.025828338327974737,
+              "ece_quantile": 0.02807875457911824,
+              "mce": 0.4848333333333332,
+              "n": 143,
+              "nll": 0.15511724796433637
+            },
+            "shifted": {
+              "accuracy": 0.9370629370629371,
+              "brier": 0.15138306420563563,
+              "ece": 0.12108691308700396,
+              "ece_quantile": 0.1260519480520389,
+              "mce": 0.29850833333333315,
+              "n": 143,
+              "nll": 0.2672277324397425
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.8881118881118881,
+              "coverage_shifted": 0.6153846153846154,
+              "coverage_shifted_weighted": 0.5174825174825175,
+              "q_hat": 0.14825080827875858,
+              "q_hat_weighted": 0.13228294805640672,
+              "set_size_iid": 0.9090909090909091,
+              "set_size_shifted": 0.6433566433566433,
+              "set_size_shifted_weighted": 0.5454545454545454
+            },
+            "delta_brier": 0.031469865721439186,
+            "delta_ece": 0.04588639935563496,
+            "iid": {
+              "accuracy": 0.9440559440559441,
+              "brier": 0.08948279320644219,
+              "ece": 0.04568046798291531,
+              "ece_quantile": 0.025828685465507383,
+              "mce": 0.5679472107748855,
+              "n": 143,
+              "nll": 0.17542428599148216
+            },
+            "shifted": {
+              "accuracy": 0.9370629370629371,
+              "brier": 0.12095265892788137,
+              "ece": 0.09156686733855027,
+              "ece_quantile": 0.08061440788636104,
+              "mce": 0.5002633203368174,
+              "n": 143,
+              "nll": 0.22332920216426047
+            },
+            "temperature_T": 0.6329425954923185
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.916083916083916,
+              "coverage_shifted": 0.8391608391608392,
+              "coverage_shifted_weighted": 0.8391608391608392,
+              "q_hat": 0.11111111111111116,
+              "q_hat_weighted": 0.11111111111111116,
+              "set_size_iid": 0.951048951048951,
+              "set_size_shifted": 0.8671328671328671,
+              "set_size_shifted_weighted": 0.8671328671328671
+            },
+            "delta_brier": 0.045037754127804,
+            "delta_ece": 0.055175567676014954,
+            "iid": {
+              "accuracy": 0.9300699300699301,
+              "brier": 0.09105387090879827,
+              "ece": 0.046395083894203014,
+              "ece_quantile": 0.04043449043360931,
+              "mce": 0.5064752252252253,
+              "n": 143,
+              "nll": 0.6520804025386719
+            },
+            "shifted": {
+              "accuracy": 0.8741258741258742,
+              "brier": 0.13609162503660227,
+              "ece": 0.10157065157021797,
+              "ece_quantile": 0.059612609613043266,
+              "mce": 0.43223938223938213,
+              "n": 143,
+              "nll": 0.7435281561307587
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9090909090909091,
+              "coverage_shifted": 0.7062937062937062,
+              "coverage_shifted_weighted": 0.7062937062937062,
+              "q_hat": 0.16666666666666663,
+              "q_hat_weighted": 0.16666666666666663,
+              "set_size_iid": 0.951048951048951,
+              "set_size_shifted": 0.7482517482517482,
+              "set_size_shifted_weighted": 0.7482517482517482
+            },
+            "delta_brier": 0.048344988344988335,
+            "delta_ece": 0.0776223776225946,
+            "iid": {
+              "accuracy": 0.9440559440559441,
+              "brier": 0.10458430458413677,
+              "ece": 0.049417249416312495,
+              "ece_quantile": 0.03636363636269957,
+              "mce": 0.16666666666666663,
+              "n": 143,
+              "nll": 1.1911331814243558
+            },
+            "shifted": {
+              "accuracy": 0.9370629370629371,
+              "brier": 0.1529292929291251,
+              "ece": 0.1270396270389071,
+              "ece_quantile": 0.10372960372888351,
+              "mce": 0.5,
+              "n": 143,
+              "nll": 1.2779986465521995
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.10103511810302734,
+        "seed": 1,
+        "shift": {
+          "cols": [
+            26,
+            27,
+            28,
+            29
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "breast_cancer",
+        "model": "rf",
+        "n_cal": 142,
+        "n_classes": 2,
+        "n_shifted": 143,
+        "n_test": 143,
+        "n_train": 284,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9300699300699301,
+              "coverage_shifted": 0.5594405594405595,
+              "coverage_shifted_weighted": 0.4825174825174825,
+              "q_hat": 0.30892857142857144,
+              "q_hat_weighted": 0.24399999999999988,
+              "set_size_iid": 0.965034965034965,
+              "set_size_shifted": 0.5734265734265734,
+              "set_size_shifted_weighted": 0.48951048951048953
+            },
+            "delta_brier": 0.1299404693084693,
+            "delta_ece": 0.09434465534434062,
+            "iid": {
+              "accuracy": 0.9440559440559441,
+              "brier": 0.07686831214816929,
+              "ece": 0.03565068265098341,
+              "ece_quantile": 0.034063270063570836,
+              "mce": 0.5591666666666667,
+              "n": 143,
+              "nll": 0.12992172778317418
+            },
+            "shifted": {
+              "accuracy": 0.8951048951048951,
+              "brier": 0.2068087814566386,
+              "ece": 0.12999533799532403,
+              "ece_quantile": 0.13098368298369692,
+              "mce": 0.2481602564102564,
+              "n": 143,
+              "nll": 0.3346097344634762
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9300699300699301,
+              "coverage_shifted": 0.5594405594405595,
+              "coverage_shifted_weighted": 0.4825174825174825,
+              "q_hat": 0.2862776451494612,
+              "q_hat_weighted": 0.21701826524840573,
+              "set_size_iid": 0.965034965034965,
+              "set_size_shifted": 0.5734265734265734,
+              "set_size_shifted_weighted": 0.48951048951048953
+            },
+            "delta_brier": 0.12168636486364327,
+            "delta_ece": 0.07540475424221102,
+            "iid": {
+              "accuracy": 0.9440559440559441,
+              "brier": 0.07694726657307073,
+              "ece": 0.036563923144839576,
+              "ece_quantile": 0.03326346308801845,
+              "mce": 0.5670387682968903,
+              "n": 143,
+              "nll": 0.12743433432481924
+            },
+            "shifted": {
+              "accuracy": 0.8951048951048951,
+              "brier": 0.198633631436714,
+              "ece": 0.1119686773870506,
+              "ece_quantile": 0.11998779848785872,
+              "mce": 0.2376044096058726,
+              "n": 143,
+              "nll": 0.3228739837567123
+            },
+            "temperature_T": 0.8813409775987052
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.916083916083916,
+              "coverage_shifted": 0.5314685314685315,
+              "coverage_shifted_weighted": 0.5314685314685315,
+              "q_hat": 0.16666666666666663,
+              "q_hat_weighted": 0.16666666666666663,
+              "set_size_iid": 0.9440559440559441,
+              "set_size_shifted": 0.7622377622377622,
+              "set_size_shifted_weighted": 0.7622377622377622
+            },
+            "delta_brier": 0.3489503295062471,
+            "delta_ece": 0.15248770027985775,
+            "iid": {
+              "accuracy": 0.958041958041958,
+              "brier": 0.07267784394517764,
+              "ece": 0.02229843727920742,
+              "ece_quantile": 0.01679456999975442,
+              "mce": 0.3935265104808894,
+              "n": 143,
+              "nll": 0.29171332251302745
+            },
+            "shifted": {
+              "accuracy": 0.6993006993006993,
+              "brier": 0.4216281734514247,
+              "ece": 0.17478613755906516,
+              "ece_quantile": 0.20332208343251332,
+              "mce": 0.3602256471789236,
+              "n": 143,
+              "nll": 0.7569740023750071
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9300699300699301,
+              "coverage_shifted": 0.5314685314685315,
+              "coverage_shifted_weighted": 0.5314685314685315,
+              "q_hat": 0.125,
+              "q_hat_weighted": 0.125,
+              "set_size_iid": 0.965034965034965,
+              "set_size_shifted": 0.6993006993006993,
+              "set_size_shifted_weighted": 0.6993006993006993
+            },
+            "delta_brier": 0.334910962038781,
+            "delta_ece": 0.2609163359161541,
+            "iid": {
+              "accuracy": 0.951048951048951,
+              "brier": 0.08708211731849194,
+              "ece": 0.022593397592978258,
+              "ece_quantile": 0.02259339759297825,
+              "mce": 0.13333333333333353,
+              "n": 143,
+              "nll": 0.8341982988022442
+            },
+            "shifted": {
+              "accuracy": 0.7552447552447552,
+              "brier": 0.4219930793572729,
+              "ece": 0.28350973350913233,
+              "ece_quantile": 0.2850217350211339,
+              "mce": 0.5,
+              "n": 143,
+              "nll": 4.785038749009584
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.10138964653015137,
+        "seed": 2,
+        "shift": {
+          "cols": [
+            26,
+            27,
+            28,
+            29
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "breast_cancer",
+        "model": "rf",
+        "n_cal": 142,
+        "n_classes": 2,
+        "n_shifted": 143,
+        "n_test": 143,
+        "n_train": 284,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.8741258741258742,
+              "coverage_shifted": 0.5104895104895105,
+              "coverage_shifted_weighted": 0.48951048951048953,
+              "q_hat": 0.2829999999999999,
+              "q_hat_weighted": 0.22333333333333338,
+              "set_size_iid": 0.9020979020979021,
+              "set_size_shifted": 0.5244755244755245,
+              "set_size_shifted_weighted": 0.4965034965034965
+            },
+            "delta_brier": 0.12824976003414137,
+            "delta_ece": 0.07864977446770445,
+            "iid": {
+              "accuracy": 0.9300699300699301,
+              "brier": 0.08965890983567135,
+              "ece": 0.047289286471440414,
+              "ece_quantile": 0.04600908182759928,
+              "mce": 0.6334761904761905,
+              "n": 143,
+              "nll": 0.14917596999085106
+            },
+            "shifted": {
+              "accuracy": 0.8951048951048951,
+              "brier": 0.21790866986981272,
+              "ece": 0.12593906093914486,
+              "ece_quantile": 0.12326040626049012,
+              "mce": 0.2653039215686275,
+              "n": 143,
+              "nll": 0.33774034528771263
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.8741258741258742,
+              "coverage_shifted": 0.5104895104895105,
+              "coverage_shifted_weighted": 0.48951048951048953,
+              "q_hat": 0.3663688802286915,
+              "q_hat_weighted": 0.32421543100086225,
+              "set_size_iid": 0.9020979020979021,
+              "set_size_shifted": 0.5244755244755245,
+              "set_size_shifted_weighted": 0.4965034965034965
+            },
+            "delta_brier": 0.14833040613389242,
+            "delta_ece": 0.11894677204692151,
+            "iid": {
+              "accuracy": 0.9300699300699301,
+              "brier": 0.1003221335716262,
+              "ece": 0.06041934599533262,
+              "ece_quantile": 0.07209307884570422,
+              "mce": 0.23613379854848426,
+              "n": 143,
+              "nll": 0.17847456117535038
+            },
+            "shifted": {
+              "accuracy": 0.8951048951048951,
+              "brier": 0.24865253970551862,
+              "ece": 0.17936611804225414,
+              "ece_quantile": 0.17936611804225416,
+              "mce": 0.2815869254406109,
+              "n": 143,
+              "nll": 0.39229548590852414
+            },
+            "temperature_T": 1.6969411859470054
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9230769230769231,
+              "coverage_shifted": 0.9370629370629371,
+              "coverage_shifted_weighted": 0.9370629370629371,
+              "q_hat": 0.15384615384615385,
+              "q_hat_weighted": 0.15384615384615385,
+              "set_size_iid": 0.9790209790209791,
+              "set_size_shifted": 0.972027972027972,
+              "set_size_shifted_weighted": 0.972027972027972
+            },
+            "delta_brier": -0.002749131063287849,
+            "delta_ece": 0.01561408636551348,
+            "iid": {
+              "accuracy": 0.9370629370629371,
+              "brier": 0.09965378489701714,
+              "ece": 0.03953671067911404,
+              "ece_quantile": 0.03266425042389195,
+              "mce": 0.4913809082483791,
+              "n": 143,
+              "nll": 0.15755938456137947
+            },
+            "shifted": {
+              "accuracy": 0.9440559440559441,
+              "brier": 0.09690465383372929,
+              "ece": 0.05515079704462752,
+              "ece_quantile": 0.06307836530583807,
+              "mce": 0.700278035217795,
+              "n": 143,
+              "nll": 0.35049806519072507
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.8951048951048951,
+              "coverage_shifted": 0.7902097902097902,
+              "coverage_shifted_weighted": 0.7902097902097902,
+              "q_hat": 0.013513513513513487,
+              "q_hat_weighted": 0.013513513513513487,
+              "set_size_iid": 0.9300699300699301,
+              "set_size_shifted": 0.8391608391608392,
+              "set_size_shifted_weighted": 0.8391608391608392
+            },
+            "delta_brier": 0.06762691249169339,
+            "delta_ece": 0.07564417564386076,
+            "iid": {
+              "accuracy": 0.9230769230769231,
+              "brier": 0.1070396610936033,
+              "ece": 0.0418635418631364,
+              "ece_quantile": 0.0418635418631364,
+              "mce": 0.25,
+              "n": 143,
+              "nll": 0.8609775435081716
+            },
+            "shifted": {
+              "accuracy": 0.8391608391608392,
+              "brier": 0.1746665735852967,
+              "ece": 0.11750771750699716,
+              "ece_quantile": 0.11750771750699716,
+              "mce": 0.5666666666666667,
+              "n": 143,
+              "nll": 1.4616051983485139
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.1017606258392334,
+        "seed": 3,
+        "shift": {
+          "cols": [
+            26,
+            27,
+            28,
+            29
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "breast_cancer",
+        "model": "rf",
+        "n_cal": 142,
+        "n_classes": 2,
+        "n_shifted": 143,
+        "n_test": 143,
+        "n_train": 284,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.8671328671328671,
+              "coverage_shifted": 0.7342657342657343,
+              "coverage_shifted_weighted": 0.7202797202797203,
+              "q_hat": 0.24716666666666665,
+              "q_hat_weighted": 0.24,
+              "set_size_iid": 0.8741258741258742,
+              "set_size_shifted": 0.7482517482517482,
+              "set_size_shifted_weighted": 0.7342657342657343
+            },
+            "delta_brier": 0.05055718223046797,
+            "delta_ece": 0.08224758574734098,
+            "iid": {
+              "accuracy": 0.951048951048951,
+              "brier": 0.06827970528479457,
+              "ece": 0.03370204795239758,
+              "ece_quantile": 0.03748759573794545,
+              "mce": 0.22481547619047615,
+              "n": 143,
+              "nll": 0.11715523046227308
+            },
+            "shifted": {
+              "accuracy": 0.9440559440559441,
+              "brier": 0.11883688751526254,
+              "ece": 0.11594963369973856,
+              "ece_quantile": 0.11557484182494665,
+              "mce": 0.2896811224489797,
+              "n": 143,
+              "nll": 0.22729860441822355
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.8671328671328671,
+              "coverage_shifted": 0.7342657342657343,
+              "coverage_shifted_weighted": 0.7202797202797203,
+              "q_hat": 0.2612641640264589,
+              "q_hat_weighted": 0.25431882193765076,
+              "set_size_iid": 0.8741258741258742,
+              "set_size_shifted": 0.7482517482517482,
+              "set_size_shifted_weighted": 0.7342657342657343
+            },
+            "delta_brier": 0.05517980269692091,
+            "delta_ece": 0.0811603872831119,
+            "iid": {
+              "accuracy": 0.951048951048951,
+              "brier": 0.06981680087219122,
+              "ece": 0.044503237851392874,
+              "ece_quantile": 0.04190246057277663,
+              "mce": 0.30418716488585285,
+              "n": 143,
+              "nll": 0.12150482347747366
+            },
+            "shifted": {
+              "accuracy": 0.9440559440559441,
+              "brier": 0.12499660356911213,
+              "ece": 0.12566362513450477,
+              "ece_quantile": 0.12531173169212712,
+              "mce": 0.2906074181060796,
+              "n": 143,
+              "nll": 0.23782538550342214
+            },
+            "temperature_T": 1.0715528349965944
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.8671328671328671,
+              "coverage_shifted": 0.7762237762237763,
+              "coverage_shifted_weighted": 0.7762237762237763,
+              "q_hat": 0.16666666666666663,
+              "q_hat_weighted": 0.16666666666666663,
+              "set_size_iid": 0.8741258741258742,
+              "set_size_shifted": 0.7902097902097902,
+              "set_size_shifted_weighted": 0.7902097902097902
+            },
+            "delta_brier": 0.05346682534593673,
+            "delta_ece": 0.05939353027446375,
+            "iid": {
+              "accuracy": 0.958041958041958,
+              "brier": 0.06065611411782397,
+              "ece": 0.032417850045549985,
+              "ece_quantile": 0.02339930289671939,
+              "mce": 0.4570062020393145,
+              "n": 143,
+              "nll": 0.10128303194066285
+            },
+            "shifted": {
+              "accuracy": 0.9370629370629371,
+              "brier": 0.1141229394637607,
+              "ece": 0.09181138032001374,
+              "ece_quantile": 0.08456433233009204,
+              "mce": 0.5,
+              "n": 143,
+              "nll": 0.5539339375607387
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.8391608391608392,
+              "coverage_shifted": 0.5734265734265734,
+              "coverage_shifted_weighted": 0.5734265734265734,
+              "q_hat": 0.0273972602739726,
+              "q_hat_weighted": 0.0273972602739726,
+              "set_size_iid": 0.8741258741258742,
+              "set_size_shifted": 0.6363636363636364,
+              "set_size_shifted_weighted": 0.6363636363636364
+            },
+            "delta_brier": 0.10738917969906972,
+            "delta_ece": 0.13096720630951098,
+            "iid": {
+              "accuracy": 0.9300699300699301,
+              "brier": 0.11993728004222556,
+              "ece": 0.0316186097004242,
+              "ece_quantile": 0.0316186097004242,
+              "mce": 0.3666666666666667,
+              "n": 143,
+              "nll": 1.0527497876469083
+            },
+            "shifted": {
+              "accuracy": 0.9090909090909091,
+              "brier": 0.22732645974129528,
+              "ece": 0.16258581600993516,
+              "ece_quantile": 0.16258581600993519,
+              "mce": 0.3666666666666667,
+              "n": 143,
+              "nll": 1.911229153939179
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.10053658485412598,
+        "seed": 4,
+        "shift": {
+          "cols": [
+            26,
+            27,
+            28,
+            29
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "breast_cancer",
+        "model": "hgb",
+        "n_cal": 142,
+        "n_classes": 2,
+        "n_shifted": 143,
+        "n_test": 143,
+        "n_train": 284,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9300699300699301,
+              "coverage_shifted": 0.7972027972027972,
+              "coverage_shifted_weighted": 0.8601398601398601,
+              "q_hat": 0.11850023863424841,
+              "q_hat_weighted": 0.17953431616175453,
+              "set_size_iid": 0.9300699300699301,
+              "set_size_shifted": 0.8251748251748252,
+              "set_size_shifted_weighted": 0.9020979020979021
+            },
+            "delta_brier": 0.09763957012172551,
+            "delta_ece": 0.024328613442876804,
+            "iid": {
+              "accuracy": 0.972027972027972,
+              "brier": 0.03274808576302689,
+              "ece": 0.01869100464947348,
+              "ece_quantile": 0.013215462997634143,
+              "mce": 0.5775892507021314,
+              "n": 143,
+              "nll": 0.05254009701128135
+            },
+            "shifted": {
+              "accuracy": 0.9090909090909091,
+              "brier": 0.1303876558847524,
+              "ece": 0.04301961809235028,
+              "ece_quantile": 0.04297817737474992,
+              "mce": 0.5700428292192813,
+              "n": 143,
+              "nll": 0.21364517472577532
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9300699300699301,
+              "coverage_shifted": 0.7972027972027972,
+              "coverage_shifted_weighted": 0.8601398601398601,
+              "q_hat": 0.22912797701776033,
+              "q_hat_weighted": 0.28522656990119566,
+              "set_size_iid": 0.9300699300699301,
+              "set_size_shifted": 0.8251748251748252,
+              "set_size_shifted_weighted": 0.9020979020979021
+            },
+            "delta_brier": 0.09001350224849705,
+            "delta_ece": 0.005209713148083821,
+            "iid": {
+              "accuracy": 0.972027972027972,
+              "brier": 0.036295492085856945,
+              "ece": 0.03176729299477028,
+              "ece_quantile": 0.02381786963395451,
+              "mce": 0.36276700513604987,
+              "n": 143,
+              "nll": 0.06775713173511892
+            },
+            "shifted": {
+              "accuracy": 0.9090909090909091,
+              "brier": 0.126308994334354,
+              "ece": 0.0369770061428541,
+              "ece_quantile": 0.04952649259038416,
+              "mce": 0.13332690127116076,
+              "n": 143,
+              "nll": 0.21014130012679122
+            },
+            "temperature_T": 1.6540066191687675
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.951048951048951,
+              "coverage_shifted": 0.9230769230769231,
+              "coverage_shifted_weighted": 0.9230769230769231,
+              "q_hat": 0.19999999999999996,
+              "q_hat_weighted": 0.19999999999999996,
+              "set_size_iid": 0.972027972027972,
+              "set_size_shifted": 0.958041958041958,
+              "set_size_shifted_weighted": 0.958041958041958
+            },
+            "delta_brier": 0.06241149927417556,
+            "delta_ece": 0.07806442871221429,
+            "iid": {
+              "accuracy": 0.965034965034965,
+              "brier": 0.05236107664458028,
+              "ece": 0.016820272300584357,
+              "ece_quantile": 0.016820272300584423,
+              "mce": 0.2603282433729266,
+              "n": 143,
+              "nll": 0.08433972855699048
+            },
+            "shifted": {
+              "accuracy": 0.9370629370629371,
+              "brier": 0.11477257591875584,
+              "ece": 0.09488470101279865,
+              "ece_quantile": 0.07141091134031748,
+              "mce": 0.55,
+              "n": 143,
+              "nll": 0.38021155637426746
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9300699300699301,
+              "coverage_shifted": 0.8531468531468531,
+              "coverage_shifted_weighted": 0.8531468531468531,
+              "q_hat": 0.02409638554216864,
+              "q_hat_weighted": 0.02409638554216864,
+              "set_size_iid": 0.9370629370629371,
+              "set_size_shifted": 0.9090909090909091,
+              "set_size_shifted_weighted": 0.9090909090909091
+            },
+            "delta_brier": 0.10920681067272026,
+            "delta_ece": 0.04367118824864848,
+            "iid": {
+              "accuracy": 0.9790209790209791,
+              "brier": 0.04227464637100395,
+              "ece": 0.019813519813876364,
+              "ece_quantile": 0.01981351981387637,
+              "mce": 0.30000000000000004,
+              "n": 143,
+              "nll": 0.24687950844525663
+            },
+            "shifted": {
+              "accuracy": 0.9020979020979021,
+              "brier": 0.1514814570437242,
+              "ece": 0.06348470806252485,
+              "ece_quantile": 0.05369449827231507,
+              "mce": 0.30000000000000004,
+              "n": 143,
+              "nll": 1.612376663849105
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.08891773223876953,
+        "seed": 0,
+        "shift": {
+          "cols": [
+            26,
+            27,
+            28,
+            29
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "breast_cancer",
+        "model": "hgb",
+        "n_cal": 142,
+        "n_classes": 2,
+        "n_shifted": 143,
+        "n_test": 143,
+        "n_train": 284,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9020979020979021,
+              "coverage_shifted": 0.6083916083916084,
+              "coverage_shifted_weighted": 0.5804195804195804,
+              "q_hat": 0.018823347600050888,
+              "q_hat_weighted": 0.007261001550135759,
+              "set_size_iid": 0.9230769230769231,
+              "set_size_shifted": 0.6363636363636364,
+              "set_size_shifted_weighted": 0.6013986013986014
+            },
+            "delta_brier": 0.3298155850883301,
+            "delta_ece": 0.19209276636164366,
+            "iid": {
+              "accuracy": 0.9440559440559441,
+              "brier": 0.08387317217695085,
+              "ece": 0.04698326296084367,
+              "ece_quantile": 0.04140523759861677,
+              "mce": 0.8455033209368356,
+              "n": 143,
+              "nll": 0.19959096281615665
+            },
+            "shifted": {
+              "accuracy": 0.6993006993006993,
+              "brier": 0.4136887572652809,
+              "ece": 0.23907602932248734,
+              "ece_quantile": 0.21622820563139347,
+              "mce": 0.77950762527911,
+              "n": 143,
+              "nll": 0.6776686156640561
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9020979020979021,
+              "coverage_shifted": 0.6083916083916084,
+              "coverage_shifted_weighted": 0.5804195804195804,
+              "q_hat": 0.07128299801412896,
+              "q_hat_weighted": 0.039419671700069214,
+              "set_size_iid": 0.9230769230769231,
+              "set_size_shifted": 0.6363636363636364,
+              "set_size_shifted_weighted": 0.6013986013986014
+            },
+            "delta_brier": 0.28399620100115885,
+            "delta_ece": 0.1669877242674636,
+            "iid": {
+              "accuracy": 0.9440559440559441,
+              "brier": 0.07706338129326859,
+              "ece": 0.037714688719844555,
+              "ece_quantile": 0.03549901287507875,
+              "mce": 0.7510156835018342,
+              "n": 143,
+              "nll": 0.1480555718402158
+            },
+            "shifted": {
+              "accuracy": 0.6993006993006993,
+              "brier": 0.3610595822944275,
+              "ece": 0.20470241298730818,
+              "ece_quantile": 0.19485087175203936,
+              "mce": 0.783496835653089,
+              "n": 143,
+              "nll": 0.5159584285258968
+            },
+            "temperature_T": 1.5400971270458128
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9020979020979021,
+              "coverage_shifted": 0.5944055944055944,
+              "coverage_shifted_weighted": 0.5944055944055944,
+              "q_hat": 9.999778782798785e-13,
+              "q_hat_weighted": 9.999778782798785e-13,
+              "set_size_iid": 0.9230769230769231,
+              "set_size_shifted": 0.7552447552447552,
+              "set_size_shifted_weighted": 0.7552447552447552
+            },
+            "delta_brier": 0.40629861494386454,
+            "delta_ece": 0.27097173991078655,
+            "iid": {
+              "accuracy": 0.951048951048951,
+              "brier": 0.07408844716742949,
+              "ece": 0.02508961304992506,
+              "ece_quantile": 0.02508961304992506,
+              "mce": 0.10288444279002762,
+              "n": 143,
+              "nll": 0.6253514150976136
+            },
+            "shifted": {
+              "accuracy": 0.6223776223776224,
+              "brier": 0.48038706211129406,
+              "ece": 0.2960613529607116,
+              "ece_quantile": 0.28557184247120104,
+              "mce": 0.6000000000000002,
+              "n": 143,
+              "nll": 4.648915100335159
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9300699300699301,
+              "coverage_shifted": 0.6643356643356644,
+              "coverage_shifted_weighted": 0.6643356643356644,
+              "q_hat": 0.011363636363636354,
+              "q_hat_weighted": 0.011363636363636354,
+              "set_size_iid": 0.951048951048951,
+              "set_size_shifted": 0.8041958041958042,
+              "set_size_shifted_weighted": 0.8041958041958042
+            },
+            "delta_brier": 0.3949647540241399,
+            "delta_ece": 0.21360987497330156,
+            "iid": {
+              "accuracy": 0.951048951048951,
+              "brier": 0.07923822619070554,
+              "ece": 0.03675037084095126,
+              "ece_quantile": 0.03022356431414474,
+              "mce": 0.8333333333333333,
+              "n": 143,
+              "nll": 0.1512254635382082
+            },
+            "shifted": {
+              "accuracy": 0.6993006993006993,
+              "brier": 0.4742029802148454,
+              "ece": 0.2503602458142528,
+              "ece_quantile": 0.2503602458142528,
+              "mce": 0.775,
+              "n": 143,
+              "nll": 3.9676186799014292
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.08527135848999023,
+        "seed": 1,
+        "shift": {
+          "cols": [
+            26,
+            27,
+            28,
+            29
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "breast_cancer",
+        "model": "hgb",
+        "n_cal": 142,
+        "n_classes": 2,
+        "n_shifted": 143,
+        "n_test": 143,
+        "n_train": 284,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.916083916083916,
+              "coverage_shifted": 0.5314685314685315,
+              "coverage_shifted_weighted": 0.5104895104895105,
+              "q_hat": 0.01554717435516495,
+              "q_hat_weighted": 0.011856388101315729,
+              "set_size_iid": 0.9230769230769231,
+              "set_size_shifted": 0.5454545454545454,
+              "set_size_shifted_weighted": 0.5174825174825175
+            },
+            "delta_brier": 0.1617798175753668,
+            "delta_ece": 0.06787654552355309,
+            "iid": {
+              "accuracy": 0.958041958041958,
+              "brier": 0.06116624793629632,
+              "ece": 0.036920207881114275,
+              "ece_quantile": 0.028766846033270354,
+              "mce": 0.5346326063369047,
+              "n": 143,
+              "nll": 0.1344733652806804
+            },
+            "shifted": {
+              "accuracy": 0.8671328671328671,
+              "brier": 0.22294606551166313,
+              "ece": 0.10479675340466736,
+              "ece_quantile": 0.09636246501451469,
+              "mce": 0.3509649533498661,
+              "n": 143,
+              "nll": 0.40901385234610144
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.916083916083916,
+              "coverage_shifted": 0.5314685314685315,
+              "coverage_shifted_weighted": 0.5104895104895105,
+              "q_hat": 0.1274253604967217,
+              "q_hat_weighted": 0.11391634487767932,
+              "set_size_iid": 0.9230769230769231,
+              "set_size_shifted": 0.5454545454545454,
+              "set_size_shifted_weighted": 0.5174825174825175
+            },
+            "delta_brier": 0.15033033561292147,
+            "delta_ece": 0.009779304625602094,
+            "iid": {
+              "accuracy": 0.958041958041958,
+              "brier": 0.056596996676462376,
+              "ece": 0.04158207726878435,
+              "ece_quantile": 0.025882461849621015,
+              "mce": 0.8585332544932579,
+              "n": 143,
+              "nll": 0.10566079330475744
+            },
+            "shifted": {
+              "accuracy": 0.8671328671328671,
+              "brier": 0.20692733228938384,
+              "ece": 0.051361381894386444,
+              "ece_quantile": 0.08975488034388084,
+              "mce": 0.24245554617595155,
+              "n": 143,
+              "nll": 0.32537432800205174
+            },
+            "temperature_T": 2.156125333534666
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.916083916083916,
+              "coverage_shifted": 0.5454545454545454,
+              "coverage_shifted_weighted": 0.5454545454545454,
+              "q_hat": 0.06666666666666665,
+              "q_hat_weighted": 0.06666666666666665,
+              "set_size_iid": 0.9300699300699301,
+              "set_size_shifted": 0.5804195804195804,
+              "set_size_shifted_weighted": 0.5804195804195804
+            },
+            "delta_brier": 0.48589102112897375,
+            "delta_ece": 0.3083218843302219,
+            "iid": {
+              "accuracy": 0.951048951048951,
+              "brier": 0.07561919485081006,
+              "ece": 0.022830084207500805,
+              "ece_quantile": 0.03401889539631185,
+              "mce": 0.30000000000000004,
+              "n": 143,
+              "nll": 0.13652867388457315
+            },
+            "shifted": {
+              "accuracy": 0.5804195804195804,
+              "brier": 0.5615102159797838,
+              "ece": 0.3311519685377227,
+              "ece_quantile": 0.3259859712729313,
+              "mce": 0.7703720916735682,
+              "n": 143,
+              "nll": 1.266987606995868
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9300699300699301,
+              "coverage_shifted": 0.6853146853146853,
+              "coverage_shifted_weighted": 0.6853146853146853,
+              "q_hat": 0.053763440860215006,
+              "q_hat_weighted": 0.053763440860215006,
+              "set_size_iid": 0.958041958041958,
+              "set_size_shifted": 0.7412587412587412,
+              "set_size_shifted_weighted": 0.7412587412587412
+            },
+            "delta_brier": 0.17163236106786048,
+            "delta_ece": 0.08786950866565814,
+            "iid": {
+              "accuracy": 0.958041958041958,
+              "brier": 0.06412232371910145,
+              "ece": 0.024058759817167496,
+              "ece_quantile": 0.015667151425559106,
+              "mce": 0.5666666666666667,
+              "n": 143,
+              "nll": 0.14361817370948363
+            },
+            "shifted": {
+              "accuracy": 0.8391608391608392,
+              "brier": 0.23575468478696193,
+              "ece": 0.11192826848282564,
+              "ece_quantile": 0.1472692715657643,
+              "mce": 0.5666666666666667,
+              "n": 143,
+              "nll": 0.5930549003855972
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.08677315711975098,
+        "seed": 2,
+        "shift": {
+          "cols": [
+            26,
+            27,
+            28,
+            29
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "breast_cancer",
+        "model": "hgb",
+        "n_cal": 142,
+        "n_classes": 2,
+        "n_shifted": 143,
+        "n_test": 143,
+        "n_train": 284,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.8601398601398601,
+              "coverage_shifted": 0.5314685314685315,
+              "coverage_shifted_weighted": 0.4965034965034965,
+              "q_hat": 0.019741672978187963,
+              "q_hat_weighted": 0.011014388839483247,
+              "set_size_iid": 0.8811188811188811,
+              "set_size_shifted": 0.5664335664335665,
+              "set_size_shifted_weighted": 0.5174825174825175
+            },
+            "delta_brier": 0.1032988986096449,
+            "delta_ece": 0.040870902020958236,
+            "iid": {
+              "accuracy": 0.9440559440559441,
+              "brier": 0.09201112169236168,
+              "ece": 0.04861678616598923,
+              "ece_quantile": 0.03612150818383873,
+              "mce": 0.8066028633490543,
+              "n": 143,
+              "nll": 0.2083337138405724
+            },
+            "shifted": {
+              "accuracy": 0.8811188811188811,
+              "brier": 0.1953100203020066,
+              "ece": 0.08948768818694747,
+              "ece_quantile": 0.07645098432857209,
+              "mce": 0.43066339244974056,
+              "n": 143,
+              "nll": 0.3861585492107804
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.8601398601398601,
+              "coverage_shifted": 0.5314685314685315,
+              "coverage_shifted_weighted": 0.4965034965034965,
+              "q_hat": 0.10434591092458634,
+              "q_hat_weighted": 0.0775600800562587,
+              "set_size_iid": 0.8811188811188811,
+              "set_size_shifted": 0.5664335664335665,
+              "set_size_shifted_weighted": 0.5174825174825175
+            },
+            "delta_brier": 0.11129791903406289,
+            "delta_ece": 0.02891953373556202,
+            "iid": {
+              "accuracy": 0.9440559440559441,
+              "brier": 0.08551965026023611,
+              "ece": 0.03827031373335323,
+              "ece_quantile": 0.03108505427304384,
+              "mce": 0.6781298035986558,
+              "n": 143,
+              "nll": 0.15204055387816437
+            },
+            "shifted": {
+              "accuracy": 0.8811188811188811,
+              "brier": 0.196817569294299,
+              "ece": 0.06718984746891525,
+              "ece_quantile": 0.08849279268393677,
+              "mce": 0.2886363231943767,
+              "n": 143,
+              "nll": 0.3205945066762631
+            },
+            "temperature_T": 1.8164510909273441
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.8881118881118881,
+              "coverage_shifted": 0.6153846153846154,
+              "coverage_shifted_weighted": 0.4965034965034965,
+              "q_hat": 0.2222222222222222,
+              "q_hat_weighted": 9.999778782798785e-13,
+              "set_size_iid": 0.9090909090909091,
+              "set_size_shifted": 0.6363636363636364,
+              "set_size_shifted_weighted": 0.5174825174825175
+            },
+            "delta_brier": 0.04774202597667494,
+            "delta_ece": 0.06529540443069132,
+            "iid": {
+              "accuracy": 0.9370629370629371,
+              "brier": 0.09320771820766226,
+              "ece": 0.030885780884913956,
+              "ece_quantile": 0.030885780884913956,
+              "mce": 0.1271929824561404,
+              "n": 143,
+              "nll": 0.47800162548280917
+            },
+            "shifted": {
+              "accuracy": 0.9370629370629371,
+              "brier": 0.1409497441843372,
+              "ece": 0.09618118531560528,
+              "ece_quantile": 0.05422314335859816,
+              "mce": 0.155853760872544,
+              "n": 143,
+              "nll": 0.760035099420023
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.8951048951048951,
+              "coverage_shifted": 0.6503496503496503,
+              "coverage_shifted_weighted": 0.6503496503496503,
+              "q_hat": 0.038461538461538436,
+              "q_hat_weighted": 0.038461538461538436,
+              "set_size_iid": 0.951048951048951,
+              "set_size_shifted": 0.7762237762237763,
+              "set_size_shifted_weighted": 0.7762237762237763
+            },
+            "delta_brier": 0.1912525027201328,
+            "delta_ece": 0.1026741323943702,
+            "iid": {
+              "accuracy": 0.9230769230769231,
+              "brier": 0.13940843107197023,
+              "ece": 0.04765514206070165,
+              "ece_quantile": 0.04761928048637848,
+              "mce": 0.8333333333333333,
+              "n": 143,
+              "nll": 0.9403846532768896
+            },
+            "shifted": {
+              "accuracy": 0.8111888111888111,
+              "brier": 0.33066093379210304,
+              "ece": 0.15032927445507185,
+              "ece_quantile": 0.11816144228723953,
+              "mce": 0.7666666666666666,
+              "n": 143,
+              "nll": 2.263620575044875
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.08466076850891113,
+        "seed": 3,
+        "shift": {
+          "cols": [
+            26,
+            27,
+            28,
+            29
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "breast_cancer",
+        "model": "hgb",
+        "n_cal": 142,
+        "n_classes": 2,
+        "n_shifted": 143,
+        "n_test": 143,
+        "n_train": 284,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9230769230769231,
+              "coverage_shifted": 0.6433566433566433,
+              "coverage_shifted_weighted": 0.6433566433566433,
+              "q_hat": 0.03402685348416856,
+              "q_hat_weighted": 0.033924240790987215,
+              "set_size_iid": 0.9300699300699301,
+              "set_size_shifted": 0.6503496503496503,
+              "set_size_shifted_weighted": 0.6503496503496503
+            },
+            "delta_brier": 0.08488259512886129,
+            "delta_ece": 0.03344391767212176,
+            "iid": {
+              "accuracy": 0.9790209790209791,
+              "brier": 0.030370953817727475,
+              "ece": 0.02000523789353894,
+              "ece_quantile": 0.011496991151633823,
+              "mce": 0.519464474947426,
+              "n": 143,
+              "nll": 0.06721168011569492
+            },
+            "shifted": {
+              "accuracy": 0.9300699300699301,
+              "brier": 0.11525354894658876,
+              "ece": 0.0534491555656607,
+              "ece_quantile": 0.03524991160969427,
+              "mce": 0.4907609888381803,
+              "n": 143,
+              "nll": 0.19527327412673406
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9230769230769231,
+              "coverage_shifted": 0.6433566433566433,
+              "coverage_shifted_weighted": 0.6433566433566433,
+              "q_hat": 0.16255336660418607,
+              "q_hat_weighted": 0.1623449543252924,
+              "set_size_iid": 0.9300699300699301,
+              "set_size_shifted": 0.6503496503496503,
+              "set_size_shifted_weighted": 0.6503496503496503
+            },
+            "delta_brier": 0.08659644848123121,
+            "delta_ece": 0.03637884015691516,
+            "iid": {
+              "accuracy": 0.9790209790209791,
+              "brier": 0.036649766649819775,
+              "ece": 0.030983172780221377,
+              "ece_quantile": 0.03271645154008462,
+              "mce": 0.3426451954113019,
+              "n": 143,
+              "nll": 0.07837281538676973
+            },
+            "shifted": {
+              "accuracy": 0.9300699300699301,
+              "brier": 0.123246215131051,
+              "ece": 0.06736201293713653,
+              "ece_quantile": 0.059534384425649865,
+              "mce": 0.23315491221028228,
+              "n": 143,
+              "nll": 0.21368199744057176
+            },
+            "temperature_T": 2.0410428524497126
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.965034965034965,
+              "coverage_shifted": 0.8461538461538461,
+              "coverage_shifted_weighted": 0.8461538461538461,
+              "q_hat": 0.18181818181818177,
+              "q_hat_weighted": 0.18181818181818177,
+              "set_size_iid": 0.972027972027972,
+              "set_size_shifted": 0.8881118881118881,
+              "set_size_shifted_weighted": 0.8881118881118881
+            },
+            "delta_brier": 0.11073660738864288,
+            "delta_ece": 0.10889953944468272,
+            "iid": {
+              "accuracy": 0.9790209790209791,
+              "brier": 0.03183715810902465,
+              "ece": 0.023489983562203973,
+              "ece_quantile": 0.023489983562203942,
+              "mce": 0.6042013249158403,
+              "n": 143,
+              "nll": 0.059009059258922004
+            },
+            "shifted": {
+              "accuracy": 0.9370629370629371,
+              "brier": 0.14257376549766754,
+              "ece": 0.1323895230068867,
+              "ece_quantile": 0.11248628258201787,
+              "mce": 0.6555730321009087,
+              "n": 143,
+              "nll": 0.9472650753728409
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.951048951048951,
+              "coverage_shifted": 0.8951048951048951,
+              "coverage_shifted_weighted": 0.8951048951048951,
+              "q_hat": 0.0449438202247191,
+              "q_hat_weighted": 0.0449438202247191,
+              "set_size_iid": 0.965034965034965,
+              "set_size_shifted": 0.951048951048951,
+              "set_size_shifted_weighted": 0.951048951048951
+            },
+            "delta_brier": 0.11025495650649664,
+            "delta_ece": 0.03277022602770894,
+            "iid": {
+              "accuracy": 0.9790209790209791,
+              "brier": 0.03929207489613732,
+              "ece": 0.02493124852711779,
+              "ece_quantile": 0.016073439669308933,
+              "mce": 0.6333333333333333,
+              "n": 143,
+              "nll": 0.25823155094319206
+            },
+            "shifted": {
+              "accuracy": 0.9090909090909091,
+              "brier": 0.14954703140263395,
+              "ece": 0.05770147455482673,
+              "ece_quantile": 0.05770147455482673,
+              "mce": 0.7666666666666666,
+              "n": 143,
+              "nll": 1.609769805795843
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.08556842803955078,
+        "seed": 4,
+        "shift": {
+          "cols": [
+            26,
+            27,
+            28,
+            29
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "synthetic_shift",
+        "model": "logreg",
+        "n_cal": 500,
+        "n_classes": 2,
+        "n_shifted": 500,
+        "n_test": 500,
+        "n_train": 1000,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.898,
+              "coverage_shifted": 0.496,
+              "coverage_shifted_weighted": 0.496,
+              "q_hat": 0.5602436961678873,
+              "q_hat_weighted": 0.5602436961678873,
+              "set_size_iid": 1.066,
+              "set_size_shifted": 1.0,
+              "set_size_shifted_weighted": 1.0
+            },
+            "delta_brier": 0.8113408798249888,
+            "delta_ece": 0.43270412999120156,
+            "iid": {
+              "accuracy": 0.87,
+              "brier": 0.18666190051988402,
+              "ece": 0.06867501310585233,
+              "ece_quantile": 0.07544909545601837,
+              "mce": 0.15100645959762315,
+              "n": 500,
+              "nll": 0.31411184737983217
+            },
+            "shifted": {
+              "accuracy": 0.496,
+              "brier": 0.9980027803448729,
+              "ece": 0.5013791430970539,
+              "ece_quantile": 0.5013811261660669,
+              "mce": 0.9105638307854165,
+              "n": 500,
+              "nll": 3.5749458561998497
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.898,
+              "coverage_shifted": 0.496,
+              "coverage_shifted_weighted": 0.496,
+              "q_hat": 0.5893533793189484,
+              "q_hat_weighted": 0.5893533793189484,
+              "set_size_iid": 1.066,
+              "set_size_shifted": 1.0,
+              "set_size_shifted_weighted": 1.0
+            },
+            "delta_brier": 0.8272770463157844,
+            "delta_ece": 0.46040824836175986,
+            "iid": {
+              "accuracy": 0.87,
+              "brier": 0.17842054937625493,
+              "ece": 0.042997254983070075,
+              "ece_quantile": 0.04239493352213386,
+              "mce": 0.2701428473300221,
+              "n": 500,
+              "nll": 0.29322764218083713
+            },
+            "shifted": {
+              "accuracy": 0.496,
+              "brier": 1.0056975956920393,
+              "ece": 0.5034055033448299,
+              "ece_quantile": 0.5034055117636717,
+              "mce": 0.8859167304612193,
+              "n": 500,
+              "nll": 5.330447634203093
+            },
+            "temperature_T": 0.6702349359700805
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.934,
+              "coverage_shifted": 0.496,
+              "coverage_shifted_weighted": 0.496,
+              "q_hat": 0.5652173913043478,
+              "q_hat_weighted": 0.5652173913043478,
+              "set_size_iid": 1.144,
+              "set_size_shifted": 1.0,
+              "set_size_shifted_weighted": 1.0
+            },
+            "delta_brier": 0.7881281610082127,
+            "delta_ece": 0.46524569156842266,
+            "iid": {
+              "accuracy": 0.868,
+              "brier": 0.1817580532029311,
+              "ece": 0.019680165460543856,
+              "ece_quantile": 0.032007824034631066,
+              "mce": 0.1703606369909328,
+              "n": 500,
+              "nll": 0.38851416776013903
+            },
+            "shifted": {
+              "accuracy": 0.496,
+              "brier": 0.9698862142111438,
+              "ece": 0.4849258570289665,
+              "ece_quantile": 0.4849258570289664,
+              "mce": 0.9295774647887324,
+              "n": 500,
+              "nll": 2.0052068293399543
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.902,
+              "coverage_shifted": 0.496,
+              "coverage_shifted_weighted": 0.496,
+              "q_hat": 0.6,
+              "q_hat_weighted": 0.6,
+              "set_size_iid": 1.068,
+              "set_size_shifted": 1.0,
+              "set_size_shifted_weighted": 1.0
+            },
+            "delta_brier": 0.7492791642203722,
+            "delta_ece": 0.4163579653854966,
+            "iid": {
+              "accuracy": 0.864,
+              "brier": 0.18369679859774385,
+              "ece": 0.04905832420726158,
+              "ece_quantile": 0.05717400830069867,
+              "mce": 0.13333333333333353,
+              "n": 500,
+              "nll": 0.6825045353757726
+            },
+            "shifted": {
+              "accuracy": 0.496,
+              "brier": 0.9329759628181161,
+              "ece": 0.46541628959275816,
+              "ece_quantile": 0.46541628959275816,
+              "mce": 0.9117647058823529,
+              "n": 500,
+              "nll": 1.706958584834375
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.014836311340332031,
+        "seed": 0,
+        "shift": {
+          "cols": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "synthetic_shift",
+        "model": "logreg",
+        "n_cal": 500,
+        "n_classes": 2,
+        "n_shifted": 500,
+        "n_test": 500,
+        "n_train": 1000,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.89,
+              "coverage_shifted": 0.756,
+              "coverage_shifted_weighted": 0.752,
+              "q_hat": 0.5650769072637798,
+              "q_hat_weighted": 0.5547416264518119,
+              "set_size_iid": 1.074,
+              "set_size_shifted": 1.058,
+              "set_size_shifted_weighted": 1.044
+            },
+            "delta_brier": 0.1763559139291323,
+            "delta_ece": 0.11283894130595176,
+            "iid": {
+              "accuracy": 0.856,
+              "brier": 0.20664684310823994,
+              "ece": 0.03030981293402627,
+              "ece_quantile": 0.04451258219718176,
+              "mce": 0.19532541485305055,
+              "n": 500,
+              "nll": 0.3277867780472589
+            },
+            "shifted": {
+              "accuracy": 0.734,
+              "brier": 0.38300275703737224,
+              "ece": 0.14314875423997803,
+              "ece_quantile": 0.1414226084270553,
+              "mce": 0.2591639252375689,
+              "n": 500,
+              "nll": 0.5960343154085885
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.89,
+              "coverage_shifted": 0.756,
+              "coverage_shifted_weighted": 0.752,
+              "q_hat": 0.573011545596429,
+              "q_hat_weighted": 0.5614428435125383,
+              "set_size_iid": 1.074,
+              "set_size_shifted": 1.058,
+              "set_size_shifted_weighted": 1.044
+            },
+            "delta_brier": 0.18821972496776473,
+            "delta_ece": 0.13202422741943917,
+            "iid": {
+              "accuracy": 0.856,
+              "brier": 0.20578257397878447,
+              "ece": 0.0225679625257246,
+              "ece_quantile": 0.04008442138394796,
+              "mce": 0.30082816418373026,
+              "n": 500,
+              "nll": 0.32469706389415276
+            },
+            "shifted": {
+              "accuracy": 0.734,
+              "brier": 0.3940022989465492,
+              "ece": 0.15459218994516377,
+              "ece_quantile": 0.1537218494391399,
+              "mce": 0.3323245374956869,
+              "n": 500,
+              "nll": 0.6341748552253424
+            },
+            "temperature_T": 0.8900003739375186
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.882,
+              "coverage_shifted": 0.776,
+              "coverage_shifted_weighted": 0.776,
+              "q_hat": 0.55,
+              "q_hat_weighted": 0.55,
+              "set_size_iid": 1.072,
+              "set_size_shifted": 1.046,
+              "set_size_shifted_weighted": 1.046
+            },
+            "delta_brier": 0.15014246950859042,
+            "delta_ece": 0.1438766388818042,
+            "iid": {
+              "accuracy": 0.842,
+              "brier": 0.21512929839948783,
+              "ece": 0.039568773729106506,
+              "ece_quantile": 0.047638141585616266,
+              "mce": 0.6030035804662255,
+              "n": 500,
+              "nll": 0.34121021621596886
+            },
+            "shifted": {
+              "accuracy": 0.75,
+              "brier": 0.36527176790807825,
+              "ece": 0.18344541261091069,
+              "ece_quantile": 0.17352035196234553,
+              "mce": 0.6097312663054877,
+              "n": 500,
+              "nll": 1.3203094542763156
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.874,
+              "coverage_shifted": 0.788,
+              "coverage_shifted_weighted": 0.788,
+              "q_hat": 0.5294117647058824,
+              "q_hat_weighted": 0.5294117647058824,
+              "set_size_iid": 1.056,
+              "set_size_shifted": 1.058,
+              "set_size_shifted_weighted": 1.058
+            },
+            "delta_brier": 0.14388780775413992,
+            "delta_ece": 0.13561422870729586,
+            "iid": {
+              "accuracy": 0.854,
+              "brier": 0.22468108533565348,
+              "ece": 0.05069183739281206,
+              "ece_quantile": 0.0643992205022572,
+              "mce": 0.1875,
+              "n": 500,
+              "nll": 1.0480670852763334
+            },
+            "shifted": {
+              "accuracy": 0.738,
+              "brier": 0.3685688930897934,
+              "ece": 0.18630606610010791,
+              "ece_quantile": 0.19742180684095664,
+              "mce": 0.5803795202291444,
+              "n": 500,
+              "nll": 0.5731197908944842
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.013947010040283203,
+        "seed": 1,
+        "shift": {
+          "cols": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "synthetic_shift",
+        "model": "logreg",
+        "n_cal": 500,
+        "n_classes": 2,
+        "n_shifted": 500,
+        "n_test": 500,
+        "n_train": 1000,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9,
+              "coverage_shifted": 0.5,
+              "coverage_shifted_weighted": 0.5,
+              "q_hat": 0.23048850923067532,
+              "q_hat_weighted": 0.20155116302959508,
+              "set_size_iid": 0.908,
+              "set_size_shifted": 1.0,
+              "set_size_shifted_weighted": 1.0
+            },
+            "delta_brier": 0.9411132292125493,
+            "delta_ece": 0.45437367674236606,
+            "iid": {
+              "accuracy": 0.968,
+              "brier": 0.056490314402702406,
+              "ece": 0.045024763334784196,
+              "ece_quantile": 0.03890578049417375,
+              "mce": 0.5195783673760719,
+              "n": 500,
+              "nll": 0.11230685420453812
+            },
+            "shifted": {
+              "accuracy": 0.5,
+              "brier": 0.9976035436152516,
+              "ece": 0.4993984400771503,
+              "ece_quantile": 0.49939849971251504,
+              "mce": 0.4993984400771503,
+              "n": 500,
+              "nll": 4.442023374441245
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.9,
+              "coverage_shifted": 0.5,
+              "coverage_shifted_weighted": 0.5,
+              "q_hat": 0.14559556496730564,
+              "q_hat_weighted": 0.11704860466476052,
+              "set_size_iid": 0.908,
+              "set_size_shifted": 1.0,
+              "set_size_shifted_weighted": 1.0
+            },
+            "delta_brier": 0.9483000291162593,
+            "delta_ece": 0.48281355155905537,
+            "iid": {
+              "accuracy": 0.968,
+              "brier": 0.051471419346702546,
+              "ece": 0.01712927378734766,
+              "ece_quantile": 0.013817853432552782,
+              "mce": 0.5140355377856799,
+              "n": 500,
+              "nll": 0.09293691230619078
+            },
+            "shifted": {
+              "accuracy": 0.5,
+              "brier": 0.9997714484629618,
+              "ece": 0.499942825346403,
+              "ece_quantile": 0.49994282538355445,
+              "mce": 0.499942825346403,
+              "n": 500,
+              "nll": 6.519388384674418
+            },
+            "temperature_T": 0.681269192253248
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.908,
+              "coverage_shifted": 0.5,
+              "coverage_shifted_weighted": 0.5,
+              "q_hat": 0.046511627906976716,
+              "q_hat_weighted": 0.046511627906976716,
+              "set_size_iid": 0.912,
+              "set_size_shifted": 1.0,
+              "set_size_shifted_weighted": 1.0
+            },
+            "delta_brier": 0.9547643533610533,
+            "delta_ece": 0.48039213430238653,
+            "iid": {
+              "accuracy": 0.968,
+              "brier": 0.04468075209940694,
+              "ece": 0.019468330812904607,
+              "ece_quantile": 0.009650983888281667,
+              "mce": 0.47380867549247796,
+              "n": 500,
+              "nll": 0.07673918701132706
+            },
+            "shifted": {
+              "accuracy": 0.5,
+              "brier": 0.9994451054604602,
+              "ece": 0.49986046511529114,
+              "ece_quantile": 0.49986046511529114,
+              "mce": 0.49986046511529114,
+              "n": 500,
+              "nll": 13.537390472128672
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.92,
+              "coverage_shifted": 0.5,
+              "coverage_shifted_weighted": 0.5,
+              "q_hat": 0.07999999999999996,
+              "q_hat_weighted": 0.07999999999999996,
+              "set_size_iid": 0.93,
+              "set_size_shifted": 1.0,
+              "set_size_shifted_weighted": 1.0
+            },
+            "delta_brier": 0.9301838643715461,
+            "delta_ece": 0.475090443906858,
+            "iid": {
+              "accuracy": 0.97,
+              "brier": 0.04747262003587191,
+              "ece": 0.01361012106489319,
+              "ece_quantile": 0.011881307506535278,
+              "mce": 0.4,
+              "n": 500,
+              "nll": 0.1321001131146844
+            },
+            "shifted": {
+              "accuracy": 0.5,
+              "brier": 0.977656484407418,
+              "ece": 0.4887005649717512,
+              "ece_quantile": 0.0,
+              "mce": 0.4887005649717512,
+              "n": 500,
+              "nll": 2.247183155332099
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.013484954833984375,
+        "seed": 2,
+        "shift": {
+          "cols": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "synthetic_shift",
+        "model": "logreg",
+        "n_cal": 500,
+        "n_classes": 2,
+        "n_shifted": 500,
+        "n_test": 500,
+        "n_train": 1000,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.874,
+              "coverage_shifted": 0.502,
+              "coverage_shifted_weighted": 0.502,
+              "q_hat": 0.13521967291442938,
+              "q_hat_weighted": 0.13215395860361467,
+              "set_size_iid": 0.876,
+              "set_size_shifted": 0.778,
+              "set_size_shifted_weighted": 0.774
+            },
+            "delta_brier": 0.7032813653239705,
+            "delta_ece": 0.3602133405527734,
+            "iid": {
+              "accuracy": 0.994,
+              "brier": 0.022049420762582983,
+              "ece": 0.05958073060116803,
+              "ece_quantile": 0.057567078294037,
+              "mce": 0.5034130767827566,
+              "n": 500,
+              "nll": 0.07432967512167665
+            },
+            "shifted": {
+              "accuracy": 0.504,
+              "brier": 0.7253307860865534,
+              "ece": 0.4197940711539414,
+              "ece_quantile": 0.42011245163290667,
+              "mce": 0.8994567214244545,
+              "n": 500,
+              "nll": 1.0749494973568172
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.874,
+              "coverage_shifted": 0.502,
+              "coverage_shifted_weighted": 0.502,
+              "q_hat": 1.5301010203305765e-07,
+              "q_hat_weighted": 1.2231858093070258e-07,
+              "set_size_iid": 0.876,
+              "set_size_shifted": 0.778,
+              "set_size_shifted_weighted": 0.774
+            },
+            "delta_brier": 0.9731508188479987,
+            "delta_ece": 0.488265904301739,
+            "iid": {
+              "accuracy": 0.994,
+              "brier": 0.009073748351851567,
+              "ece": 0.005091859463700848,
+              "ece_quantile": 0.0046795369472785045,
+              "mce": 0.528833118118724,
+              "n": 500,
+              "nll": 0.04745353820369374
+            },
+            "shifted": {
+              "accuracy": 0.504,
+              "brier": 0.9822245671998503,
+              "ece": 0.4933577637654398,
+              "ece_quantile": 0.49335776376544,
+              "mce": 0.9054553424518653,
+              "n": 500,
+              "nll": 8.14837665658887
+            },
+            "temperature_T": 0.11824399591562343
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.994,
+              "coverage_shifted": 0.504,
+              "coverage_shifted_weighted": 0.504,
+              "q_hat": 9.999778782798785e-13,
+              "q_hat_weighted": 9.999778782798785e-13,
+              "set_size_iid": 0.998,
+              "set_size_shifted": 1.0,
+              "set_size_shifted_weighted": 1.0
+            },
+            "delta_brier": 0.9831711255684192,
+            "delta_ece": 0.4910895745886585,
+            "iid": {
+              "accuracy": 0.996,
+              "brier": 0.008828874429596734,
+              "ece": 0.004910425410341545,
+              "ece_quantile": 0.003089574587662458,
+              "mce": 0.4552127056697597,
+              "n": 500,
+              "nll": 0.1117388041569736
+            },
+            "shifted": {
+              "accuracy": 0.504,
+              "brier": 0.9919999999980159,
+              "ece": 0.495999999999,
+              "ece_quantile": 0.0,
+              "mce": 0.495999999999,
+              "n": 500,
+              "nll": 13.704986473501064
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.996,
+              "coverage_shifted": 0.504,
+              "coverage_shifted_weighted": 0.504,
+              "q_hat": 9.999778782798785e-13,
+              "q_hat_weighted": 9.999778782798785e-13,
+              "set_size_iid": 1.0,
+              "set_size_shifted": 1.0,
+              "set_size_shifted_weighted": 1.0
+            },
+            "delta_brier": 0.9839999999980319,
+            "delta_ece": 0.492,
+            "iid": {
+              "accuracy": 0.996,
+              "brier": 0.007999999999984,
+              "ece": 0.003999999999000026,
+              "ece_quantile": 0.0,
+              "mce": 0.003999999999000026,
+              "n": 500,
+              "nll": 0.11052408446471011
+            },
+            "shifted": {
+              "accuracy": 0.504,
+              "brier": 0.9919999999980159,
+              "ece": 0.495999999999,
+              "ece_quantile": 0.0,
+              "mce": 0.495999999999,
+              "n": 500,
+              "nll": 13.704986473501064
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.013083696365356445,
+        "seed": 3,
+        "shift": {
+          "cols": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "synthetic_shift",
+        "model": "logreg",
+        "n_cal": 500,
+        "n_classes": 2,
+        "n_shifted": 500,
+        "n_test": 500,
+        "n_train": 1000,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.918,
+              "coverage_shifted": 0.92,
+              "coverage_shifted_weighted": 0.922,
+              "q_hat": 0.20124392217526277,
+              "q_hat_weighted": 0.20853927335813993,
+              "set_size_iid": 0.92,
+              "set_size_shifted": 0.926,
+              "set_size_shifted_weighted": 0.928
+            },
+            "delta_brier": 0.009545461300287897,
+            "delta_ece": -0.002608106503291019,
+            "iid": {
+              "accuracy": 0.972,
+              "brier": 0.04227973918978091,
+              "ece": 0.039155854674755575,
+              "ece_quantile": 0.0339113596159007,
+              "mce": 0.4777259682584942,
+              "n": 500,
+              "nll": 0.0845809559149493
+            },
+            "shifted": {
+              "accuracy": 0.966,
+              "brier": 0.05182520049006881,
+              "ece": 0.036547748171464556,
+              "ece_quantile": 0.027993214579816347,
+              "mce": 0.4728416801176345,
+              "n": 500,
+              "nll": 0.09487554914366819
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.918,
+              "coverage_shifted": 0.92,
+              "coverage_shifted_weighted": 0.922,
+              "q_hat": 0.1549819135036058,
+              "q_hat_weighted": 0.16233590899385109,
+              "set_size_iid": 0.92,
+              "set_size_shifted": 0.926,
+              "set_size_shifted_weighted": 0.928
+            },
+            "delta_brier": 0.011311566674556385,
+            "delta_ece": 0.0023694891109095687,
+            "iid": {
+              "accuracy": 0.972,
+              "brier": 0.03990021654650708,
+              "ece": 0.022031456909665445,
+              "ece_quantile": 0.022707666883197867,
+              "mce": 0.48186393122787163,
+              "n": 500,
+              "nll": 0.07201658750200593
+            },
+            "shifted": {
+              "accuracy": 0.966,
+              "brier": 0.05121178322106346,
+              "ece": 0.024400946020575014,
+              "ece_quantile": 0.017271128203680815,
+              "mce": 0.4703639972858873,
+              "n": 500,
+              "nll": 0.08566620661836458
+            },
+            "temperature_T": 0.8127933833265486
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.946,
+              "coverage_shifted": 0.948,
+              "coverage_shifted_weighted": 0.948,
+              "q_hat": 0.07999999999999996,
+              "q_hat_weighted": 0.07999999999999996,
+              "set_size_iid": 0.954,
+              "set_size_shifted": 0.97,
+              "set_size_shifted_weighted": 0.97
+            },
+            "delta_brier": 0.01591622246974845,
+            "delta_ece": 0.01386475877387866,
+            "iid": {
+              "accuracy": 0.974,
+              "brier": 0.03650174430577328,
+              "ece": 0.01833000331775092,
+              "ece_quantile": 0.014027155175874146,
+              "mce": 0.46073263597685893,
+              "n": 500,
+              "nll": 0.06843199348812119
+            },
+            "shifted": {
+              "accuracy": 0.97,
+              "brier": 0.05241796677552173,
+              "ece": 0.03219476209162958,
+              "ece_quantile": 0.026442595419436575,
+              "mce": 0.5506614344380789,
+              "n": 500,
+              "nll": 0.09200907333719496
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.948,
+              "coverage_shifted": 0.948,
+              "coverage_shifted_weighted": 0.948,
+              "q_hat": 0.08333333333333337,
+              "q_hat_weighted": 0.08333333333333337,
+              "set_size_iid": 0.956,
+              "set_size_shifted": 0.97,
+              "set_size_shifted_weighted": 0.97
+            },
+            "delta_brier": 0.020336288772557803,
+            "delta_ece": 0.012095906431836799,
+            "iid": {
+              "accuracy": 0.97,
+              "brier": 0.042075636948088795,
+              "ece": 0.014879532164204672,
+              "ece_quantile": 0.014942690058017528,
+              "mce": 0.6666666666666666,
+              "n": 500,
+              "nll": 0.2691112088309809
+            },
+            "shifted": {
+              "accuracy": 0.962,
+              "brier": 0.0624119257206466,
+              "ece": 0.02697543859604147,
+              "ece_quantile": 0.026308771929374752,
+              "mce": 0.6666666666666666,
+              "n": 500,
+              "nll": 0.6443738787926234
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.014055252075195312,
+        "seed": 4,
+        "shift": {
+          "cols": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "synthetic_shift",
+        "model": "rf",
+        "n_cal": 500,
+        "n_classes": 2,
+        "n_shifted": 500,
+        "n_test": 500,
+        "n_train": 1000,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.902,
+              "coverage_shifted": 0.786,
+              "coverage_shifted_weighted": 0.786,
+              "q_hat": 0.48250000000000004,
+              "q_hat_weighted": 0.48250000000000004,
+              "set_size_iid": 0.982,
+              "set_size_shifted": 0.97,
+              "set_size_shifted_weighted": 0.97
+            },
+            "delta_brier": 0.11773789857438904,
+            "delta_ece": -0.0062609603174783035,
+            "iid": {
+              "accuracy": 0.912,
+              "brier": 0.15347820359542702,
+              "ece": 0.08447196031747832,
+              "ece_quantile": 0.09128853174601374,
+              "mce": 0.2035486915486916,
+              "n": 500,
+              "nll": 0.2789512334857266
+            },
+            "shifted": {
+              "accuracy": 0.796,
+              "brier": 0.27121610216981606,
+              "ece": 0.07821100000000002,
+              "ece_quantile": 0.10310928571428575,
+              "mce": 0.13488019134594476,
+              "n": 500,
+              "nll": 0.4283440006628477
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.902,
+              "coverage_shifted": 0.786,
+              "coverage_shifted_weighted": 0.786,
+              "q_hat": 0.4707454090102583,
+              "q_hat_weighted": 0.4707454090102583,
+              "set_size_iid": 0.982,
+              "set_size_shifted": 0.97,
+              "set_size_shifted_weighted": 0.97
+            },
+            "delta_brier": 0.1259670340203919,
+            "delta_ece": 0.013676631811437485,
+            "iid": {
+              "accuracy": 0.912,
+              "brier": 0.13348217138473856,
+              "ece": 0.02716916080349314,
+              "ece_quantile": 0.0424602565997586,
+              "mce": 0.1786190826209504,
+              "n": 500,
+              "nll": 0.2502223489430691
+            },
+            "shifted": {
+              "accuracy": 0.796,
+              "brier": 0.25944920540513045,
+              "ece": 0.040845792614930626,
+              "ece_quantile": 0.06859189691906345,
+              "mce": 0.16393267923426086,
+              "n": 500,
+              "nll": 0.4026884357280364
+            },
+            "temperature_T": 0.5977576399505952
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.908,
+              "coverage_shifted": 0.786,
+              "coverage_shifted_weighted": 0.786,
+              "q_hat": 0.2777777777777778,
+              "q_hat_weighted": 0.2777777777777778,
+              "set_size_iid": 0.978,
+              "set_size_shifted": 0.97,
+              "set_size_shifted_weighted": 0.97
+            },
+            "delta_brier": 0.15063957499706093,
+            "delta_ece": 0.036197639729917054,
+            "iid": {
+              "accuracy": 0.918,
+              "brier": 0.12959422743941212,
+              "ece": 0.023281909495231734,
+              "ece_quantile": 0.04209553753956531,
+              "mce": 0.37025534851621633,
+              "n": 500,
+              "nll": 0.41838411576933304
+            },
+            "shifted": {
+              "accuracy": 0.798,
+              "brier": 0.28023380243647306,
+              "ece": 0.05947954922514879,
+              "ece_quantile": 0.06126162807819535,
+              "mce": 0.5,
+              "n": 500,
+              "nll": 0.4745983814894638
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.918,
+              "coverage_shifted": 0.794,
+              "coverage_shifted_weighted": 0.794,
+              "q_hat": 0.34615384615384615,
+              "q_hat_weighted": 0.34615384615384615,
+              "set_size_iid": 1.0,
+              "set_size_shifted": 1.0,
+              "set_size_shifted_weighted": 1.0
+            },
+            "delta_brier": 0.1574585765311026,
+            "delta_ece": 0.04187384643241167,
+            "iid": {
+              "accuracy": 0.918,
+              "brier": 0.13241702689045445,
+              "ece": 0.03457596979874479,
+              "ece_quantile": 0.03897596979874478,
+              "mce": 0.12740384615384615,
+              "n": 500,
+              "nll": 0.3705712251613786
+            },
+            "shifted": {
+              "accuracy": 0.794,
+              "brier": 0.28987560342155705,
+              "ece": 0.07644981623115646,
+              "ece_quantile": 0.09349743527894348,
+              "mce": 0.21612541993281098,
+              "n": 500,
+              "nll": 0.44003014355946846
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.17693448066711426,
+        "seed": 0,
+        "shift": {
+          "cols": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "synthetic_shift",
+        "model": "rf",
+        "n_cal": 500,
+        "n_classes": 2,
+        "n_shifted": 500,
+        "n_test": 500,
+        "n_train": 1000,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.86,
+              "coverage_shifted": 0.772,
+              "coverage_shifted_weighted": 0.778,
+              "q_hat": 0.4654761904761905,
+              "q_hat_weighted": 0.46966666666666657,
+              "set_size_iid": 0.964,
+              "set_size_shifted": 0.92,
+              "set_size_shifted_weighted": 0.928
+            },
+            "delta_brier": 0.0855159112755102,
+            "delta_ece": 0.01298533333331732,
+            "iid": {
+              "accuracy": 0.872,
+              "brier": 0.1833739208968254,
+              "ece": 0.07296228571430177,
+              "ece_quantile": 0.06054190476192076,
+              "mce": 0.22218697478991595,
+              "n": 500,
+              "nll": 0.30663603090063646
+            },
+            "shifted": {
+              "accuracy": 0.814,
+              "brier": 0.2688898321723356,
+              "ece": 0.08594761904761909,
+              "ece_quantile": 0.09571547619047618,
+              "mce": 0.1784438339438339,
+              "n": 500,
+              "nll": 0.4280871732675432
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.86,
+              "coverage_shifted": 0.772,
+              "coverage_shifted_weighted": 0.778,
+              "q_hat": 0.43086788022842737,
+              "q_hat_weighted": 0.4391922349866113,
+              "set_size_iid": 0.964,
+              "set_size_shifted": 0.92,
+              "set_size_shifted_weighted": 0.928
+            },
+            "delta_brier": 0.07293245108956756,
+            "delta_ece": 0.0031463149786654446,
+            "iid": {
+              "accuracy": 0.872,
+              "brier": 0.17770135167834003,
+              "ece": 0.031953879401374265,
+              "ece_quantile": 0.043478774104167714,
+              "mce": 0.16126584097446628,
+              "n": 500,
+              "nll": 0.2841401139678154
+            },
+            "shifted": {
+              "accuracy": 0.814,
+              "brier": 0.2506338027679076,
+              "ece": 0.03510019438003971,
+              "ece_quantile": 0.06210592137979019,
+              "mce": 0.13287347798248417,
+              "n": 500,
+              "nll": 0.3974070264759761
+            },
+            "temperature_T": 0.49698099112792754
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.842,
+              "coverage_shifted": 0.776,
+              "coverage_shifted_weighted": 0.83,
+              "q_hat": 0.375,
+              "q_hat_weighted": 0.47058823529411764,
+              "set_size_iid": 0.942,
+              "set_size_shifted": 0.886,
+              "set_size_shifted_weighted": 0.964
+            },
+            "delta_brier": 0.04262244905139356,
+            "delta_ece": 0.03254182287129618,
+            "iid": {
+              "accuracy": 0.868,
+              "brier": 0.1911459732907993,
+              "ece": 0.054517892981144574,
+              "ece_quantile": 0.05451789298114469,
+              "mce": 0.5813953488372094,
+              "n": 500,
+              "nll": 0.35947272487135395
+            },
+            "shifted": {
+              "accuracy": 0.85,
+              "brier": 0.23376842234219286,
+              "ece": 0.08705971585244075,
+              "ece_quantile": 0.07313555844012004,
+              "mce": 0.5545058139534893,
+              "n": 500,
+              "nll": 0.4628048748430431
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.85,
+              "coverage_shifted": 0.814,
+              "coverage_shifted_weighted": 0.814,
+              "q_hat": 0.4666666666666667,
+              "q_hat_weighted": 0.4666666666666667,
+              "set_size_iid": 0.966,
+              "set_size_shifted": 0.926,
+              "set_size_shifted_weighted": 0.926
+            },
+            "delta_brier": 0.050901673140074793,
+            "delta_ece": 0.02852211002206153,
+            "iid": {
+              "accuracy": 0.87,
+              "brier": 0.1876213301121295,
+              "ece": 0.05679824261096981,
+              "ece_quantile": 0.057552800815738485,
+              "mce": 0.22083333333333333,
+              "n": 500,
+              "nll": 0.5393703512867994
+            },
+            "shifted": {
+              "accuracy": 0.834,
+              "brier": 0.2385230032522043,
+              "ece": 0.08532035263303134,
+              "ece_quantile": 0.10548701929969805,
+              "mce": 0.2545454545454545,
+              "n": 500,
+              "nll": 0.4271060566921
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.17748260498046875,
+        "seed": 1,
+        "shift": {
+          "cols": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "synthetic_shift",
+        "model": "rf",
+        "n_cal": 500,
+        "n_classes": 2,
+        "n_shifted": 500,
+        "n_test": 500,
+        "n_train": 1000,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.884,
+              "coverage_shifted": 0.564,
+              "coverage_shifted_weighted": 0.55,
+              "q_hat": 0.3784722222222222,
+              "q_hat_weighted": 0.37149999999999994,
+              "set_size_iid": 0.938,
+              "set_size_shifted": 0.682,
+              "set_size_shifted_weighted": 0.662
+            },
+            "delta_brier": 0.2038615461001512,
+            "delta_ece": 0.0010136984126784543,
+            "iid": {
+              "accuracy": 0.922,
+              "brier": 0.13269032115035276,
+              "ece": 0.048583722222242234,
+              "ece_quantile": 0.06173840476192475,
+              "mce": 0.3197876984126985,
+              "n": 500,
+              "nll": 0.23413404838466725
+            },
+            "shifted": {
+              "accuracy": 0.748,
+              "brier": 0.33655186725050396,
+              "ece": 0.04959742063492069,
+              "ece_quantile": 0.0533786587301587,
+              "mce": 0.08172501308215596,
+              "n": 500,
+              "nll": 0.5023827254381874
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.884,
+              "coverage_shifted": 0.564,
+              "coverage_shifted_weighted": 0.548,
+              "q_hat": 0.2964062456340487,
+              "q_hat_weighted": 0.2857091974383249,
+              "set_size_iid": 0.938,
+              "set_size_shifted": 0.682,
+              "set_size_shifted_weighted": 0.66
+            },
+            "delta_brier": 0.21406574097766282,
+            "delta_ece": 0.023549659726319512,
+            "iid": {
+              "accuracy": 0.922,
+              "brier": 0.1275592593516733,
+              "ece": 0.040226283172242576,
+              "ece_quantile": 0.03429195278897951,
+              "mce": 0.23358356719857654,
+              "n": 500,
+              "nll": 0.22651101138184032
+            },
+            "shifted": {
+              "accuracy": 0.748,
+              "brier": 0.3416250003293361,
+              "ece": 0.06377594289856209,
+              "ece_quantile": 0.05980669872359174,
+              "mce": 0.23269973920949816,
+              "n": 500,
+              "nll": 0.5117011659599657
+            },
+            "temperature_T": 0.5738057136949727
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.906,
+              "coverage_shifted": 0.604,
+              "coverage_shifted_weighted": 0.604,
+              "q_hat": 0.2142857142857143,
+              "q_hat_weighted": 0.2142857142857143,
+              "set_size_iid": 0.966,
+              "set_size_shifted": 0.834,
+              "set_size_shifted_weighted": 0.834
+            },
+            "delta_brier": 0.3002043769006349,
+            "delta_ece": 0.1828017911124486,
+            "iid": {
+              "accuracy": 0.924,
+              "brier": 0.12696012501380993,
+              "ece": 0.03089347169061074,
+              "ece_quantile": 0.03377816738707125,
+              "mce": 0.3658008658008669,
+              "n": 500,
+              "nll": 0.2779197975049373
+            },
+            "shifted": {
+              "accuracy": 0.622,
+              "brier": 0.4271645019144448,
+              "ece": 0.21369526280305934,
+              "ece_quantile": 0.2283066583915978,
+              "mce": 0.6577056277056261,
+              "n": 500,
+              "nll": 0.6073372031464506
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.89,
+              "coverage_shifted": 0.592,
+              "coverage_shifted_weighted": 0.592,
+              "q_hat": 0.2222222222222222,
+              "q_hat_weighted": 0.2222222222222222,
+              "set_size_iid": 0.948,
+              "set_size_shifted": 0.762,
+              "set_size_shifted_weighted": 0.762
+            },
+            "delta_brier": 0.31076549868379244,
+            "delta_ece": 0.18001087089802684,
+            "iid": {
+              "accuracy": 0.924,
+              "brier": 0.12829822727048054,
+              "ece": 0.025813672388032345,
+              "ece_quantile": 0.028412895387383442,
+              "mce": 0.0793650793650792,
+              "n": 500,
+              "nll": 0.27743202926482735
+            },
+            "shifted": {
+              "accuracy": 0.64,
+              "brier": 0.43906372595427295,
+              "ece": 0.20582454328605918,
+              "ece_quantile": 0.2142689877305036,
+              "mce": 0.4942771084337349,
+              "n": 500,
+              "nll": 0.7813857643070427
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.16707944869995117,
+        "seed": 2,
+        "shift": {
+          "cols": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "synthetic_shift",
+        "model": "rf",
+        "n_cal": 500,
+        "n_classes": 2,
+        "n_shifted": 500,
+        "n_test": 500,
+        "n_train": 1000,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.874,
+              "coverage_shifted": 0.58,
+              "coverage_shifted_weighted": 0.494,
+              "q_hat": 0.32999999999999996,
+              "q_hat_weighted": 0.2918333333333333,
+              "set_size_iid": 0.892,
+              "set_size_shifted": 0.606,
+              "set_size_shifted_weighted": 0.508
+            },
+            "delta_brier": 0.17659629475571478,
+            "delta_ece": 0.03799777561323972,
+            "iid": {
+              "accuracy": 0.962,
+              "brier": 0.0921461656731227,
+              "ece": 0.0920261082251441,
+              "ece_quantile": 0.0939348383838744,
+              "mce": 0.2670214285714285,
+              "n": 500,
+              "nll": 0.18748383124561538
+            },
+            "shifted": {
+              "accuracy": 0.834,
+              "brier": 0.2687424604288375,
+              "ece": 0.1300238838383838,
+              "ece_quantile": 0.12797252886002883,
+              "mce": 0.20933551369265657,
+              "n": 500,
+              "nll": 0.4345157514554634
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.874,
+              "coverage_shifted": 0.58,
+              "coverage_shifted_weighted": 0.494,
+              "q_hat": 0.17178149829390266,
+              "q_hat_weighted": 0.12248261816696027,
+              "set_size_iid": 0.892,
+              "set_size_shifted": 0.606,
+              "set_size_shifted_weighted": 0.508
+            },
+            "delta_brier": 0.16298881492596956,
+            "delta_ece": 0.02350736485401015,
+            "iid": {
+              "accuracy": 0.962,
+              "brier": 0.06630315801952048,
+              "ece": 0.020635721786792696,
+              "ece_quantile": 0.024418466552583902,
+              "mce": 0.21645199658331704,
+              "n": 500,
+              "nll": 0.140081289016352
+            },
+            "shifted": {
+              "accuracy": 0.834,
+              "brier": 0.22929197294549006,
+              "ece": 0.044143086640802846,
+              "ece_quantile": 0.04465373546044797,
+              "mce": 0.12384749118166771,
+              "n": 500,
+              "nll": 0.3633558941377833
+            },
+            "temperature_T": 0.4501976365460926
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.878,
+              "coverage_shifted": 0.538,
+              "coverage_shifted_weighted": 0.494,
+              "q_hat": 0.08333333333333337,
+              "q_hat_weighted": 0.045454545454545414,
+              "set_size_iid": 0.89,
+              "set_size_shifted": 0.626,
+              "set_size_shifted_weighted": 0.538
+            },
+            "delta_brier": 0.19750852566205002,
+            "delta_ece": 0.13772904206125006,
+            "iid": {
+              "accuracy": 0.958,
+              "brier": 0.0645236569883849,
+              "ece": 0.010368988862006635,
+              "ece_quantile": 0.013031562055420852,
+              "mce": 0.5579439252336447,
+              "n": 500,
+              "nll": 0.21392593860914166
+            },
+            "shifted": {
+              "accuracy": 0.836,
+              "brier": 0.26203218265043493,
+              "ece": 0.14809803092325668,
+              "ece_quantile": 0.14834744684440393,
+              "mce": 0.43788477661995395,
+              "n": 500,
+              "nll": 0.4392185166259816
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.872,
+              "coverage_shifted": 0.536,
+              "coverage_shifted_weighted": 0.49,
+              "q_hat": 0.08333333333333337,
+              "q_hat_weighted": 0.05882352941176472,
+              "set_size_iid": 0.884,
+              "set_size_shifted": 0.604,
+              "set_size_shifted_weighted": 0.516
+            },
+            "delta_brier": 0.19526585533417173,
+            "delta_ece": 0.14655562303486933,
+            "iid": {
+              "accuracy": 0.966,
+              "brier": 0.06792254880183846,
+              "ece": 0.01735018936387394,
+              "ece_quantile": 0.025863869254434926,
+              "mce": 0.5,
+              "n": 500,
+              "nll": 0.26617323489674455
+            },
+            "shifted": {
+              "accuracy": 0.798,
+              "brier": 0.2631884041360102,
+              "ece": 0.16390581239874327,
+              "ece_quantile": 0.17234698886933159,
+              "mce": 0.4806201550387599,
+              "n": 500,
+              "nll": 0.8530032644761417
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.16720032691955566,
+        "seed": 3,
+        "shift": {
+          "cols": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "synthetic_shift",
+        "model": "rf",
+        "n_cal": 500,
+        "n_classes": 2,
+        "n_shifted": 500,
+        "n_test": 500,
+        "n_train": 1000,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.916,
+              "coverage_shifted": 0.67,
+              "coverage_shifted_weighted": 0.672,
+              "q_hat": 0.28466666666666673,
+              "q_hat_weighted": 0.2915,
+              "set_size_iid": 0.922,
+              "set_size_shifted": 0.694,
+              "set_size_shifted_weighted": 0.698
+            },
+            "delta_brier": 0.12951393874905515,
+            "delta_ece": 0.0008636190475511119,
+            "iid": {
+              "accuracy": 0.976,
+              "brier": 0.05424561702639204,
+              "ece": 0.08057016666673464,
+              "ece_quantile": 0.07426216666673464,
+              "mce": 0.31539999999999996,
+              "n": 500,
+              "nll": 0.12528778273337304
+            },
+            "shifted": {
+              "accuracy": 0.878,
+              "brier": 0.1837595557754472,
+              "ece": 0.08143378571428575,
+              "ece_quantile": 0.08760238888888892,
+              "mce": 0.1659746376811596,
+              "n": 500,
+              "nll": 0.30593853929413034
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.916,
+              "coverage_shifted": 0.67,
+              "coverage_shifted_weighted": 0.672,
+              "q_hat": 0.18444102870887413,
+              "q_hat_weighted": 0.1926644564422022,
+              "set_size_iid": 0.922,
+              "set_size_shifted": 0.694,
+              "set_size_shifted_weighted": 0.698
+            },
+            "delta_brier": 0.13137099975187477,
+            "delta_ece": -0.001447179327064757,
+            "iid": {
+              "accuracy": 0.976,
+              "brier": 0.037386634297633566,
+              "ece": 0.03075342346630389,
+              "ece_quantile": 0.025416754196575582,
+              "mce": 0.23091970628596126,
+              "n": 500,
+              "nll": 0.07793145387887832
+            },
+            "shifted": {
+              "accuracy": 0.878,
+              "brier": 0.16875763404950833,
+              "ece": 0.029306244139239133,
+              "ece_quantile": 0.03457346589734952,
+              "mce": 0.181852140185699,
+              "n": 500,
+              "nll": 0.2686162852230495
+            },
+            "temperature_T": 0.6198469482367893
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.944,
+              "coverage_shifted": 0.722,
+              "coverage_shifted_weighted": 0.722,
+              "q_hat": 0.09523809523809523,
+              "q_hat_weighted": 0.09523809523809523,
+              "set_size_iid": 0.95,
+              "set_size_shifted": 0.762,
+              "set_size_shifted_weighted": 0.762
+            },
+            "delta_brier": 0.195943389194945,
+            "delta_ece": 0.1300058230303876,
+            "iid": {
+              "accuracy": 0.976,
+              "brier": 0.033175046168595713,
+              "ece": 0.01598797705069126,
+              "ece_quantile": 0.012397541239783169,
+              "mce": 0.32557468777941234,
+              "n": 500,
+              "nll": 0.11445908030596635
+            },
+            "shifted": {
+              "accuracy": 0.76,
+              "brier": 0.2291184353635407,
+              "ece": 0.14599380008107887,
+              "ece_quantile": 0.15303959795046615,
+              "mce": 0.5729449371638737,
+              "n": 500,
+              "nll": 0.3976010057040232
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.944,
+              "coverage_shifted": 0.722,
+              "coverage_shifted_weighted": 0.722,
+              "q_hat": 0.08333333333333337,
+              "q_hat_weighted": 0.08333333333333337,
+              "set_size_iid": 0.95,
+              "set_size_shifted": 0.76,
+              "set_size_shifted_weighted": 0.76
+            },
+            "delta_brier": 0.22158767726077855,
+            "delta_ece": 0.13176393061678374,
+            "iid": {
+              "accuracy": 0.974,
+              "brier": 0.03676717702239463,
+              "ece": 0.02470959277747478,
+              "ece_quantile": 0.015598481666363784,
+              "mce": 0.3333333333333334,
+              "n": 500,
+              "nll": 0.0701977256844863
+            },
+            "shifted": {
+              "accuracy": 0.736,
+              "brier": 0.2583548542831732,
+              "ece": 0.15647352339425852,
+              "ece_quantile": 0.16924065285016834,
+              "mce": 0.6258503401360545,
+              "n": 500,
+              "nll": 0.8052055945131736
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.16884613037109375,
+        "seed": 4,
+        "shift": {
+          "cols": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "synthetic_shift",
+        "model": "hgb",
+        "n_cal": 500,
+        "n_classes": 2,
+        "n_shifted": 500,
+        "n_test": 500,
+        "n_train": 1000,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.92,
+              "coverage_shifted": 0.774,
+              "coverage_shifted_weighted": 0.774,
+              "q_hat": 0.49299098194133173,
+              "q_hat_weighted": 0.49299098194133173,
+              "set_size_iid": 1.0,
+              "set_size_shifted": 0.998,
+              "set_size_shifted_weighted": 0.998
+            },
+            "delta_brier": 0.1839000560542848,
+            "delta_ece": 0.09033863415715432,
+            "iid": {
+              "accuracy": 0.92,
+              "brier": 0.1325719469674436,
+              "ece": 0.028643121911147172,
+              "ece_quantile": 0.03553967967394348,
+              "mce": 0.19232356537565665,
+              "n": 500,
+              "nll": 0.2433124371566415
+            },
+            "shifted": {
+              "accuracy": 0.774,
+              "brier": 0.3164720030217284,
+              "ece": 0.1189817560683015,
+              "ece_quantile": 0.11924746696079085,
+              "mce": 0.30068997455430807,
+              "n": 500,
+              "nll": 0.5287252023871883
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.92,
+              "coverage_shifted": 0.774,
+              "coverage_shifted_weighted": 0.774,
+              "q_hat": 0.4942176879351563,
+              "q_hat_weighted": 0.4942176879351563,
+              "set_size_iid": 1.0,
+              "set_size_shifted": 0.998,
+              "set_size_shifted_weighted": 0.998
+            },
+            "delta_brier": 0.17099106618195364,
+            "delta_ece": 0.07106520587602119,
+            "iid": {
+              "accuracy": 0.92,
+              "brier": 0.13397623355651234,
+              "ece": 0.02582965510410968,
+              "ece_quantile": 0.039166602652044614,
+              "mce": 0.1567602599743625,
+              "n": 500,
+              "nll": 0.23910300943089266
+            },
+            "shifted": {
+              "accuracy": 0.774,
+              "brier": 0.304967299738466,
+              "ece": 0.09689486098013086,
+              "ece_quantile": 0.09767827574863065,
+              "mce": 0.297884427476552,
+              "n": 500,
+              "nll": 0.4847744745894255
+            },
+            "temperature_T": 1.2121733732932267
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.94,
+              "coverage_shifted": 0.834,
+              "coverage_shifted_weighted": 0.834,
+              "q_hat": 0.5,
+              "q_hat_weighted": 0.5,
+              "set_size_iid": 1.066,
+              "set_size_shifted": 1.086,
+              "set_size_shifted_weighted": 1.086
+            },
+            "delta_brier": 0.1713842356173498,
+            "delta_ece": 0.09503256067373345,
+            "iid": {
+              "accuracy": 0.924,
+              "brier": 0.13613313711237582,
+              "ece": 0.030550413257618095,
+              "ece_quantile": 0.030761690831548893,
+              "mce": 0.25757575757575757,
+              "n": 500,
+              "nll": 0.37572598143531943
+            },
+            "shifted": {
+              "accuracy": 0.766,
+              "brier": 0.3075173727297256,
+              "ece": 0.12558297393135154,
+              "ece_quantile": 0.12558297393135165,
+              "mce": 0.5833333333333334,
+              "n": 500,
+              "nll": 0.5900064903704654
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.902,
+              "coverage_shifted": 0.782,
+              "coverage_shifted_weighted": 0.782,
+              "q_hat": 0.36363636363636365,
+              "q_hat_weighted": 0.36363636363636365,
+              "set_size_iid": 0.986,
+              "set_size_shifted": 0.98,
+              "set_size_shifted_weighted": 0.98
+            },
+            "delta_brier": 0.17220630448564359,
+            "delta_ece": 0.10323023944375803,
+            "iid": {
+              "accuracy": 0.904,
+              "brier": 0.14387644088655496,
+              "ece": 0.023008755497827875,
+              "ece_quantile": 0.03414418567850671,
+              "mce": 0.42857142857142844,
+              "n": 500,
+              "nll": 0.3928613387090804
+            },
+            "shifted": {
+              "accuracy": 0.802,
+              "brier": 0.31608274537219855,
+              "ece": 0.1262389949415859,
+              "ece_quantile": 0.1302389949415859,
+              "mce": 0.4285714285714286,
+              "n": 500,
+              "nll": 1.0502125157737103
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.11499953269958496,
+        "seed": 0,
+        "shift": {
+          "cols": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "synthetic_shift",
+        "model": "hgb",
+        "n_cal": 500,
+        "n_classes": 2,
+        "n_shifted": 500,
+        "n_test": 500,
+        "n_train": 1000,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.862,
+              "coverage_shifted": 0.794,
+              "coverage_shifted_weighted": 0.794,
+              "q_hat": 0.444880067485232,
+              "q_hat_weighted": 0.444880067485232,
+              "set_size_iid": 0.974,
+              "set_size_shifted": 0.94,
+              "set_size_shifted_weighted": 0.94
+            },
+            "delta_brier": 0.0738680273326745,
+            "delta_ece": 0.021134897850992873,
+            "iid": {
+              "accuracy": 0.872,
+              "brier": 0.18353426786862587,
+              "ece": 0.04722308533857958,
+              "ece_quantile": 0.049210011063236414,
+              "mce": 0.39305120320895215,
+              "n": 500,
+              "nll": 0.3029356814228096
+            },
+            "shifted": {
+              "accuracy": 0.83,
+              "brier": 0.25740229520130037,
+              "ece": 0.06835798318957245,
+              "ece_quantile": 0.05856013001925017,
+              "mce": 0.15061218027564804,
+              "n": 500,
+              "nll": 0.42377114467048016
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.862,
+              "coverage_shifted": 0.794,
+              "coverage_shifted_weighted": 0.794,
+              "q_hat": 0.4492949772116094,
+              "q_hat_weighted": 0.4492949772116094,
+              "set_size_iid": 0.974,
+              "set_size_shifted": 0.94,
+              "set_size_shifted_weighted": 0.94
+            },
+            "delta_brier": 0.0742070892232422,
+            "delta_ece": 0.022785929430329047,
+            "iid": {
+              "accuracy": 0.872,
+              "brier": 0.18142552311953342,
+              "ece": 0.03645219253775238,
+              "ece_quantile": 0.04368938518258526,
+              "mce": 0.2962045682418375,
+              "n": 500,
+              "nll": 0.29638596486553687
+            },
+            "shifted": {
+              "accuracy": 0.83,
+              "brier": 0.2556326123427756,
+              "ece": 0.059238121968081425,
+              "ece_quantile": 0.05364728913602602,
+              "mce": 0.15190595345833802,
+              "n": 500,
+              "nll": 0.4143889415214114
+            },
+            "temperature_T": 1.0877545127479635
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.864,
+              "coverage_shifted": 0.78,
+              "coverage_shifted_weighted": 0.78,
+              "q_hat": 0.2941176470588236,
+              "q_hat_weighted": 0.2941176470588236,
+              "set_size_iid": 0.982,
+              "set_size_shifted": 0.936,
+              "set_size_shifted_weighted": 0.936
+            },
+            "delta_brier": 0.06712055123962613,
+            "delta_ece": 0.020849554204228578,
+            "iid": {
+              "accuracy": 0.872,
+              "brier": 0.19348328984018637,
+              "ece": 0.05472748223591512,
+              "ece_quantile": 0.055270159120027876,
+              "mce": 0.34224598930481287,
+              "n": 500,
+              "nll": 0.40927621539528025
+            },
+            "shifted": {
+              "accuracy": 0.83,
+              "brier": 0.2606038410798125,
+              "ece": 0.0755770364401437,
+              "ece_quantile": 0.07679363882546253,
+              "mce": 0.3607088029663176,
+              "n": 500,
+              "nll": 0.5058744436468298
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.87,
+              "coverage_shifted": 0.806,
+              "coverage_shifted_weighted": 0.806,
+              "q_hat": 0.4444444444444444,
+              "q_hat_weighted": 0.4444444444444444,
+              "set_size_iid": 0.984,
+              "set_size_shifted": 0.964,
+              "set_size_shifted_weighted": 0.964
+            },
+            "delta_brier": 0.08027872793871355,
+            "delta_ece": 0.049277890262596866,
+            "iid": {
+              "accuracy": 0.878,
+              "brier": 0.19224158622944187,
+              "ece": 0.049934132136709566,
+              "ece_quantile": 0.048152567890899604,
+              "mce": 0.27662907268170445,
+              "n": 500,
+              "nll": 0.41925410153487475
+            },
+            "shifted": {
+              "accuracy": 0.816,
+              "brier": 0.2725203141681554,
+              "ece": 0.09921202239930643,
+              "ece_quantile": 0.08263424462152867,
+              "mce": 0.3188153310104529,
+              "n": 500,
+              "nll": 0.7353060131223753
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.11861705780029297,
+        "seed": 1,
+        "shift": {
+          "cols": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "synthetic_shift",
+        "model": "hgb",
+        "n_cal": 500,
+        "n_classes": 2,
+        "n_shifted": 500,
+        "n_test": 500,
+        "n_train": 1000,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.892,
+              "coverage_shifted": 0.68,
+              "coverage_shifted_weighted": 0.678,
+              "q_hat": 0.1855335255753251,
+              "q_hat_weighted": 0.18448887175003892,
+              "set_size_iid": 0.936,
+              "set_size_shifted": 0.778,
+              "set_size_shifted_weighted": 0.774
+            },
+            "delta_brier": 0.16830096277576945,
+            "delta_ece": 0.04312757310107252,
+            "iid": {
+              "accuracy": 0.924,
+              "brier": 0.10941074347939943,
+              "ece": 0.04004005813840058,
+              "ece_quantile": 0.04129741326360113,
+              "mce": 0.5583075863336032,
+              "n": 500,
+              "nll": 0.20277941893785176
+            },
+            "shifted": {
+              "accuracy": 0.818,
+              "brier": 0.2777117062551689,
+              "ece": 0.0831676312394731,
+              "ece_quantile": 0.07854332077040799,
+              "mce": 0.14638770905045229,
+              "n": 500,
+              "nll": 0.4629370536369631
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.892,
+              "coverage_shifted": 0.68,
+              "coverage_shifted_weighted": 0.678,
+              "q_hat": 0.24242770961252558,
+              "q_hat_weighted": 0.241448988443543,
+              "set_size_iid": 0.936,
+              "set_size_shifted": 0.778,
+              "set_size_shifted_weighted": 0.774
+            },
+            "delta_brier": 0.16308577589937828,
+            "delta_ece": 0.031798436339143664,
+            "iid": {
+              "accuracy": 0.924,
+              "brier": 0.10509766174411317,
+              "ece": 0.028328306949740395,
+              "ece_quantile": 0.031699490170699056,
+              "mce": 0.5662029263816095,
+              "n": 500,
+              "nll": 0.18420922397027983
+            },
+            "shifted": {
+              "accuracy": 0.818,
+              "brier": 0.26818343764349145,
+              "ece": 0.06012674328888406,
+              "ece_quantile": 0.05915169602968518,
+              "mce": 0.12226227239074905,
+              "n": 500,
+              "nll": 0.4224912752441336
+            },
+            "temperature_T": 1.2982953046986303
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.894,
+              "coverage_shifted": 0.682,
+              "coverage_shifted_weighted": 0.682,
+              "q_hat": 0.1875,
+              "q_hat_weighted": 0.1875,
+              "set_size_iid": 0.938,
+              "set_size_shifted": 0.784,
+              "set_size_shifted_weighted": 0.784
+            },
+            "delta_brier": 0.20726598117263526,
+            "delta_ece": 0.11635540527854109,
+            "iid": {
+              "accuracy": 0.93,
+              "brier": 0.1073125089605507,
+              "ece": 0.026711272225427476,
+              "ece_quantile": 0.026711272225427466,
+              "mce": 0.27403846153846156,
+              "n": 500,
+              "nll": 0.19387023633070308
+            },
+            "shifted": {
+              "accuracy": 0.788,
+              "brier": 0.31457849013318595,
+              "ece": 0.14306667750396856,
+              "ece_quantile": 0.12721734914807314,
+              "mce": 0.6370986862695833,
+              "n": 500,
+              "nll": 0.4999036704906381
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.904,
+              "coverage_shifted": 0.704,
+              "coverage_shifted_weighted": 0.704,
+              "q_hat": 0.17647058823529416,
+              "q_hat_weighted": 0.17647058823529416,
+              "set_size_iid": 0.956,
+              "set_size_shifted": 0.85,
+              "set_size_shifted_weighted": 0.85
+            },
+            "delta_brier": 0.263505965810828,
+            "delta_ece": 0.13232001130713522,
+            "iid": {
+              "accuracy": 0.926,
+              "brier": 0.12733748151606372,
+              "ece": 0.03962153521952458,
+              "ece_quantile": 0.054859630457619615,
+              "mce": 0.21333333333333326,
+              "n": 500,
+              "nll": 0.8688789543801242
+            },
+            "shifted": {
+              "accuracy": 0.76,
+              "brier": 0.39084344732689175,
+              "ece": 0.1719415465266598,
+              "ece_quantile": 0.18794154652665973,
+              "mce": 0.35471698113207567,
+              "n": 500,
+              "nll": 2.84777536265167
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.12304830551147461,
+        "seed": 2,
+        "shift": {
+          "cols": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "synthetic_shift",
+        "model": "hgb",
+        "n_cal": 500,
+        "n_classes": 2,
+        "n_shifted": 500,
+        "n_test": 500,
+        "n_train": 1000,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.874,
+              "coverage_shifted": 0.54,
+              "coverage_shifted_weighted": 0.526,
+              "q_hat": 0.057964274478497724,
+              "q_hat_weighted": 0.04743663595012737,
+              "set_size_iid": 0.886,
+              "set_size_shifted": 0.604,
+              "set_size_shifted_weighted": 0.578
+            },
+            "delta_brier": 0.30210695926628134,
+            "delta_ece": 0.12156643631874964,
+            "iid": {
+              "accuracy": 0.966,
+              "brier": 0.05390712441541461,
+              "ece": 0.020644566660660994,
+              "ece_quantile": 0.019867886565857015,
+              "mce": 0.4722758374216858,
+              "n": 500,
+              "nll": 0.11678236013591912
+            },
+            "shifted": {
+              "accuracy": 0.772,
+              "brier": 0.35601408368169596,
+              "ece": 0.14221100297941064,
+              "ece_quantile": 0.13762870895015666,
+              "mce": 0.33272844832083603,
+              "n": 500,
+              "nll": 0.605758319522786
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.874,
+              "coverage_shifted": 0.54,
+              "coverage_shifted_weighted": 0.526,
+              "q_hat": 0.051098935055452266,
+              "q_hat_weighted": 0.04135998199492186,
+              "set_size_iid": 0.886,
+              "set_size_shifted": 0.604,
+              "set_size_shifted_weighted": 0.578
+            },
+            "delta_brier": 0.30586964444040166,
+            "delta_ece": 0.134069128820927,
+            "iid": {
+              "accuracy": 0.966,
+              "brier": 0.05396125644039938,
+              "ece": 0.020442416545609823,
+              "ece_quantile": 0.019893378321389963,
+              "mce": 0.7011834631737508,
+              "n": 500,
+              "nll": 0.11869053400518274
+            },
+            "shifted": {
+              "accuracy": 0.772,
+              "brier": 0.35983090088080105,
+              "ece": 0.15451154536653683,
+              "ece_quantile": 0.14141973372760064,
+              "mce": 0.3797321002976881,
+              "n": 500,
+              "nll": 0.6242745083876425
+            },
+            "temperature_T": 0.9543649894335846
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.934,
+              "coverage_shifted": 0.636,
+              "coverage_shifted_weighted": 0.636,
+              "q_hat": 0.013333333333333308,
+              "q_hat_weighted": 0.013333333333333308,
+              "set_size_iid": 0.946,
+              "set_size_shifted": 0.784,
+              "set_size_shifted_weighted": 0.784
+            },
+            "delta_brier": 0.3593243025854092,
+            "delta_ece": 0.2034448259870217,
+            "iid": {
+              "accuracy": 0.96,
+              "brier": 0.05307852565701907,
+              "ece": 0.021296595366138836,
+              "ece_quantile": 0.017382386124991045,
+              "mce": 0.3855339434315134,
+              "n": 500,
+              "nll": 0.32888380166936354
+            },
+            "shifted": {
+              "accuracy": 0.796,
+              "brier": 0.4124028282424283,
+              "ece": 0.22474142135316055,
+              "ece_quantile": 0.22378959986640978,
+              "mce": 0.9087874718074788,
+              "n": 500,
+              "nll": 0.8729388633895862
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.936,
+              "coverage_shifted": 0.668,
+              "coverage_shifted_weighted": 0.668,
+              "q_hat": 0.008810572687224627,
+              "q_hat_weighted": 0.008810572687224627,
+              "set_size_iid": 0.956,
+              "set_size_shifted": 0.864,
+              "set_size_shifted_weighted": 0.864
+            },
+            "delta_brier": 0.40876353708008206,
+            "delta_ece": 0.2276070484583316,
+            "iid": {
+              "accuracy": 0.962,
+              "brier": 0.058386361681923064,
+              "ece": 0.02265286343561559,
+              "ece_quantile": 0.018652863435615587,
+              "mce": 0.5666666666666667,
+              "n": 500,
+              "nll": 0.4917285887105311
+            },
+            "shifted": {
+              "accuracy": 0.708,
+              "brier": 0.46714989876200513,
+              "ece": 0.2502599118939472,
+              "ece_quantile": 0.2502599118939472,
+              "mce": 0.602150537634409,
+              "n": 500,
+              "nll": 3.9197709054836447
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.11815214157104492,
+        "seed": 3,
+        "shift": {
+          "cols": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      },
+      {
+        "dataset": "synthetic_shift",
+        "model": "hgb",
+        "n_cal": 500,
+        "n_classes": 2,
+        "n_shifted": 500,
+        "n_test": 500,
+        "n_train": 1000,
+        "rows": [
+          {
+            "calibrator": "none",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.914,
+              "coverage_shifted": 0.776,
+              "coverage_shifted_weighted": 0.794,
+              "q_hat": 0.06757298420615099,
+              "q_hat_weighted": 0.07778443293990778,
+              "set_size_iid": 0.916,
+              "set_size_shifted": 0.8,
+              "set_size_shifted_weighted": 0.82
+            },
+            "delta_brier": 0.09032827668188903,
+            "delta_ece": 0.029878818242956264,
+            "iid": {
+              "accuracy": 0.966,
+              "brier": 0.04061861863693875,
+              "ece": 0.017112247673620264,
+              "ece_quantile": 0.021177879469734245,
+              "mce": 0.3734680829501495,
+              "n": 500,
+              "nll": 0.068180326857694
+            },
+            "shifted": {
+              "accuracy": 0.92,
+              "brier": 0.13094689531882778,
+              "ece": 0.04699106591657653,
+              "ece_quantile": 0.040268199238783935,
+              "mce": 0.506518920455435,
+              "n": 500,
+              "nll": 0.22774259511855943
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "temperature",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.914,
+              "coverage_shifted": 0.776,
+              "coverage_shifted_weighted": 0.794,
+              "q_hat": 0.12557016753572048,
+              "q_hat_weighted": 0.1384168386495005,
+              "set_size_iid": 0.916,
+              "set_size_shifted": 0.8,
+              "set_size_shifted_weighted": 0.82
+            },
+            "delta_brier": 0.08592958041250096,
+            "delta_ece": -0.010513946643982534,
+            "iid": {
+              "accuracy": 0.966,
+              "brier": 0.04083993683599313,
+              "ece": 0.030951927991359512,
+              "ece_quantile": 0.02971323161178063,
+              "mce": 0.6791751360149275,
+              "n": 500,
+              "nll": 0.07786264266887662
+            },
+            "shifted": {
+              "accuracy": 0.92,
+              "brier": 0.12676951724849408,
+              "ece": 0.02043798134737698,
+              "ece_quantile": 0.029478609035851328,
+              "mce": 0.268401553651745,
+              "n": 500,
+              "nll": 0.21312424438419963
+            },
+            "temperature_T": 1.3523845432158421
+          },
+          {
+            "calibrator": "isotonic",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.92,
+              "coverage_shifted": 0.736,
+              "coverage_shifted_weighted": 0.736,
+              "q_hat": 0.15384615384615385,
+              "q_hat_weighted": 0.15384615384615385,
+              "set_size_iid": 0.93,
+              "set_size_shifted": 0.802,
+              "set_size_shifted_weighted": 0.802
+            },
+            "delta_brier": 0.11108554029844933,
+            "delta_ece": 0.05717813864293066,
+            "iid": {
+              "accuracy": 0.972,
+              "brier": 0.04335888785454769,
+              "ece": 0.03369702972383159,
+              "ece_quantile": 0.0145088581086813,
+              "mce": 0.6184158658038307,
+              "n": 500,
+              "nll": 0.12445816625719829
+            },
+            "shifted": {
+              "accuracy": 0.9,
+              "brier": 0.15444442815299703,
+              "ece": 0.09087516836676225,
+              "ece_quantile": 0.08794449052523928,
+              "mce": 0.5254170323878518,
+              "n": 500,
+              "nll": 0.4928276912699128
+            },
+            "temperature_T": null
+          },
+          {
+            "calibrator": "histogram",
+            "conformal": {
+              "alpha": 0.1,
+              "coverage_iid": 0.938,
+              "coverage_shifted": 0.8,
+              "coverage_shifted_weighted": 0.8,
+              "q_hat": 0.02904564315352698,
+              "q_hat_weighted": 0.02904564315352698,
+              "set_size_iid": 0.956,
+              "set_size_shifted": 0.88,
+              "set_size_shifted_weighted": 0.88
+            },
+            "delta_brier": 0.1591763846492901,
+            "delta_ece": 0.0895820061008673,
+            "iid": {
+              "accuracy": 0.974,
+              "brier": 0.04933103150718016,
+              "ece": 0.007975488357071715,
+              "ece_quantile": 0.03167839292138704,
+              "mce": 0.5666666666666667,
+              "n": 500,
+              "nll": 0.4887271880008685
+            },
+            "shifted": {
+              "accuracy": 0.886,
+              "brier": 0.20850741615647025,
+              "ece": 0.09755749445793901,
+              "ece_quantile": 0.0895657932131258,
+              "mce": 0.43333333333333346,
+              "n": 500,
+              "nll": 1.7477050119033088
+            },
+            "temperature_T": null
+          }
+        ],
+        "seconds": 0.11730217933654785,
+        "seed": 4,
+        "shift": {
+          "cols": [
+            8,
+            9,
+            10,
+            11
+          ],
+          "kind": "gaussian_feature_shift",
+          "strength": 1.5
+        },
+        "status": "ok"
+      }
+    ],
+    "config": {
+      "alpha": 0.1,
+      "calibrators": [
+        "none",
+        "temperature",
+        "isotonic",
+        "histogram"
+      ],
+      "dataset_list": [
+        "breast_cancer",
+        "synthetic_shift"
+      ],
+      "ece_bins": 15,
+      "hypothesis": "H1-control",
+      "model_list": [
+        "logreg",
+        "rf",
+        "hgb"
+      ],
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "shift_cols_by_dataset": {
+        "breast_cancer": [
+          26,
+          27,
+          28,
+          29
+        ],
+        "synthetic_shift": [
+          8,
+          9,
+          10,
+          11
+        ]
+      },
+      "shift_strength": 1.5
+    },
+    "experiment": "exp07_noise_feature_control",
+    "failures": [],
+    "hypothesis": "H1-control",
+    "n_failed": 0,
+    "n_ok": 30,
+    "seconds": 2.528256893157959,
+    "status": "ok"
+  },
+  "schema": "calibshift.result.v1",
+  "written_at_utc": "2026-08-26T07:24:38.905857+00:00"
+}

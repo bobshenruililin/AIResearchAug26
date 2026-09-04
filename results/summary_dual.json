@@ -1,0 +1,1557 @@
+{
+  "payload": {
+    "any_kill": false,
+    "cells": {
+      "iid|always_abort": {
+        "abort_rate": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "act_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "defer_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "false_confident_act_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "false_confident_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "frac_path_project": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "frac_pred_perturb": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "mean_utility": {
+          "mean": -0.5,
+          "n": 5,
+          "std": 0.0
+        },
+        "precision_among_acts": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "recall_success": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "safety_coverage": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "unsafe_act_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "utility": {
+          "mean": -250.0,
+          "n": 5,
+          "std": 0.0
+        }
+      },
+      "iid|always_project": {
+        "abort_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "act_rate": {
+          "mean": 0.41240000000000004,
+          "n": 5,
+          "std": 0.013520355024924439
+        },
+        "defer_rate": {
+          "mean": 0.5875999999999999,
+          "n": 5,
+          "std": 0.01352035502492447
+        },
+        "false_confident_act_rate": {
+          "mean": 0.0112,
+          "n": 5,
+          "std": 0.004147288270665544
+        },
+        "false_confident_rate": {
+          "mean": 0.0112,
+          "n": 5,
+          "std": 0.004147288270665544
+        },
+        "frac_path_project": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "frac_pred_perturb": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "mean_utility": {
+          "mean": 0.17168,
+          "n": 5,
+          "std": 0.03537615015798073
+        },
+        "precision_among_acts": {
+          "mean": 0.9730101327802876,
+          "n": 5,
+          "std": 0.009227780055665
+        },
+        "recall_success": {
+          "mean": 0.8767683552771597,
+          "n": 5,
+          "std": 0.016330511180511258
+        },
+        "safety_coverage": {
+          "mean": 0.9888,
+          "n": 5,
+          "std": 0.004147288270665548
+        },
+        "unsafe_act_rate": {
+          "mean": 0.0112,
+          "n": 5,
+          "std": 0.004147288270665544
+        },
+        "utility": {
+          "mean": 85.83999999999999,
+          "n": 5,
+          "std": 17.688075078990362
+        }
+      },
+      "iid|denoise_off": {
+        "abort_rate": {
+          "mean": 0.0116,
+          "n": 5,
+          "std": 0.00909945053286186
+        },
+        "act_rate": {
+          "mean": 0.402,
+          "n": 5,
+          "std": 0.02044504830026087
+        },
+        "defer_rate": {
+          "mean": 0.5863999999999999,
+          "n": 5,
+          "std": 0.020659138413786787
+        },
+        "false_confident_act_rate": {
+          "mean": 0.008799999999999999,
+          "n": 5,
+          "std": 0.0057619441163551735
+        },
+        "false_confident_rate": {
+          "mean": 0.008799999999999999,
+          "n": 5,
+          "std": 0.0057619441163551735
+        },
+        "frac_path_project": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "frac_pred_perturb": {
+          "mean": 0.0116,
+          "n": 5,
+          "std": 0.00909945053286186
+        },
+        "mean_utility": {
+          "mean": 0.18211999999999998,
+          "n": 5,
+          "std": 0.045699584243185404
+        },
+        "precision_among_acts": {
+          "mean": 0.97856932401038,
+          "n": 5,
+          "std": 0.013475252961397313
+        },
+        "recall_success": {
+          "mean": 0.8594213354547845,
+          "n": 5,
+          "std": 0.03511718246742343
+        },
+        "safety_coverage": {
+          "mean": 0.9911999999999999,
+          "n": 5,
+          "std": 0.005761944116355179
+        },
+        "unsafe_act_rate": {
+          "mean": 0.008799999999999999,
+          "n": 5,
+          "std": 0.0057619441163551735
+        },
+        "utility": {
+          "mean": 91.05999999999999,
+          "n": 5,
+          "std": 22.849792121592696
+        }
+      },
+      "iid|detector_off": {
+        "abort_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "act_rate": {
+          "mean": 0.40519999999999995,
+          "n": 5,
+          "std": 0.021194338866782323
+        },
+        "defer_rate": {
+          "mean": 0.5948,
+          "n": 5,
+          "std": 0.021194338866782347
+        },
+        "false_confident_act_rate": {
+          "mean": 0.009999999999999998,
+          "n": 5,
+          "std": 0.006164414002968976
+        },
+        "false_confident_rate": {
+          "mean": 0.009999999999999998,
+          "n": 5,
+          "std": 0.006164414002968976
+        },
+        "frac_path_project": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "frac_pred_perturb": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "mean_utility": {
+          "mean": 0.17624,
+          "n": 5,
+          "std": 0.04586118184259972
+        },
+        "precision_among_acts": {
+          "mean": 0.9758592776262279,
+          "n": 5,
+          "std": 0.014214044112131171
+        },
+        "recall_success": {
+          "mean": 0.8637436508178642,
+          "n": 5,
+          "std": 0.033341861297485356
+        },
+        "safety_coverage": {
+          "mean": 0.99,
+          "n": 5,
+          "std": 0.006164414002968982
+        },
+        "unsafe_act_rate": {
+          "mean": 0.009999999999999998,
+          "n": 5,
+          "std": 0.006164414002968976
+        },
+        "utility": {
+          "mean": 88.11999999999999,
+          "n": 5,
+          "std": 22.930590921299864
+        }
+      },
+      "iid|illegal_T": {
+        "abort_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "act_rate": {
+          "mean": 0.40519999999999995,
+          "n": 5,
+          "std": 0.021194338866782323
+        },
+        "defer_rate": {
+          "mean": 0.5948,
+          "n": 5,
+          "std": 0.021194338866782347
+        },
+        "false_confident_act_rate": {
+          "mean": 0.009999999999999998,
+          "n": 5,
+          "std": 0.006164414002968976
+        },
+        "false_confident_rate": {
+          "mean": 0.009999999999999998,
+          "n": 5,
+          "std": 0.006164414002968976
+        },
+        "frac_path_project": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "frac_pred_perturb": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "mean_utility": {
+          "mean": 0.17624,
+          "n": 5,
+          "std": 0.04586118184259972
+        },
+        "precision_among_acts": {
+          "mean": 0.9758592776262279,
+          "n": 5,
+          "std": 0.014214044112131171
+        },
+        "recall_success": {
+          "mean": 0.8637436508178642,
+          "n": 5,
+          "std": 0.033341861297485356
+        },
+        "safety_coverage": {
+          "mean": 0.99,
+          "n": 5,
+          "std": 0.006164414002968982
+        },
+        "unsafe_act_rate": {
+          "mean": 0.009999999999999998,
+          "n": 5,
+          "std": 0.006164414002968976
+        },
+        "utility": {
+          "mean": 88.11999999999999,
+          "n": 5,
+          "std": 22.930590921299864
+        }
+      },
+      "iid|oracle": {
+        "abort_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "act_rate": {
+          "mean": 0.40519999999999995,
+          "n": 5,
+          "std": 0.021194338866782323
+        },
+        "defer_rate": {
+          "mean": 0.5948,
+          "n": 5,
+          "std": 0.021194338866782347
+        },
+        "false_confident_act_rate": {
+          "mean": 0.009999999999999998,
+          "n": 5,
+          "std": 0.006164414002968976
+        },
+        "false_confident_rate": {
+          "mean": 0.009999999999999998,
+          "n": 5,
+          "std": 0.006164414002968976
+        },
+        "frac_path_project": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "frac_pred_perturb": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "mean_utility": {
+          "mean": 0.17624,
+          "n": 5,
+          "std": 0.04586118184259972
+        },
+        "precision_among_acts": {
+          "mean": 0.9758592776262279,
+          "n": 5,
+          "std": 0.014214044112131171
+        },
+        "recall_success": {
+          "mean": 0.8637436508178642,
+          "n": 5,
+          "std": 0.033341861297485356
+        },
+        "safety_coverage": {
+          "mean": 0.99,
+          "n": 5,
+          "std": 0.006164414002968982
+        },
+        "unsafe_act_rate": {
+          "mean": 0.009999999999999998,
+          "n": 5,
+          "std": 0.006164414002968976
+        },
+        "utility": {
+          "mean": 88.11999999999999,
+          "n": 5,
+          "std": 22.930590921299864
+        }
+      },
+      "iid|router": {
+        "abort_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "act_rate": {
+          "mean": 0.4056,
+          "n": 5,
+          "std": 0.018729655629509043
+        },
+        "defer_rate": {
+          "mean": 0.5944,
+          "n": 5,
+          "std": 0.018729655629509064
+        },
+        "false_confident_act_rate": {
+          "mean": 0.01,
+          "n": 5,
+          "std": 0.006164414002968976
+        },
+        "false_confident_rate": {
+          "mean": 0.01,
+          "n": 5,
+          "std": 0.006164414002968976
+        },
+        "frac_path_project": {
+          "mean": 0.0116,
+          "n": 5,
+          "std": 0.00909945053286186
+        },
+        "frac_pred_perturb": {
+          "mean": 0.0116,
+          "n": 5,
+          "std": 0.00909945053286186
+        },
+        "mean_utility": {
+          "mean": 0.17671999999999996,
+          "n": 5,
+          "std": 0.05015926634232202
+        },
+        "precision_among_acts": {
+          "mean": 0.9757845605752242,
+          "n": 5,
+          "std": 0.014176304660835047
+        },
+        "recall_success": {
+          "mean": 0.8646617108617948,
+          "n": 5,
+          "std": 0.030660769507847317
+        },
+        "safety_coverage": {
+          "mean": 0.99,
+          "n": 5,
+          "std": 0.006164414002968982
+        },
+        "unsafe_act_rate": {
+          "mean": 0.01,
+          "n": 5,
+          "std": 0.006164414002968976
+        },
+        "utility": {
+          "mean": 88.35999999999999,
+          "n": 5,
+          "std": 25.07963317116101
+        }
+      },
+      "perturb|always_abort": {
+        "abort_rate": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "act_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "defer_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "false_confident_act_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "false_confident_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "frac_path_project": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "frac_pred_perturb": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "mean_utility": {
+          "mean": -0.5,
+          "n": 5,
+          "std": 0.0
+        },
+        "precision_among_acts": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "recall_success": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "safety_coverage": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "unsafe_act_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "utility": {
+          "mean": -250.0,
+          "n": 5,
+          "std": 0.0
+        }
+      },
+      "perturb|always_project": {
+        "abort_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "act_rate": {
+          "mean": 0.39640000000000003,
+          "n": 5,
+          "std": 0.022864820139244478
+        },
+        "defer_rate": {
+          "mean": 0.6035999999999999,
+          "n": 5,
+          "std": 0.022864820139244502
+        },
+        "false_confident_act_rate": {
+          "mean": 0.013599999999999998,
+          "n": 5,
+          "std": 0.0032863353450309964
+        },
+        "false_confident_rate": {
+          "mean": 0.013599999999999998,
+          "n": 5,
+          "std": 0.0032863353450309964
+        },
+        "frac_path_project": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "frac_pred_perturb": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "mean_utility": {
+          "mean": 0.12608,
+          "n": 5,
+          "std": 0.02454286046898365
+        },
+        "precision_among_acts": {
+          "mean": 0.9658785491319486,
+          "n": 5,
+          "std": 0.006937210409707415
+        },
+        "recall_success": {
+          "mean": 0.826278596583642,
+          "n": 5,
+          "std": 0.04210677086904802
+        },
+        "safety_coverage": {
+          "mean": 0.9863999999999999,
+          "n": 5,
+          "std": 0.0032863353450309995
+        },
+        "unsafe_act_rate": {
+          "mean": 0.013599999999999998,
+          "n": 5,
+          "std": 0.0032863353450309964
+        },
+        "utility": {
+          "mean": 63.04,
+          "n": 5,
+          "std": 12.271430234491824
+        }
+      },
+      "perturb|denoise_off": {
+        "abort_rate": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "act_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "defer_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "false_confident_act_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "false_confident_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "frac_path_project": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "frac_pred_perturb": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "mean_utility": {
+          "mean": -0.5,
+          "n": 5,
+          "std": 0.0
+        },
+        "precision_among_acts": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "recall_success": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "safety_coverage": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "unsafe_act_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "utility": {
+          "mean": -250.0,
+          "n": 5,
+          "std": 0.0
+        }
+      },
+      "perturb|detector_off": {
+        "abort_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "act_rate": {
+          "mean": 0.8019999999999999,
+          "n": 5,
+          "std": 0.037336309405188915
+        },
+        "defer_rate": {
+          "mean": 0.198,
+          "n": 5,
+          "std": 0.03733630940518894
+        },
+        "false_confident_act_rate": {
+          "mean": 0.34199999999999997,
+          "n": 5,
+          "std": 0.0370135110466435
+        },
+        "false_confident_rate": {
+          "mean": 0.34199999999999997,
+          "n": 5,
+          "std": 0.0370135110466435
+        },
+        "frac_path_project": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "frac_pred_perturb": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "mean_utility": {
+          "mean": -2.9996,
+          "n": 5,
+          "std": 0.37044913281043057
+        },
+        "precision_among_acts": {
+          "mean": 0.5743037916361654,
+          "n": 5,
+          "std": 0.03174998938961875
+        },
+        "recall_success": {
+          "mean": 0.9921842838355326,
+          "n": 5,
+          "std": 0.006402073120258174
+        },
+        "safety_coverage": {
+          "mean": 0.658,
+          "n": 5,
+          "std": 0.03701351104664349
+        },
+        "unsafe_act_rate": {
+          "mean": 0.34199999999999997,
+          "n": 5,
+          "std": 0.0370135110466435
+        },
+        "utility": {
+          "mean": -1499.8,
+          "n": 5,
+          "std": 185.2245664052153
+        }
+      },
+      "perturb|illegal_T": {
+        "abort_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "act_rate": {
+          "mean": 0.8019999999999999,
+          "n": 5,
+          "std": 0.037336309405188915
+        },
+        "defer_rate": {
+          "mean": 0.198,
+          "n": 5,
+          "std": 0.03733630940518894
+        },
+        "false_confident_act_rate": {
+          "mean": 0.34199999999999997,
+          "n": 5,
+          "std": 0.0370135110466435
+        },
+        "false_confident_rate": {
+          "mean": 0.34199999999999997,
+          "n": 5,
+          "std": 0.0370135110466435
+        },
+        "frac_path_project": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "frac_pred_perturb": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "mean_utility": {
+          "mean": -2.9996,
+          "n": 5,
+          "std": 0.37044913281043057
+        },
+        "precision_among_acts": {
+          "mean": 0.5743037916361654,
+          "n": 5,
+          "std": 0.03174998938961875
+        },
+        "recall_success": {
+          "mean": 0.9921842838355326,
+          "n": 5,
+          "std": 0.006402073120258174
+        },
+        "safety_coverage": {
+          "mean": 0.658,
+          "n": 5,
+          "std": 0.03701351104664349
+        },
+        "unsafe_act_rate": {
+          "mean": 0.34199999999999997,
+          "n": 5,
+          "std": 0.0370135110466435
+        },
+        "utility": {
+          "mean": -1499.8,
+          "n": 5,
+          "std": 185.2245664052153
+        }
+      },
+      "perturb|oracle": {
+        "abort_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "act_rate": {
+          "mean": 0.39640000000000003,
+          "n": 5,
+          "std": 0.022864820139244478
+        },
+        "defer_rate": {
+          "mean": 0.6035999999999999,
+          "n": 5,
+          "std": 0.022864820139244502
+        },
+        "false_confident_act_rate": {
+          "mean": 0.013599999999999998,
+          "n": 5,
+          "std": 0.0032863353450309964
+        },
+        "false_confident_rate": {
+          "mean": 0.013599999999999998,
+          "n": 5,
+          "std": 0.0032863353450309964
+        },
+        "frac_path_project": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "frac_pred_perturb": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "mean_utility": {
+          "mean": 0.12608,
+          "n": 5,
+          "std": 0.02454286046898365
+        },
+        "precision_among_acts": {
+          "mean": 0.9658785491319486,
+          "n": 5,
+          "std": 0.006937210409707415
+        },
+        "recall_success": {
+          "mean": 0.826278596583642,
+          "n": 5,
+          "std": 0.04210677086904802
+        },
+        "safety_coverage": {
+          "mean": 0.9863999999999999,
+          "n": 5,
+          "std": 0.0032863353450309995
+        },
+        "unsafe_act_rate": {
+          "mean": 0.013599999999999998,
+          "n": 5,
+          "std": 0.0032863353450309964
+        },
+        "utility": {
+          "mean": 63.04,
+          "n": 5,
+          "std": 12.271430234491824
+        }
+      },
+      "perturb|router": {
+        "abort_rate": {
+          "mean": 0.11039999999999998,
+          "n": 5,
+          "std": 0.02479516081819192
+        },
+        "act_rate": {
+          "mean": 0.39640000000000003,
+          "n": 5,
+          "std": 0.022864820139244478
+        },
+        "defer_rate": {
+          "mean": 0.4932,
+          "n": 5,
+          "std": 0.02460081299469593
+        },
+        "false_confident_act_rate": {
+          "mean": 0.013599999999999998,
+          "n": 5,
+          "std": 0.0032863353450309964
+        },
+        "false_confident_rate": {
+          "mean": 0.013599999999999998,
+          "n": 5,
+          "std": 0.0032863353450309964
+        },
+        "frac_path_project": {
+          "mean": 0.8896000000000001,
+          "n": 5,
+          "std": 0.024795160818191945
+        },
+        "frac_pred_perturb": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "mean_utility": {
+          "mean": 0.09296,
+          "n": 5,
+          "std": 0.02541786773118469
+        },
+        "precision_among_acts": {
+          "mean": 0.9658785491319486,
+          "n": 5,
+          "std": 0.006937210409707415
+        },
+        "recall_success": {
+          "mean": 0.826278596583642,
+          "n": 5,
+          "std": 0.04210677086904802
+        },
+        "safety_coverage": {
+          "mean": 0.9863999999999999,
+          "n": 5,
+          "std": 0.0032863353450309995
+        },
+        "unsafe_act_rate": {
+          "mean": 0.013599999999999998,
+          "n": 5,
+          "std": 0.0032863353450309964
+        },
+        "utility": {
+          "mean": 46.48,
+          "n": 5,
+          "std": 12.708933865592345
+        }
+      },
+      "select|always_abort": {
+        "abort_rate": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "act_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "defer_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "false_confident_act_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "false_confident_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "frac_path_project": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "frac_pred_perturb": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "mean_utility": {
+          "mean": -0.5,
+          "n": 5,
+          "std": 0.0
+        },
+        "precision_among_acts": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "recall_success": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "safety_coverage": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "unsafe_act_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "utility": {
+          "mean": -250.0,
+          "n": 5,
+          "std": 0.0
+        }
+      },
+      "select|always_project": {
+        "abort_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "act_rate": {
+          "mean": 0.38280000000000003,
+          "n": 5,
+          "std": 0.025791471458604297
+        },
+        "defer_rate": {
+          "mean": 0.6172,
+          "n": 5,
+          "std": 0.02579147145860432
+        },
+        "false_confident_act_rate": {
+          "mean": 0.014000000000000002,
+          "n": 5,
+          "std": 0.00447213595499958
+        },
+        "false_confident_rate": {
+          "mean": 0.014000000000000002,
+          "n": 5,
+          "std": 0.00447213595499958
+        },
+        "frac_path_project": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "frac_pred_perturb": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "mean_utility": {
+          "mean": 0.10536000000000001,
+          "n": 5,
+          "std": 0.05789203744903092
+        },
+        "precision_among_acts": {
+          "mean": 0.9633111102926364,
+          "n": 5,
+          "std": 0.012312665072213813
+        },
+        "recall_success": {
+          "mean": 0.8642719444458795,
+          "n": 5,
+          "std": 0.019219568133638242
+        },
+        "safety_coverage": {
+          "mean": 0.986,
+          "n": 5,
+          "std": 0.004472135954999583
+        },
+        "unsafe_act_rate": {
+          "mean": 0.014000000000000002,
+          "n": 5,
+          "std": 0.00447213595499958
+        },
+        "utility": {
+          "mean": 52.67999999999999,
+          "n": 5,
+          "std": 28.946018724515458
+        }
+      },
+      "select|denoise_off": {
+        "abort_rate": {
+          "mean": 0.012,
+          "n": 5,
+          "std": 0.0024494897427831783
+        },
+        "act_rate": {
+          "mean": 0.3548,
+          "n": 5,
+          "std": 0.03401764248151243
+        },
+        "defer_rate": {
+          "mean": 0.6332,
+          "n": 5,
+          "std": 0.03413502599969717
+        },
+        "false_confident_act_rate": {
+          "mean": 0.0048000000000000004,
+          "n": 5,
+          "std": 0.006723094525588644
+        },
+        "false_confident_rate": {
+          "mean": 0.0048000000000000004,
+          "n": 5,
+          "std": 0.006723094525588644
+        },
+        "frac_path_project": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "frac_pred_perturb": {
+          "mean": 0.012,
+          "n": 5,
+          "std": 0.0024494897427831783
+        },
+        "mean_utility": {
+          "mean": 0.16936,
+          "n": 5,
+          "std": 0.045328887036855434
+        },
+        "precision_among_acts": {
+          "mean": 0.9875012094518134,
+          "n": 5,
+          "std": 0.016462857278672874
+        },
+        "recall_success": {
+          "mean": 0.8202657599947983,
+          "n": 5,
+          "std": 0.040444206558215706
+        },
+        "safety_coverage": {
+          "mean": 0.9952,
+          "n": 5,
+          "std": 0.0067230945255886505
+        },
+        "unsafe_act_rate": {
+          "mean": 0.0048000000000000004,
+          "n": 5,
+          "std": 0.006723094525588644
+        },
+        "utility": {
+          "mean": 84.67999999999999,
+          "n": 5,
+          "std": 22.664443518427717
+        }
+      },
+      "select|detector_off": {
+        "abort_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "act_rate": {
+          "mean": 0.3736,
+          "n": 5,
+          "std": 0.025667099563448925
+        },
+        "defer_rate": {
+          "mean": 0.6264000000000001,
+          "n": 5,
+          "std": 0.02566709956344895
+        },
+        "false_confident_act_rate": {
+          "mean": 0.008,
+          "n": 5,
+          "std": 0.007348469228349534
+        },
+        "false_confident_rate": {
+          "mean": 0.008,
+          "n": 5,
+          "std": 0.007348469228349534
+        },
+        "frac_path_project": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "frac_pred_perturb": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "mean_utility": {
+          "mean": 0.16031999999999996,
+          "n": 5,
+          "std": 0.056152221683562965
+        },
+        "precision_among_acts": {
+          "mean": 0.9793866603879027,
+          "n": 5,
+          "std": 0.017461131122123923
+        },
+        "recall_success": {
+          "mean": 0.8573548904893069,
+          "n": 5,
+          "std": 0.01279318401912314
+        },
+        "safety_coverage": {
+          "mean": 0.992,
+          "n": 5,
+          "std": 0.007348469228349541
+        },
+        "unsafe_act_rate": {
+          "mean": 0.008,
+          "n": 5,
+          "std": 0.007348469228349534
+        },
+        "utility": {
+          "mean": 80.16,
+          "n": 5,
+          "std": 28.07611084178148
+        }
+      },
+      "select|illegal_T": {
+        "abort_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "act_rate": {
+          "mean": 0.3736,
+          "n": 5,
+          "std": 0.025667099563448925
+        },
+        "defer_rate": {
+          "mean": 0.6264000000000001,
+          "n": 5,
+          "std": 0.02566709956344895
+        },
+        "false_confident_act_rate": {
+          "mean": 0.008,
+          "n": 5,
+          "std": 0.007348469228349534
+        },
+        "false_confident_rate": {
+          "mean": 0.008,
+          "n": 5,
+          "std": 0.007348469228349534
+        },
+        "frac_path_project": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "frac_pred_perturb": {
+          "mean": 1.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "mean_utility": {
+          "mean": 0.16031999999999996,
+          "n": 5,
+          "std": 0.056152221683562965
+        },
+        "precision_among_acts": {
+          "mean": 0.9793866603879027,
+          "n": 5,
+          "std": 0.017461131122123923
+        },
+        "recall_success": {
+          "mean": 0.8573548904893069,
+          "n": 5,
+          "std": 0.01279318401912314
+        },
+        "safety_coverage": {
+          "mean": 0.992,
+          "n": 5,
+          "std": 0.007348469228349541
+        },
+        "unsafe_act_rate": {
+          "mean": 0.008,
+          "n": 5,
+          "std": 0.007348469228349534
+        },
+        "utility": {
+          "mean": 80.16,
+          "n": 5,
+          "std": 28.07611084178148
+        }
+      },
+      "select|oracle": {
+        "abort_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "act_rate": {
+          "mean": 0.3572000000000001,
+          "n": 5,
+          "std": 0.03692153842948583
+        },
+        "defer_rate": {
+          "mean": 0.6428,
+          "n": 5,
+          "std": 0.036921538429485874
+        },
+        "false_confident_act_rate": {
+          "mean": 0.005599999999999999,
+          "n": 5,
+          "std": 0.008414273587185052
+        },
+        "false_confident_rate": {
+          "mean": 0.005599999999999999,
+          "n": 5,
+          "std": 0.008414273587185052
+        },
+        "frac_path_project": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "frac_pred_perturb": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "mean_utility": {
+          "mean": 0.16704,
+          "n": 5,
+          "std": 0.05796178051095392
+        },
+        "precision_among_acts": {
+          "mean": 0.9857480060829513,
+          "n": 5,
+          "std": 0.020124031691643812
+        },
+        "recall_success": {
+          "mean": 0.8239167210194129,
+          "n": 5,
+          "std": 0.04229155967581242
+        },
+        "safety_coverage": {
+          "mean": 0.9944,
+          "n": 5,
+          "std": 0.00841427358718506
+        },
+        "unsafe_act_rate": {
+          "mean": 0.005599999999999999,
+          "n": 5,
+          "std": 0.008414273587185052
+        },
+        "utility": {
+          "mean": 83.52000000000001,
+          "n": 5,
+          "std": 28.98089025547696
+        }
+      },
+      "select|router": {
+        "abort_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "act_rate": {
+          "mean": 0.3604,
+          "n": 5,
+          "std": 0.03491131621695176
+        },
+        "defer_rate": {
+          "mean": 0.6396,
+          "n": 5,
+          "std": 0.03491131621695181
+        },
+        "false_confident_act_rate": {
+          "mean": 0.0068000000000000005,
+          "n": 5,
+          "std": 0.007293833011524187
+        },
+        "false_confident_rate": {
+          "mean": 0.0068000000000000005,
+          "n": 5,
+          "std": 0.007293833011524187
+        },
+        "frac_path_project": {
+          "mean": 0.012,
+          "n": 5,
+          "std": 0.0024494897427831783
+        },
+        "frac_pred_perturb": {
+          "mean": 0.012,
+          "n": 5,
+          "std": 0.0024494897427831783
+        },
+        "mean_utility": {
+          "mean": 0.15768,
+          "n": 5,
+          "std": 0.05332571612271136
+        },
+        "precision_among_acts": {
+          "mean": 0.9821558960956681,
+          "n": 5,
+          "std": 0.01772014698723155
+        },
+        "recall_success": {
+          "mean": 0.8286567506212164,
+          "n": 5,
+          "std": 0.04190408688011166
+        },
+        "safety_coverage": {
+          "mean": 0.9932000000000001,
+          "n": 5,
+          "std": 0.007293833011524194
+        },
+        "unsafe_act_rate": {
+          "mean": 0.0068000000000000005,
+          "n": 5,
+          "std": 0.007293833011524187
+        },
+        "utility": {
+          "mean": 78.84,
+          "n": 5,
+          "std": 26.66285806135568
+        }
+      }
+    },
+    "kill_criteria_fired": {
+      "K12_tibshirani_on_perturbation": false,
+      "K1_policy_collapse": false,
+      "K3_always_conservative_wins": false,
+      "K4_selection_needs_abort": false,
+      "K8_no_action_difference": false
+    },
+    "kills_fired": "none",
+    "n_seeds": 5,
+    "pos_rate": {
+      "iid": {
+        "mean": 0.45759999999999995,
+        "n": 5,
+        "std": 0.009528903399657266
+      },
+      "pert": {
+        "mean": 0.4636,
+        "n": 5,
+        "std": 0.02041568024827975
+      },
+      "sel": {
+        "mean": 0.4264,
+        "n": 5,
+        "std": 0.02132604042010614
+      }
+    },
+    "seconds": 6.313013315200806,
+    "source": "exp09_peg_insert.json",
+    "stream_blocks": {
+      "iid": {
+        "abort_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "act_rate": {
+          "mean": 0.38625000000000004,
+          "n": 5,
+          "std": 0.03987284476934145
+        },
+        "false_confident_act_rate": {
+          "mean": 0.0125,
+          "n": 5,
+          "std": 0.004419417382415922
+        },
+        "frac_path_project": {
+          "mean": 0.013750000000000002,
+          "n": 5,
+          "std": 0.010269797953221865
+        },
+        "frac_pred_perturb": {
+          "mean": 0.013750000000000002,
+          "n": 5,
+          "std": 0.010269797953221865
+        },
+        "frac_pred_select": {
+          "mean": 0.24125000000000002,
+          "n": 5,
+          "std": 0.19875589613895736
+        },
+        "mean_utility": {
+          "mean": 0.12600000000000003,
+          "n": 5,
+          "std": 0.06629361771694163
+        }
+      },
+      "perturb": {
+        "abort_rate": {
+          "mean": 0.125,
+          "n": 5,
+          "std": 0.015934435979977454
+        },
+        "act_rate": {
+          "mean": 0.3875,
+          "n": 5,
+          "std": 0.0268822664595082
+        },
+        "false_confident_act_rate": {
+          "mean": 0.021249999999999998,
+          "n": 5,
+          "std": 0.007126096406869612
+        },
+        "frac_path_project": {
+          "mean": 0.80375,
+          "n": 5,
+          "std": 0.03918107004664368
+        },
+        "frac_pred_perturb": {
+          "mean": 0.92875,
+          "n": 5,
+          "std": 0.0349665018267484
+        },
+        "frac_pred_select": {
+          "mean": 0.06124999999999999,
+          "n": 5,
+          "std": 0.02044428404224516
+        },
+        "mean_utility": {
+          "mean": -0.006249999999999987,
+          "n": 5,
+          "std": 0.1099440553759047
+        }
+      },
+      "select": {
+        "abort_rate": {
+          "mean": 0.0,
+          "n": 5,
+          "std": 0.0
+        },
+        "act_rate": {
+          "mean": 0.39,
+          "n": 5,
+          "std": 0.012960275845829823
+        },
+        "false_confident_act_rate": {
+          "mean": 0.0125,
+          "n": 5,
+          "std": 0.007654655446197431
+        },
+        "frac_path_project": {
+          "mean": 0.0125,
+          "n": 5,
+          "std": 0.007654655446197432
+        },
+        "frac_pred_perturb": {
+          "mean": 0.0125,
+          "n": 5,
+          "std": 0.007654655446197432
+        },
+        "frac_pred_select": {
+          "mean": 0.9487500000000001,
+          "n": 5,
+          "std": 0.043615865805919786
+        },
+        "mean_utility": {
+          "mean": 0.1305,
+          "n": 5,
+          "std": 0.08255963753554152
+        }
+      }
+    }
+  },
+  "schema": "calibshift.result.v1",
+  "written_at_utc": "2026-08-31T11:12:00.233676+00:00"
+}

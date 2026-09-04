@@ -1,0 +1,13 @@
+[
+  {"key": "feld1991friends", "title": "Why Your Friends Have More Friends Than You Do", "year": 1991, "authors": ["Scott L. Feld"], "doi": "10.1086/229693"},
+  {"key": "jackson2019friendship", "title": "The Friendship Paradox and Systematic Biases in Perceptions and Social Norms", "year": 2019, "authors": ["Matthew O. Jackson"], "doi": "10.1086/701031", "arxiv_id": "1605.04470"},
+  {"key": "hughes2004short", "title": "A Short Scale for Measuring Loneliness in Large Surveys: Results from Two Population-Based Studies", "year": 2004, "authors": ["Mary Elizabeth Hughes", "Linda J. Waite", "Louise C. Hawkley", "John T. Cacioppo"], "doi": "10.1177/0164027504268574"},
+  {"key": "russell1980ucla", "title": "The revised UCLA Loneliness Scale: Concurrent and discriminant validity evidence", "year": 1980, "authors": ["Dan Russell", "Letitia A. Peplau", "Carolyn E. Cutrona"], "doi": "10.1037/0022-3514.39.3.472"},
+  {"key": "granovetter1978threshold", "title": "Threshold Models of Collective Behavior", "year": 1978, "authors": ["Mark Granovetter"], "doi": "10.1086/226707"},
+  {"key": "holtlunstad2015mortality", "title": "Loneliness and Social Isolation as Risk Factors for Mortality: A Meta-Analytic Review", "year": 2015, "authors": ["Julianne Holt-Lunstad", "Timothy B. Smith", "Mark Baker", "Tyler Harris", "David Stephenson"], "doi": "10.1177/1745691614568352"},
+  {"key": "lerman2016majority", "title": "The Majority Illusion in Social Networks", "year": 2016, "authors": ["Kristina Lerman", "Xiaoran Yan", "Xin-Zeng Wu"], "arxiv_id": "1506.03022"},
+  {"key": "bollen2017happiness", "title": "The happiness paradox: your friends are happier than you", "year": 2017, "authors": ["Johan Bollen", "Bruno Goncalves", "Ingrid van de Leemput", "Guangqing Ruan"], "arxiv_id": "1602.02665"},
+  {"key": "cacioppo2010loneliness", "title": "Loneliness Matters: A Theoretical and Empirical Review of Consequences and Mechanisms", "year": 2010, "authors": ["Louise C. Hawkley", "John T. Cacioppo"], "doi": "10.1007/s12160-010-9210-8"},
+  {"key": "hunt2018fomo", "title": "No More FOMO: Limiting Social Media Decreases Loneliness and Depression", "year": 2018, "authors": ["Melissa G. Hunt", "Rachel Marx", "Courtney Lipson", "Jordyn Young"], "doi": "10.1521/jscp.2018.37.10.751"},
+  {"key": "perlman1981loneliness", "title": "Toward a Social Psychology of Loneliness", "year": 1981, "authors": ["Daniel Perlman", "Letitia Anne Peplau"]}
+]

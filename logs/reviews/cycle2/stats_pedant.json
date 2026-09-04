@@ -1,0 +1,35 @@
+{
+  "persona": "stats-pedant",
+  "scores": {
+    "statistical_rigor": 6,
+    "multiple_testing": 7,
+    "uncertainty_reporting": 8,
+    "overall": 6
+  },
+  "fabrication_flag": false,
+  "fabrication_evidence": [],
+  "must_fix": [
+    "Table 1 and the abstract quote Wilcoxon p-values from one-sided tests (scipy.stats.wilcoxon(..., alternative='greater') in scripts/stats_and_summary.py; JSON field p_greater) without saying so. paper/main.tex never uses 'one-sided' or 'greater'. For the pooled none test this is p_greater=2.151e-10 (macro 2.2e-10) vs two-sided 4.30e-10; for the seed-averaged n=12 test p_greater=0.000244140625 (macro 2.4e-04) vs two-sided 4.88e-04. Label the alternative and justify it from H1, or report two-sided p.",
+    "The inferential unit is still wrong even after seed-averaging. The n=12 Wilcoxon (wilcoxon_delta_ece_gt0_s1.5_none_dataset_model_means) treats 3 models that share a dataset split as independent. The paper notes this in Results ('still not independent across models that share a dataset') but the abstract still leads with exploratory Wilcoxon p=2.4e-04. A dataset-level signed-rank/sign test on the four dataset means (all positive) is n=4, one-sided p=1/16=0.0625. Keep 12/12 as a sign count; do not present p=2.4e-04 as if n=12 were exchangeable.",
+    "Table 1 (tab:pooled) still reports the seed-level n=60 Wilcoxon p-values (none 2.2e-10, temperature 3.1e-11, isotonic 4.6e-11, histogram 3.3e-11) as the primary numeric inferential column. Those 60 rows are 4 datasets x 3 models x 5 seeds: seeds are nested, models share splits, and heterogeneous datasets are one signed-rank sample (synthetic_shift|logreg mean DeltaECE=0.292 vs breast_cancer|hgb 0.002). Limitations correctly call this pseudo-replicated and exploratory; the table should not still sell those p-values. Report n=60 mean/sd/sign counts only.",
+    "Selection-control sample size is not the same 12-cell grid. results/summary_main.json exp05_none_quantile_slice_cellmean_delta_ece and importance_resample analogues have n=6 (breast_cancer and synthetic_shift x {logreg,rf,hgb} only; wine and synthetic_multiclass are absent from exp05 config). paper/main.tex calls these 'dataset x model cells' and compares them to the 4-dataset pooled perturbation mean 0.113 without stating n=6 or the missing datasets."
+  ],
+  "weaknesses": [
+    "results/stats_tests.json contains 21 tests: 4 pooled n=60 (one per calibrator), 1 seed-averaged n=12, and 16 per-dataset tests with n=15 (3 models x 5 seeds) that mix models and seeds even more aggressively. The paper discloses NumNTests=21 and 'no multiplicity correction' / 'unadjusted' in Results, Table 1 caption, and Limitations \u2014 good \u2014 but the 16 per-dataset p-values are an undisplayed family computed from the same cells as the pooled tests.",
+    "Pooled n=60 signed-rank mixes mechanisms and magnitudes. Seed-level signs for calibrator none at s=1.5 are not uniform: breast_cancer|hgb is 2 pos / 3 neg (mean +0.002); breast_cancer|logreg 3/2; synthetic_shift|rf 3/2. Seed-averaging manufactures a unanimous 12/12 from cells whose seeds disagree. The 51/60 sign count is the more honest unit; the paper reports it but then elevates 12/12.",
+    "Coverage results (breast-cancer 0.913 / 0.778 / 0.608; synthetic 0.634) are seed means with no SD/SE, while results/summary_main.json shows large seed heterogeneity (synthetic logreg coverage at s=1.5: mean 0.634, sd 0.190, n=5). Missing a CI is not fabrication, but these numbers overstate precision.",
+    "Wine test n is exactly 45 in every exp04 wine cell (n_cal=44, n_train=89; 15 ECE bins). Limitations say '~45 points with 15 ECE bins' instead of a JSON-backed macro. 15 bins on n=45 is disclosed, which is the important part; the tilde and lack of a macro are sloppy relative to GOAL.md's every-number-from-results/*.json rule.",
+    "Non-macro numerals in paper/main.tex: '47 papers' (matches paper/verified.bib entry count, not results/*.json), hardcoded n=60 beside \\NumNoneN, and 1-alpha=0.9 beside \\NumAlpha. None contradict JSON. \\NumWineLogregAcc=0.982 is generated and unused.",
+    "No SE or CI for any mean is reported. The paper correctly refuses to treat cell-to-cell SD as a CI, but the reader still has no uncertainty for the pooled mean 0.113 (n=60 sd=0.149 is heterogeneity; n=12 cell-mean sd=0.100)."
+  ],
+  "strengths": [
+    "All 57 macros in paper/numbers.tex match a Python recompute from results/summary_main.json, results/stats_tests.json, and results/exp04_main_h1.json using the same rounding as scripts/make_paper_numbers.py (0 mismatches). Wilcoxon p-values recomputed from raw exp04 cells match stats_tests.json exactly.",
+    "scripts/make_paper_numbers.py does not hard-code paper-facing results; it only uses JSON lookup keys (s1.5, calibrator names) and formatting (3 d.p. / scientific p). NumNTests is len(st['tests']); NumNSeeds is len(config seeds); NumEceBins and NumAlpha come from exp04 config.",
+    "The paper labels the n=60 tests exploratory, states they are pseudo-replicated, reports sign counts (51/60 none, 56/4 temperature, 53/7 isotonic, 57/3 histogram), and includes a seed-averaged n=12 test. analysis.md says pooled n=60 Wilcoxon p-values overstate independence.",
+    "Explicit multiplicity disclosure: 21 tests in stats_tests.json, unadjusted, named in Results, Table 1 caption, and Limitations.",
+    "Mean vs uncertainty language is careful. Results: 'These sd figures describe heterogeneity, not a confidence interval for the mean.' Table 1: std is heterogeneity, not se of the mean. Figure ece_vs_shift: 'mean +/- seed sd'. No mean+/-SD interval is described as if it included 0 or as a CI. figures/make_all.py error bars are np.std(..., ddof=1) over seeds.",
+    "Protocol transparency: 5 seeds {0,1,2,3,4}, 240/240 exp04 cells, n per (dataset, model, strength)=5, split sizes stable (breast_cancer n_test=143; wine 45; synthetic_shift 500; synthetic_multiclass 450). Wine n~45 with 15 ECE bins is at least mentioned.",
+    "Claims are scoped: H2/H3 killed, selection shift not sold as the same mechanism, HGB-on-breast-cancer called out as a small-effect cell."
+  ],
+  "confidence": 0.91
+}

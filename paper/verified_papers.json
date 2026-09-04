@@ -1,0 +1,1363 @@
+{
+  "n_verified": 47,
+  "merge_sources": [
+    "lit_sol (S2 batch)",
+    "orchestrator arXiv API",
+    "arxiv_recovery"
+  ],
+  "verified": [
+    {
+      "key": "brier1950verification",
+      "title": "VERIFICATION OF FORECASTS EXPRESSED IN TERMS OF PROBABILITY",
+      "authors": [
+        "G. Brier"
+      ],
+      "year": 1950,
+      "venue": "Monthly Weather Review",
+      "arxiv_id": null,
+      "doi": "10.1175/1520-0493(1950)078<0001:VOFEIT>2.0.CO;2",
+      "s2_paper_id": "feee6551179612b9691f021b583d8a99b81b9b86",
+      "url": "https://doi.org/10.1175/1520-0493(1950)078<0001:VOFEIT>2.0.CO;2",
+      "verified_via": "semantic_scholar",
+      "verification_evidence": "Semantic Scholar API returned title=\"VERIFICATION OF FORECASTS EXPRESSED IN TERMS OF PROBABILITY\", year=1950, paperId=feee6551179612b9691f021b583d8a99b81b9b86.",
+      "abstract_1sent": "This paper introduces the mean squared probability score now known as the Brier score for verifying probabilistic forecasts.",
+      "relevance_tags": [
+        "calibration",
+        "metrics"
+      ],
+      "gap_note": "Provides a metric or reliability-diagram foundation for evaluating tabular post-hoc calibration before and after shift, but does not itself adapt a calibrator to covariate shift.",
+      "sources": [
+        "lit_sol"
+      ]
+    },
+    {
+      "key": "zadrozny2002multiclass",
+      "title": "Transforming classifier scores into accurate multiclass probability estimates",
+      "authors": [
+        "B. Zadrozny",
+        "C. Elkan"
+      ],
+      "year": 2002,
+      "venue": "Knowledge Discovery and Data Mining",
+      "arxiv_id": null,
+      "doi": "10.1145/775047.775151",
+      "s2_paper_id": "04e10f745a7267453788a22f5150b5a32b2b3951",
+      "url": "https://doi.org/10.1145/775047.775151",
+      "verified_via": "semantic_scholar",
+      "verification_evidence": "Semantic Scholar API returned title=\"Transforming classifier scores into accurate multiclass probability estimates\", year=2002, paperId=04e10f745a7267453788a22f5150b5a32b2b3951.",
+      "abstract_1sent": "This work transforms binary classifier scores into multiclass probability estimates using calibration and pairwise coupling.",
+      "relevance_tags": [
+        "calibration",
+        "tabular"
+      ],
+      "gap_note": "Directly supplies or evaluates post-hoc calibration relevant to logistic regression, random forests, and boosting; robustness when the deployment covariates shift remains an open comparison.",
+      "sources": [
+        "lit_sol"
+      ]
+    },
+    {
+      "key": "niculescumizil2005probabilities",
+      "title": "Predicting good probabilities with supervised learning",
+      "authors": [
+        "Alexandru Niculescu-Mizil",
+        "R. Caruana"
+      ],
+      "year": 2005,
+      "venue": "International Conference on Machine Learning",
+      "arxiv_id": null,
+      "doi": "10.1145/1102351.1102430",
+      "s2_paper_id": "eae3948747c9d051314c1f5851957b833aa83eca",
+      "url": "https://doi.org/10.1145/1102351.1102430",
+      "verified_via": "semantic_scholar",
+      "verification_evidence": "Semantic Scholar API returned title=\"Predicting good probabilities with supervised learning\", year=2005, paperId=eae3948747c9d051314c1f5851957b833aa83eca.",
+      "abstract_1sent": "This empirical study compares Platt scaling and isotonic regression across supervised learners, finding strong calibrated probabilities from boosted trees, random forests, and support vector machines.",
+      "relevance_tags": [
+        "calibration",
+        "tabular",
+        "metrics"
+      ],
+      "gap_note": "Directly supplies or evaluates post-hoc calibration relevant to logistic regression, random forests, and boosting; robustness when the deployment covariates shift remains an open comparison.",
+      "sources": [
+        "lit_sol"
+      ]
+    },
+    {
+      "key": "vovk2005algorithmic",
+      "title": "Algorithmic Learning in a Random World",
+      "authors": [
+        "Vladimir Vovk",
+        "Alex Gammerman",
+        "Glenn Shafer"
+      ],
+      "year": 2005,
+      "venue": "",
+      "arxiv_id": null,
+      "doi": "10.1007/b106715",
+      "s2_paper_id": "1776b5ba5d2b17f6e6a043d57d36126e2af90315",
+      "url": "https://doi.org/10.1007/b106715",
+      "verified_via": [
+        "semantic_scholar"
+      ],
+      "verification_evidence": {
+        "s2": "Algorithmic Learning in a Random World (2005) sim=1.00"
+      },
+      "abstract_1sent": "",
+      "relevance_tags": null,
+      "gap_note": null,
+      "sources": [
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "gneiting2007scoring",
+      "title": "Strictly Proper Scoring Rules, Prediction, and Estimation",
+      "authors": [
+        "T. Gneiting",
+        "A. Raftery"
+      ],
+      "year": 2007,
+      "venue": "Journal of the American Statistical Association",
+      "arxiv_id": null,
+      "doi": "10.1198/016214506000001437",
+      "s2_paper_id": "6bbd8fc39487249bd1b6886e4dc763550877b758",
+      "url": "https://doi.org/10.1198/016214506000001437",
+      "verified_via": "semantic_scholar",
+      "verification_evidence": "Semantic Scholar API returned title=\"Strictly Proper Scoring Rules, Prediction, and Estimation\", year=2007, paperId=6bbd8fc39487249bd1b6886e4dc763550877b758.",
+      "abstract_1sent": "This paper characterizes strictly proper scoring rules and connects them to probabilistic prediction and estimation.",
+      "relevance_tags": [
+        "calibration",
+        "metrics"
+      ],
+      "gap_note": "Provides a metric or reliability-diagram foundation for evaluating tabular post-hoc calibration before and after shift, but does not itself adapt a calibrator to covariate shift.",
+      "sources": [
+        "lit_sol"
+      ]
+    },
+    {
+      "key": "naeini2015bbq",
+      "title": "Obtaining Well Calibrated Probabilities Using Bayesian Binning",
+      "authors": [
+        "Mahdi Pakdaman Naeini",
+        "G. Cooper",
+        "M. Hauskrecht"
+      ],
+      "year": 2015,
+      "venue": "AAAI Conference on Artificial Intelligence",
+      "arxiv_id": null,
+      "doi": "10.1609/aaai.v29i1.9602",
+      "s2_paper_id": "8d115c3b2ee80e0754360a154a9369bc1658b607",
+      "url": "https://doi.org/10.1609/aaai.v29i1.9602",
+      "verified_via": "semantic_scholar",
+      "verification_evidence": "Semantic Scholar API returned title=\"Obtaining Well Calibrated Probabilities Using Bayesian Binning\", year=2015, paperId=8d115c3b2ee80e0754360a154a9369bc1658b607.",
+      "abstract_1sent": "Learning probabilistic predictive models that are well calibrated is critical for many prediction and decision-making tasks in artificial intelligence.",
+      "relevance_tags": [
+        "calibration",
+        "tabular",
+        "metrics"
+      ],
+      "gap_note": "Directly supplies or evaluates post-hoc calibration relevant to logistic regression, random forests, and boosting; robustness when the deployment covariates shift remains an open comparison.",
+      "sources": [
+        "lit_sol"
+      ]
+    },
+    {
+      "key": "lei2016distributionfree",
+      "title": "Distribution-Free Predictive Inference for Regression",
+      "authors": [
+        "Jing Lei",
+        "M. G'Sell",
+        "A. Rinaldo",
+        "R. Tibshirani",
+        "L. Wasserman"
+      ],
+      "year": 2016,
+      "venue": "Journal of the American Statistical Association",
+      "arxiv_id": "1604.04173",
+      "doi": "10.1080/01621459.2017.1307116",
+      "s2_paper_id": "dbd9297a5b5ed54ad277aabcadcb5fc1636d9073",
+      "url": "https://arxiv.org/abs/1604.04173",
+      "verified_via": [
+        "arxiv_api",
+        "semantic_scholar"
+      ],
+      "verification_evidence": "Semantic Scholar API returned title=\"Distribution-Free Predictive Inference for Regression\", year=2016, paperId=dbd9297a5b5ed54ad277aabcadcb5fc1636d9073.",
+      "abstract_1sent": "We develop a general framework for distribution-free predictive inference in regression, using conformal inference.",
+      "relevance_tags": [
+        "conformal",
+        "tabular"
+      ],
+      "gap_note": "Provides an exchangeable-data coverage baseline for arbitrary tabular predictors; covariate shift requires weighting or online adaptation beyond this result.",
+      "sources": [
+        "lit_sol",
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "guo2017calibration",
+      "title": "On Calibration of Modern Neural Networks",
+      "authors": [
+        "Chuan Guo",
+        "Geoff Pleiss",
+        "Yu Sun",
+        "Kilian Q. Weinberger"
+      ],
+      "year": 2017,
+      "venue": "International Conference on Machine Learning",
+      "arxiv_id": "1706.04599",
+      "doi": null,
+      "s2_paper_id": "d65ce2b8300541414bfe51d03906fca72e93523c",
+      "url": "https://arxiv.org/abs/1706.04599",
+      "verified_via": [
+        "arxiv_api",
+        "semantic_scholar"
+      ],
+      "verification_evidence": "Semantic Scholar API returned title=\"On Calibration of Modern Neural Networks\", year=2017, paperId=d65ce2b8300541414bfe51d03906fca72e93523c.",
+      "abstract_1sent": "Confidence calibration \u2014 the problem of predicting probability estimates representative of the true correctness likelihood \u2014 is important for classification models in many applications.",
+      "relevance_tags": [
+        "calibration",
+        "metrics"
+      ],
+      "gap_note": "Supplies a post-hoc calibration method or diagnostic baseline that can be transferred to tabular models, but its reliability under covariate shift is not established here.",
+      "sources": [
+        "lit_sol",
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "lakshminarayanan2017ensembles",
+      "title": "Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles",
+      "authors": [
+        "Balaji Lakshminarayanan",
+        "Alexander Pritzel",
+        "Charles Blundell"
+      ],
+      "year": 2017,
+      "venue": null,
+      "arxiv_id": "1612.01474",
+      "doi": null,
+      "s2_paper_id": null,
+      "url": "https://arxiv.org/abs/1612.01474",
+      "verified_via": [
+        "arxiv_api"
+      ],
+      "verification_evidence": {
+        "arxiv": "Simple and Scalable Predictive Uncertainty Estimation using Deep Ensembles (2016)"
+      },
+      "abstract_1sent": "Deep neural networks (NNs) are powerful black box predictors that have recently achieved impressive performance on a wide spectrum of tasks.",
+      "relevance_tags": null,
+      "gap_note": null,
+      "sources": [
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "hein2019relu",
+      "title": "Why ReLU networks yield high-confidence predictions far away from the training data and how to mitigate the problem",
+      "authors": [
+        "Matthias Hein",
+        "Maksym Andriushchenko",
+        "Julian Bitterwolf"
+      ],
+      "year": 2018,
+      "venue": null,
+      "arxiv_id": "1812.05720",
+      "doi": null,
+      "s2_paper_id": null,
+      "url": "https://arxiv.org/abs/1812.05720",
+      "verified_via": "arxiv_api",
+      "verification_evidence": "arXiv API title=Why ReLU networks yield high-confidence predictions far away from the training data and how to mitigate the problem year=2018",
+      "abstract_1sent": "Classifiers used in the wild, in particular for safety-critical systems, should not only have good generalization properties but also should know when they don't know, in particular make low confidence predictions far away from the training data.",
+      "relevance_tags": null,
+      "gap_note": null,
+      "sources": [
+        "arxiv_recovery"
+      ]
+    },
+    {
+      "key": "kuleshov2018regression",
+      "title": "Accurate Uncertainties for Deep Learning Using Calibrated Regression",
+      "authors": [
+        "Volodymyr Kuleshov",
+        "Nathan Fenner",
+        "S. Ermon"
+      ],
+      "year": 2018,
+      "venue": "International Conference on Machine Learning",
+      "arxiv_id": "1807.00263",
+      "doi": null,
+      "s2_paper_id": "6f55f2234a002c69001df8ef9108cb86f1dfa506",
+      "url": "https://arxiv.org/abs/1807.00263",
+      "verified_via": "semantic_scholar",
+      "verification_evidence": "Semantic Scholar API returned title=\"Accurate Uncertainties for Deep Learning Using Calibrated Regression\", year=2018, paperId=6f55f2234a002c69001df8ef9108cb86f1dfa506.",
+      "abstract_1sent": "Methods for reasoning under uncertainty are a key building block of accurate and reliable machine learning systems.",
+      "relevance_tags": [
+        "calibration",
+        "tabular",
+        "metrics"
+      ],
+      "gap_note": "Supplies a post-hoc calibration method or diagnostic baseline that can be transferred to tabular models, but its reliability under covariate shift is not established here.",
+      "sources": [
+        "lit_sol"
+      ]
+    },
+    {
+      "key": "nalisnick2018know",
+      "title": "Do Deep Generative Models Know What They Don't Know?",
+      "authors": [
+        "Eric Nalisnick",
+        "Akihiro Matsukawa",
+        "Yee Whye Teh",
+        "Dilan Gorur",
+        "Balaji Lakshminarayanan"
+      ],
+      "year": 2018,
+      "venue": null,
+      "arxiv_id": "1810.09136",
+      "doi": null,
+      "s2_paper_id": null,
+      "url": "https://arxiv.org/abs/1810.09136",
+      "verified_via": "arxiv_api",
+      "verification_evidence": "arXiv API title=Do Deep Generative Models Know What They Don't Know? year=2018",
+      "abstract_1sent": "A neural network deployed in the wild may be asked to make predictions for inputs that were drawn from a different distribution than that of the training data.",
+      "relevance_tags": null,
+      "gap_note": null,
+      "sources": [
+        "arxiv_recovery"
+      ]
+    },
+    {
+      "key": "barber2019jackknife",
+      "title": "Predictive inference with the jackknife+",
+      "authors": [
+        "R. Barber",
+        "E. Cand\u00e8s",
+        "Aaditya Ramdas",
+        "R. Tibshirani"
+      ],
+      "year": 2019,
+      "venue": "Annals of Statistics",
+      "arxiv_id": "1905.02928",
+      "doi": "10.1214/20-AOS1965",
+      "s2_paper_id": "1896136f931aa080599e1c1314d48bccbaa14e81",
+      "url": "https://arxiv.org/abs/1905.02928",
+      "verified_via": [
+        "arxiv_api",
+        "semantic_scholar"
+      ],
+      "verification_evidence": "Semantic Scholar API returned title=\"Predictive inference with the jackknife+\", year=2019, paperId=1896136f931aa080599e1c1314d48bccbaa14e81.",
+      "abstract_1sent": "This paper introduces the jackknife+, which is a novel method for constructing predictive confidence intervals.",
+      "relevance_tags": [
+        "conformal",
+        "tabular"
+      ],
+      "gap_note": "Provides an exchangeable-data coverage baseline for arbitrary tabular predictors; covariate shift requires weighting or online adaptation beyond this result.",
+      "sources": [
+        "arxiv_recovery",
+        "lit_sol"
+      ]
+    },
+    {
+      "key": "hendrycks2019imagenetc",
+      "title": "Benchmarking Neural Network Robustness to Common Corruptions and Perturbations",
+      "authors": [
+        "Dan Hendrycks",
+        "Thomas Dietterich"
+      ],
+      "year": 2019,
+      "venue": null,
+      "arxiv_id": "1903.12261",
+      "doi": null,
+      "s2_paper_id": null,
+      "url": "https://arxiv.org/abs/1903.12261",
+      "verified_via": [
+        "arxiv_api"
+      ],
+      "verification_evidence": {
+        "arxiv": "Benchmarking Neural Network Robustness to Common Corruptions and Perturbations (2019)"
+      },
+      "abstract_1sent": "In this paper we establish rigorous benchmarks for image classifier robustness.",
+      "relevance_tags": null,
+      "gap_note": null,
+      "sources": [
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "hendrycks2021nae",
+      "title": "Natural Adversarial Examples",
+      "authors": [
+        "Dan Hendrycks",
+        "Kevin Zhao",
+        "Steven Basart",
+        "Jacob Steinhardt",
+        "Dawn Song"
+      ],
+      "year": 2019,
+      "venue": null,
+      "arxiv_id": "1907.07174",
+      "doi": null,
+      "s2_paper_id": null,
+      "url": "https://arxiv.org/abs/1907.07174",
+      "verified_via": "arxiv_api",
+      "verification_evidence": "arXiv API title=Natural Adversarial Examples year=2019",
+      "abstract_1sent": "We introduce two challenging datasets that reliably cause machine learning model performance to substantially degrade.",
+      "relevance_tags": null,
+      "gap_note": null,
+      "sources": [
+        "arxiv_recovery"
+      ]
+    },
+    {
+      "key": "kull2019dirichlet",
+      "title": "Beyond temperature scaling: Obtaining well-calibrated multiclass probabilities with Dirichlet calibration",
+      "authors": [
+        "Meelis Kull",
+        "Miquel Perello-Nieto",
+        "Markus K\u00e4ngsepp",
+        "T. S. Filho",
+        "Hao Song",
+        "Peter A. Flach"
+      ],
+      "year": 2019,
+      "venue": "Neural Information Processing Systems",
+      "arxiv_id": "1910.12656",
+      "doi": null,
+      "s2_paper_id": "d4691aef27ae3c768b90c34ca5d8521d202eb47c",
+      "url": "https://arxiv.org/abs/1910.12656",
+      "verified_via": [
+        "arxiv_api",
+        "semantic_scholar"
+      ],
+      "verification_evidence": "Semantic Scholar API returned title=\"Beyond temperature scaling: Obtaining well-calibrated multiclass probabilities with Dirichlet calibration\", year=2019, paperId=d4691aef27ae3c768b90c34ca5d8521d202eb47c.",
+      "abstract_1sent": "Class probabilities predicted by most multiclass classifiers are uncalibrated, often tending towards over-confidence.",
+      "relevance_tags": [
+        "calibration",
+        "tabular",
+        "metrics"
+      ],
+      "gap_note": "Directly supplies or evaluates post-hoc calibration relevant to logistic regression, random forests, and boosting; robustness when the deployment covariates shift remains an open comparison.",
+      "sources": [
+        "lit_sol",
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "kumar2019verified",
+      "title": "Verified Uncertainty Calibration",
+      "authors": [
+        "Ananya Kumar",
+        "Percy Liang",
+        "Tengyu Ma"
+      ],
+      "year": 2019,
+      "venue": "Neural Information Processing Systems",
+      "arxiv_id": "1909.10155",
+      "doi": null,
+      "s2_paper_id": "b8333963567e9ef65c059466c03b0fbee3eaec6a",
+      "url": "https://arxiv.org/abs/1909.10155",
+      "verified_via": [
+        "arxiv_api",
+        "semantic_scholar"
+      ],
+      "verification_evidence": "Semantic Scholar API returned title=\"Verified Uncertainty Calibration\", year=2019, paperId=b8333963567e9ef65c059466c03b0fbee3eaec6a.",
+      "abstract_1sent": "Applications such as weather forecasting and personalized medicine demand models that output calibrated probability estimates\u2014those representative of the true likelihood of a prediction.",
+      "relevance_tags": [
+        "calibration",
+        "tabular",
+        "metrics"
+      ],
+      "gap_note": "Directly supplies or evaluates post-hoc calibration relevant to logistic regression, random forests, and boosting; robustness when the deployment covariates shift remains an open comparison.",
+      "sources": [
+        "lit_sol",
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "nixon2019measuring",
+      "title": "Measuring Calibration in Deep Learning",
+      "authors": [
+        "J. Nixon",
+        "Michael W. Dusenberry",
+        "Linchuan Zhang",
+        "Ghassen Jerfel",
+        "Dustin Tran"
+      ],
+      "year": 2019,
+      "venue": "CVPR Workshops",
+      "arxiv_id": "1904.01685",
+      "doi": null,
+      "s2_paper_id": "3b656bba99dbcf6c6d8fd764d53ea64cd38c7050",
+      "url": "https://arxiv.org/abs/1904.01685",
+      "verified_via": [
+        "arxiv_api",
+        "semantic_scholar"
+      ],
+      "verification_evidence": "Semantic Scholar API returned title=\"Measuring Calibration in Deep Learning\", year=2019, paperId=3b656bba99dbcf6c6d8fd764d53ea64cd38c7050.",
+      "abstract_1sent": "Overconfidence and underconfidence in machine learning classifiers is measured by calibration: the degree to which the probabilities predicted for each class match the accuracy of the classifier on that prediction.",
+      "relevance_tags": [
+        "calibration",
+        "metrics"
+      ],
+      "gap_note": "Provides a metric or reliability-diagram foundation for evaluating tabular post-hoc calibration before and after shift, but does not itself adapt a calibrator to covariate shift.",
+      "sources": [
+        "lit_sol",
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "ovadia2019trust",
+      "title": "Can You Trust Your Model's Uncertainty? Evaluating Predictive Uncertainty Under Dataset Shift",
+      "authors": [
+        "Yaniv Ovadia",
+        "Emily Fertig",
+        "Jie Jessie Ren",
+        "Zachary Nado",
+        "D. Sculley",
+        "Sebastian Nowozin",
+        "Joshua V. Dillon",
+        "Balaji Lakshminarayanan",
+        "Jasper Snoek"
+      ],
+      "year": 2019,
+      "venue": "Neural Information Processing Systems",
+      "arxiv_id": "1906.02530",
+      "doi": null,
+      "s2_paper_id": "1eb7f46b1a0a7df823194d86543e5554aa21021a",
+      "url": "https://arxiv.org/abs/1906.02530",
+      "verified_via": [
+        "arxiv_api",
+        "semantic_scholar"
+      ],
+      "verification_evidence": "Semantic Scholar API returned title=\"Can You Trust Your Model's Uncertainty? Evaluating Predictive Uncertainty Under Dataset Shift\", year=2019, paperId=1eb7f46b1a0a7df823194d86543e5554aa21021a.",
+      "abstract_1sent": "Modern machine learning methods including deep learning have achieved great success in predictive accuracy for supervised learning tasks, but may still fall short in giving useful estimates of their predictive uncertainty.",
+      "relevance_tags": [
+        "calibration",
+        "covariate_shift",
+        "metrics"
+      ],
+      "gap_note": "Directly informs calibration robustness or adaptation under distribution shift, but evidence specific to logistic regression, random forests, and gradient boosting remains limited.",
+      "sources": [
+        "lit_sol",
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "romano2019cqr",
+      "title": "Conformalized Quantile Regression",
+      "authors": [
+        "Yaniv Romano",
+        "Evan Patterson",
+        "E. Cand\u00e8s"
+      ],
+      "year": 2019,
+      "venue": "Neural Information Processing Systems",
+      "arxiv_id": "1905.03222",
+      "doi": null,
+      "s2_paper_id": "6f9dc6f8519e927d948a13aa7ae0df336f443eb9",
+      "url": "https://arxiv.org/abs/1905.03222",
+      "verified_via": [
+        "arxiv_api",
+        "semantic_scholar"
+      ],
+      "verification_evidence": "Semantic Scholar API returned title=\"Conformalized Quantile Regression\", year=2019, paperId=6f9dc6f8519e927d948a13aa7ae0df336f443eb9.",
+      "abstract_1sent": "Conformal prediction is a technique for constructing prediction intervals that attain valid coverage in finite samples, without making distributional assumptions.",
+      "relevance_tags": [
+        "conformal",
+        "tabular"
+      ],
+      "gap_note": "Provides an exchangeable-data coverage baseline for arbitrary tabular predictors; covariate shift requires weighting or online adaptation beyond this result.",
+      "sources": [
+        "lit_sol",
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "tibshirani2019covariate",
+      "title": "Conformal Prediction Under Covariate Shift",
+      "authors": [
+        "R. Tibshirani",
+        "R. Barber",
+        "E. Cand\u00e8s",
+        "Aaditya Ramdas"
+      ],
+      "year": 2019,
+      "venue": "Neural Information Processing Systems",
+      "arxiv_id": "1904.06019",
+      "doi": null,
+      "s2_paper_id": "f08e13d65cb17856427b429d79f01922584a6f01",
+      "url": "https://arxiv.org/abs/1904.06019",
+      "verified_via": [
+        "arxiv_api",
+        "semantic_scholar"
+      ],
+      "verification_evidence": "Semantic Scholar API returned title=\"Conformal Prediction Under Covariate Shift\", year=2019, paperId=f08e13d65cb17856427b429d79f01922584a6f01.",
+      "abstract_1sent": "We extend conformal prediction methodology beyond the case of exchangeable data.",
+      "relevance_tags": [
+        "covariate_shift",
+        "conformal",
+        "tabular"
+      ],
+      "gap_note": "Provides shift-aware coverage guarantees that complement probability calibration for tabular predictors, but targets prediction sets rather than post-hoc probability maps.",
+      "sources": [
+        "lit_sol",
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "vaicenavicius2019evaluating",
+      "title": "Evaluating model calibration in classification",
+      "authors": [
+        "Juozas Vaicenavicius",
+        "David Widmann",
+        "Carl R. Andersson",
+        "F. Lindsten",
+        "Jacob Roll",
+        "Thomas Bo Sch\u00f6n"
+      ],
+      "year": 2019,
+      "venue": "International Conference on Artificial Intelligence and Statistics",
+      "arxiv_id": "1902.06977",
+      "doi": null,
+      "s2_paper_id": "5fb9ca8e2afc59d8c00c2b0e3ff0c3acde43f596",
+      "url": "https://arxiv.org/abs/1902.06977",
+      "verified_via": [
+        "arxiv_api",
+        "semantic_scholar"
+      ],
+      "verification_evidence": "Semantic Scholar API returned title=\"Evaluating model calibration in classification\", year=2019, paperId=5fb9ca8e2afc59d8c00c2b0e3ff0c3acde43f596.",
+      "abstract_1sent": "Probabilistic classifiers output a probability distribution on target classes rather than just a class prediction.",
+      "relevance_tags": [
+        "calibration",
+        "metrics"
+      ],
+      "gap_note": "Provides a metric or reliability-diagram foundation for evaluating tabular post-hoc calibration before and after shift, but does not itself adapt a calibrator to covariate shift.",
+      "sources": [
+        "lit_sol",
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "wenger2020nonparametric",
+      "title": "Non-Parametric Calibration for Classification",
+      "authors": [
+        "Jonathan Wenger",
+        "Hedvig Kjellstr\u00f6m",
+        "Rudolph Triebel"
+      ],
+      "year": 2019,
+      "venue": null,
+      "arxiv_id": "1906.04933",
+      "doi": null,
+      "s2_paper_id": null,
+      "url": "https://arxiv.org/abs/1906.04933",
+      "verified_via": "arxiv_api",
+      "verification_evidence": "arXiv API title=Non-Parametric Calibration for Classification year=2019",
+      "abstract_1sent": "Many applications of classification methods not only require high accuracy but also reliable estimation of predictive uncertainty.",
+      "relevance_tags": null,
+      "gap_note": null,
+      "sources": [
+        "arxiv_recovery"
+      ]
+    },
+    {
+      "key": "widmann2019calibration",
+      "title": "Calibration tests in multi-class classification: A unifying framework",
+      "authors": [
+        "David Widmann",
+        "Fredrik Lindsten",
+        "Dave Zachariah"
+      ],
+      "year": 2019,
+      "venue": null,
+      "arxiv_id": "1910.11385",
+      "doi": null,
+      "s2_paper_id": null,
+      "url": "https://arxiv.org/abs/1910.11385",
+      "verified_via": [
+        "arxiv_api"
+      ],
+      "verification_evidence": {
+        "arxiv": "Calibration tests in multi-class classification: A unifying framework (2019)"
+      },
+      "abstract_1sent": "In safety-critical applications a probabilistic model is usually required to be calibrated, i.e., to capture the uncertainty of its predictions accurately.",
+      "relevance_tags": null,
+      "gap_note": null,
+      "sources": [
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "alexandari2020max",
+      "title": "Maximum Likelihood with Bias-Corrected Calibration is Hard-To-Beat at Label Shift Adaptation",
+      "authors": [
+        "Amr Alexandari",
+        "Anish Kundaje",
+        "Avanti Shrikumar"
+      ],
+      "year": 2020,
+      "venue": null,
+      "arxiv_id": "1901.06852",
+      "doi": null,
+      "s2_paper_id": null,
+      "url": "https://arxiv.org/abs/1901.06852",
+      "verified_via": [
+        "arxiv_api"
+      ],
+      "verification_evidence": {
+        "arxiv": "Maximum Likelihood with Bias-Corrected Calibration is Hard-To-Beat at Label Shift Adaptation (2019)"
+      },
+      "abstract_1sent": "Label shift refers to the phenomenon where the prior class probability p(y) changes between the training and test distributions, while the conditional probability p(x|y) stays fixed.",
+      "relevance_tags": null,
+      "gap_note": null,
+      "sources": [
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "ding2021local",
+      "title": "Local Temperature Scaling for Probability Calibration",
+      "authors": [
+        "Zhipeng Ding",
+        "Xu Han",
+        "Peirong Liu",
+        "Marc Niethammer"
+      ],
+      "year": 2020,
+      "venue": null,
+      "arxiv_id": "2008.05105",
+      "doi": null,
+      "s2_paper_id": null,
+      "url": "https://arxiv.org/abs/2008.05105",
+      "verified_via": "arxiv_api",
+      "verification_evidence": "arXiv API title=Local Temperature Scaling for Probability Calibration year=2020",
+      "abstract_1sent": "For semantic segmentation, label probabilities are often uncalibrated as they are typically only the by-product of a segmentation task.",
+      "relevance_tags": null,
+      "gap_note": null,
+      "sources": [
+        "arxiv_recovery"
+      ]
+    },
+    {
+      "key": "gupta2020splines",
+      "title": "Calibration of Neural Networks using Splines",
+      "authors": [
+        "Kartik Gupta",
+        "Amir M. Rahimi",
+        "Thalaiyasingam Ajanthan",
+        "Thomas Mensink",
+        "C. Sminchisescu",
+        "R. Hartley"
+      ],
+      "year": 2020,
+      "venue": "International Conference on Learning Representations",
+      "arxiv_id": "2006.12800",
+      "doi": null,
+      "s2_paper_id": "af2549305c2839e85367a07db10366670161afba",
+      "url": "https://arxiv.org/abs/2006.12800",
+      "verified_via": [
+        "arxiv_api",
+        "semantic_scholar"
+      ],
+      "verification_evidence": "Semantic Scholar API returned title=\"Calibration of Neural Networks using Splines\", year=2020, paperId=af2549305c2839e85367a07db10366670161afba.",
+      "abstract_1sent": "Calibrating neural networks is of utmost importance when employing them in safety-critical applications where the downstream decision making depends on the predicted probabilities.",
+      "relevance_tags": [
+        "calibration",
+        "metrics"
+      ],
+      "gap_note": "Supplies a post-hoc calibration method or diagnostic baseline that can be transferred to tabular models, but its reliability under covariate shift is not established here.",
+      "sources": [
+        "lit_sol",
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "koh2021wilds",
+      "title": "WILDS: A Benchmark of in-the-Wild Distribution Shifts",
+      "authors": [
+        "Pang Wei Koh",
+        "Shiori Sagawa",
+        "Henrik Marklund",
+        "Sang Michael Xie",
+        "Marvin Zhang",
+        "Akshay Balsubramani",
+        "Weihua Hu",
+        "Michihiro Yasunaga",
+        "Richard Lanas Phillips",
+        "Irena Gao",
+        "Tony Lee",
+        "Etienne David",
+        "Ian Stavness",
+        "Wei Guo",
+        "Berton A. Earnshaw",
+        "Imran S. Haque",
+        "Sara Beery",
+        "Jure Leskovec",
+        "Anshul Kundaje",
+        "Emma Pierson",
+        "Sergey Levine",
+        "Chelsea Finn",
+        "Percy Liang"
+      ],
+      "year": 2020,
+      "venue": null,
+      "arxiv_id": "2012.07421",
+      "doi": null,
+      "s2_paper_id": null,
+      "url": "https://arxiv.org/abs/2012.07421",
+      "verified_via": "arxiv_api",
+      "verification_evidence": "arXiv API title=WILDS: A Benchmark of in-the-Wild Distribution Shifts year=2020",
+      "abstract_1sent": "Distribution shifts -- where the training distribution differs from the test distribution -- can substantially degrade the accuracy of machine learning (ML) systems deployed in the wild.",
+      "relevance_tags": null,
+      "gap_note": null,
+      "sources": [
+        "arxiv_recovery"
+      ]
+    },
+    {
+      "key": "mukhoti2020calibrating",
+      "title": "Calibrating Deep Neural Networks using Focal Loss",
+      "authors": [
+        "Jishnu Mukhoti",
+        "Viveka Kulharia",
+        "Amartya Sanyal",
+        "Stuart Golodetz",
+        "Philip H.S. Torr",
+        "Puneet K. Dokania"
+      ],
+      "year": 2020,
+      "venue": null,
+      "arxiv_id": "2002.09437",
+      "doi": null,
+      "s2_paper_id": null,
+      "url": "https://arxiv.org/abs/2002.09437",
+      "verified_via": [
+        "arxiv_api"
+      ],
+      "verification_evidence": {
+        "arxiv": "Calibrating Deep Neural Networks using Focal Loss (2020)"
+      },
+      "abstract_1sent": "Miscalibration - a mismatch between a model's confidence and its correctness - of Deep Neural Networks (DNNs) makes their predictions hard to rely on.",
+      "relevance_tags": null,
+      "gap_note": null,
+      "sources": [
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "pampari2020unsupervised",
+      "title": "Unsupervised Calibration under Covariate Shift",
+      "authors": [
+        "Anusri Pampari",
+        "S. Ermon"
+      ],
+      "year": 2020,
+      "venue": "arXiv.org",
+      "arxiv_id": "2006.16405",
+      "doi": null,
+      "s2_paper_id": "04c6a42daed6315c6bfb0de22d0f79ddb4b7d025",
+      "url": "https://arxiv.org/abs/2006.16405",
+      "verified_via": "semantic_scholar",
+      "verification_evidence": "Semantic Scholar API returned title=\"Unsupervised Calibration under Covariate Shift\", year=2020, paperId=04c6a42daed6315c6bfb0de22d0f79ddb4b7d025.",
+      "abstract_1sent": "A probabilistic model is said to be calibrated if its predicted probabilities match the corresponding empirical frequencies.",
+      "relevance_tags": [
+        "calibration",
+        "covariate_shift"
+      ],
+      "gap_note": "Directly informs calibration robustness or adaptation under distribution shift, but evidence specific to logistic regression, random forests, and gradient boosting remains limited.",
+      "sources": [
+        "lit_sol"
+      ]
+    },
+    {
+      "key": "rahimi2020intra",
+      "title": "Intra Order-preserving Functions for Calibration of Multi-Class Neural Networks",
+      "authors": [
+        "Amir Rahimi",
+        "Amirreza Shaban",
+        "Ching-An Cheng",
+        "Richard Hartley",
+        "Byron Boots"
+      ],
+      "year": 2020,
+      "venue": null,
+      "arxiv_id": "2003.06820",
+      "doi": null,
+      "s2_paper_id": null,
+      "url": "https://arxiv.org/abs/2003.06820",
+      "verified_via": "arxiv_api",
+      "verification_evidence": "arXiv API title=Intra Order-preserving Functions for Calibration of Multi-Class Neural Networks year=2020",
+      "abstract_1sent": "Predicting calibrated confidence scores for multi-class deep networks is important for avoiding rare but costly mistakes.",
+      "relevance_tags": null,
+      "gap_note": null,
+      "sources": [
+        "arxiv_recovery"
+      ]
+    },
+    {
+      "key": "romano2020classification",
+      "title": "Classification with Valid and Adaptive Coverage",
+      "authors": [
+        "Yaniv Romano",
+        "Matteo Sesia",
+        "Emmanuel J. Candes"
+      ],
+      "year": 2020,
+      "venue": null,
+      "arxiv_id": "2006.02544",
+      "doi": null,
+      "s2_paper_id": null,
+      "url": "https://arxiv.org/abs/2006.02544",
+      "verified_via": [
+        "arxiv_api"
+      ],
+      "verification_evidence": {
+        "arxiv": "Classification with Valid and Adaptive Coverage (2020)"
+      },
+      "abstract_1sent": "Conformal inference, cross-validation+, and the jackknife+ are hold-out methods that can be combined with virtually any machine learning algorithm to construct prediction sets with guaranteed marginal coverage.",
+      "relevance_tags": null,
+      "gap_note": null,
+      "sources": [
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "tomani2021posthoc",
+      "title": "Post-hoc Uncertainty Calibration for Domain Drift Scenarios",
+      "authors": [
+        "Christian Tomani",
+        "Sebastian Gruber",
+        "Muhammed Ebrar Erdem",
+        "Daniel Cremers",
+        "Florian Buettner"
+      ],
+      "year": 2020,
+      "venue": null,
+      "arxiv_id": "2012.10988",
+      "doi": null,
+      "s2_paper_id": null,
+      "url": "https://arxiv.org/abs/2012.10988",
+      "verified_via": "arxiv_api",
+      "verification_evidence": "arXiv API title=Post-hoc Uncertainty Calibration for Domain Drift Scenarios year=2020",
+      "abstract_1sent": "We address the problem of uncertainty calibration.",
+      "relevance_tags": null,
+      "gap_note": null,
+      "sources": [
+        "arxiv_recovery"
+      ]
+    },
+    {
+      "key": "zhang2020mixnmatch",
+      "title": "Mix-n-Match: Ensemble and Compositional Methods for Uncertainty Calibration in Deep Learning",
+      "authors": [
+        "Jize Zhang",
+        "Bhavya Kailkhura",
+        "T. Yong-Jin Han"
+      ],
+      "year": 2020,
+      "venue": null,
+      "arxiv_id": "2003.07329",
+      "doi": null,
+      "s2_paper_id": null,
+      "url": "https://arxiv.org/abs/2003.07329",
+      "verified_via": [
+        "arxiv_api"
+      ],
+      "verification_evidence": {
+        "arxiv": "Mix-n-Match: Ensemble and Compositional Methods for Uncertainty Calibration in Deep Learning (2020)"
+      },
+      "abstract_1sent": "This paper studies the problem of post-hoc calibration of machine learning classifiers.",
+      "relevance_tags": null,
+      "gap_note": null,
+      "sources": [
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "angelopoulos2021gentle",
+      "title": "A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification",
+      "authors": [
+        "Anastasios Nikolas Angelopoulos",
+        "Stephen Bates"
+      ],
+      "year": 2021,
+      "venue": "arXiv.org",
+      "arxiv_id": "2107.07511",
+      "doi": null,
+      "s2_paper_id": "c3ea8eb80bc8ca0b21efa273b9e4a9fd059c65be",
+      "url": "https://arxiv.org/abs/2107.07511",
+      "verified_via": [
+        "arxiv_api",
+        "semantic_scholar"
+      ],
+      "verification_evidence": "Semantic Scholar API returned title=\"A Gentle Introduction to Conformal Prediction and Distribution-Free Uncertainty Quantification\", year=2021, paperId=c3ea8eb80bc8ca0b21efa273b9e4a9fd059c65be.",
+      "abstract_1sent": "Black-box machine learning models are now routinely used in high-risk settings, like medical diagnostics, which demand uncertainty quantification to avoid consequential model failures.",
+      "relevance_tags": [
+        "covariate_shift",
+        "conformal"
+      ],
+      "gap_note": "Provides shift-aware coverage guarantees that complement probability calibration for tabular predictors, but targets prediction sets rather than post-hoc probability maps.",
+      "sources": [
+        "lit_sol",
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "gibbs2021adaptive",
+      "title": "Adaptive Conformal Inference Under Distribution Shift",
+      "authors": [
+        "Isaac Gibbs",
+        "E. Cand\u00e8s"
+      ],
+      "year": 2021,
+      "venue": "Neural Information Processing Systems",
+      "arxiv_id": "2106.00170",
+      "doi": "10.48550/arXiv.2106.00170",
+      "s2_paper_id": "445596c40dc421efe2354a340085b43181bea2be",
+      "url": "https://arxiv.org/abs/2106.00170",
+      "verified_via": [
+        "arxiv_api",
+        "semantic_scholar"
+      ],
+      "verification_evidence": "Semantic Scholar API returned title=\"Adaptive Conformal Inference Under Distribution Shift\", year=2021, paperId=445596c40dc421efe2354a340085b43181bea2be.",
+      "abstract_1sent": "We develop methods for forming prediction sets in an online setting where the data generating distribution is allowed to vary over time in an unknown fashion.",
+      "relevance_tags": [
+        "covariate_shift",
+        "conformal"
+      ],
+      "gap_note": "Provides shift-aware coverage guarantees that complement probability calibration for tabular predictors, but targets prediction sets rather than post-hoc probability maps.",
+      "sources": [
+        "lit_sol",
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "karandikar2021soft",
+      "title": "Soft Calibration Objectives for Neural Networks",
+      "authors": [
+        "A. Karandikar",
+        "Nicholas Cain",
+        "Dustin Tran",
+        "Balaji Lakshminarayanan",
+        "Jonathon Shlens",
+        "M. Mozer",
+        "Becca Roelofs"
+      ],
+      "year": 2021,
+      "venue": "Neural Information Processing Systems",
+      "arxiv_id": "2108.00106",
+      "doi": null,
+      "s2_paper_id": "7416930f69bec3d0b712b9dd3b5e7aa6d3dfec58",
+      "url": "https://arxiv.org/abs/2108.00106",
+      "verified_via": [
+        "arxiv_api",
+        "semantic_scholar"
+      ],
+      "verification_evidence": "Semantic Scholar API returned title=\"Soft Calibration Objectives for Neural Networks\", year=2021, paperId=7416930f69bec3d0b712b9dd3b5e7aa6d3dfec58.",
+      "abstract_1sent": "Optimal decision making requires that classifiers produce uncertainty estimates consistent with their empirical accuracy.",
+      "relevance_tags": [
+        "calibration",
+        "covariate_shift",
+        "metrics"
+      ],
+      "gap_note": "Directly informs calibration robustness or adaptation under distribution shift, but evidence specific to logistic regression, random forests, and gradient boosting remains limited.",
+      "sources": [
+        "lit_sol",
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "minderer2021revisiting",
+      "title": "Revisiting the Calibration of Modern Neural Networks",
+      "authors": [
+        "M. Minderer",
+        "J. Djolonga",
+        "Rob Romijnders",
+        "F. Hubis",
+        "Xiaohua Zhai",
+        "N. Houlsby",
+        "Dustin Tran",
+        "M. Lu\u010di\u0107"
+      ],
+      "year": 2021,
+      "venue": "Neural Information Processing Systems",
+      "arxiv_id": "2106.07998",
+      "doi": null,
+      "s2_paper_id": "e757488d2e8684e3da7b14fbb000b7e4a0bab001",
+      "url": "https://arxiv.org/abs/2106.07998",
+      "verified_via": [
+        "arxiv_api",
+        "semantic_scholar"
+      ],
+      "verification_evidence": "Semantic Scholar API returned title=\"Revisiting the Calibration of Modern Neural Networks\", year=2021, paperId=e757488d2e8684e3da7b14fbb000b7e4a0bab001.",
+      "abstract_1sent": "Accurate estimation of predictive uncertainty (model calibration) is essential for the safe application of neural networks.",
+      "relevance_tags": [
+        "calibration",
+        "covariate_shift",
+        "metrics"
+      ],
+      "gap_note": "Directly informs calibration robustness or adaptation under distribution shift, but evidence specific to logistic regression, random forests, and gradient boosting remains limited.",
+      "sources": [
+        "lit_sol",
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "podkopaev2021labelshift",
+      "title": "Distribution-free uncertainty quantification for classification under label shift",
+      "authors": [
+        "A. Podkopaev",
+        "Aaditya Ramdas"
+      ],
+      "year": 2021,
+      "venue": "Conference on Uncertainty in Artificial Intelligence",
+      "arxiv_id": "2103.03323",
+      "doi": null,
+      "s2_paper_id": "828e7d9a06043f742010be77d873fb3a3b5935bb",
+      "url": "https://arxiv.org/abs/2103.03323",
+      "verified_via": [
+        "arxiv_api",
+        "semantic_scholar"
+      ],
+      "verification_evidence": "Semantic Scholar API returned title=\"Distribution-free uncertainty quantification for classification under label shift\", year=2021, paperId=828e7d9a06043f742010be77d873fb3a3b5935bb.",
+      "abstract_1sent": "Trustworthy deployment of ML models requires a proper measure of uncertainty, especially in safety-critical applications.",
+      "relevance_tags": [
+        "calibration",
+        "covariate_shift",
+        "conformal",
+        "tabular"
+      ],
+      "gap_note": "Directly informs calibration robustness or adaptation under distribution shift, but evidence specific to logistic regression, random forests, and gradient boosting remains limited.",
+      "sources": [
+        "arxiv_recovery",
+        "lit_sol"
+      ]
+    },
+    {
+      "key": "silvafilho2021survey",
+      "title": "Classifier calibration: a survey on how to assess and improve predicted class probabilities",
+      "authors": [
+        "T. S. Filho",
+        "Hao Song",
+        "Miquel Perello-Nieto",
+        "R. Santos-Rodr\u00edguez",
+        "Meelis Kull",
+        "Peter A. Flach"
+      ],
+      "year": 2021,
+      "venue": "Machine Learning",
+      "arxiv_id": "2112.10327",
+      "doi": "10.1007/s10994-023-06336-7",
+      "s2_paper_id": "f471af0ba7d366233da32a1f7151fde42816790f",
+      "url": "https://arxiv.org/abs/2112.10327",
+      "verified_via": [
+        "arxiv_api",
+        "semantic_scholar"
+      ],
+      "verification_evidence": "Semantic Scholar API returned title=\"Classifier calibration: a survey on how to assess and improve predicted class probabilities\", year=2021, paperId=f471af0ba7d366233da32a1f7151fde42816790f.",
+      "abstract_1sent": "This paper provides both an introduction to and a detailed overview of the principles and practice of classifier calibration.",
+      "relevance_tags": [
+        "calibration",
+        "tabular",
+        "metrics"
+      ],
+      "gap_note": "Directly supplies or evaluates post-hoc calibration relevant to logistic regression, random forests, and boosting; robustness when the deployment covariates shift remains an open comparison.",
+      "sources": [
+        "lit_sol",
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "wald2021calibration",
+      "title": "On Calibration and Out-of-domain Generalization",
+      "authors": [
+        "Yoav Wald",
+        "Amir Feder",
+        "Daniel Greenfeld",
+        "Uri Shalit"
+      ],
+      "year": 2021,
+      "venue": null,
+      "arxiv_id": "2102.10395",
+      "doi": null,
+      "s2_paper_id": null,
+      "url": "https://arxiv.org/abs/2102.10395",
+      "verified_via": [
+        "arxiv_api"
+      ],
+      "verification_evidence": {
+        "arxiv": "On Calibration and Out-of-domain Generalization (2021)"
+      },
+      "abstract_1sent": "Out-of-domain (OOD) generalization is a significant challenge for machine learning models.",
+      "relevance_tags": null,
+      "gap_note": null,
+      "sources": [
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "barber2022beyond",
+      "title": "Conformal prediction beyond exchangeability",
+      "authors": [
+        "R. Barber",
+        "E. Cand\u00e8s",
+        "Aaditya Ramdas",
+        "R. Tibshirani"
+      ],
+      "year": 2022,
+      "venue": "Annals of Statistics",
+      "arxiv_id": "2202.13415",
+      "doi": "10.1214/23-aos2276",
+      "s2_paper_id": "ba98e89eb2afea1155c65d2ae26903d593c2fe22",
+      "url": "https://arxiv.org/abs/2202.13415",
+      "verified_via": [
+        "arxiv_api",
+        "semantic_scholar"
+      ],
+      "verification_evidence": "Semantic Scholar API returned title=\"Conformal prediction beyond exchangeability\", year=2022, paperId=ba98e89eb2afea1155c65d2ae26903d593c2fe22.",
+      "abstract_1sent": "Conformal prediction is a popular, modern technique for providing valid predictive inference for arbitrary machine learning models.",
+      "relevance_tags": [
+        "covariate_shift",
+        "conformal"
+      ],
+      "gap_note": "Provides shift-aware coverage guarantees that complement probability calibration for tabular predictors, but targets prediction sets rather than post-hoc probability maps.",
+      "sources": [
+        "lit_sol",
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "grinsztajn2022trees",
+      "title": "Why do tree-based models still outperform deep learning on tabular data?",
+      "authors": [
+        "L\\'eo Grinsztajn",
+        "Edouard Oyallon",
+        "Ga\\\"el Varoquaux"
+      ],
+      "year": 2022,
+      "venue": null,
+      "arxiv_id": "2207.08815",
+      "doi": null,
+      "s2_paper_id": null,
+      "url": "https://arxiv.org/abs/2207.08815",
+      "verified_via": [
+        "arxiv_api"
+      ],
+      "verification_evidence": {
+        "arxiv": "Why do tree-based models still outperform deep learning on tabular data? (2022)"
+      },
+      "abstract_1sent": "While deep learning has enabled tremendous progress on text and image datasets, its superiority on tabular data is not clear.",
+      "relevance_tags": null,
+      "gap_note": null,
+      "sources": [
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "gruber2022better",
+      "title": "Better Uncertainty Calibration via Proper Scores for Classification and Beyond",
+      "authors": [
+        "Sebastian Gruber",
+        "Florian Buettner"
+      ],
+      "year": 2022,
+      "venue": null,
+      "arxiv_id": "2203.07835",
+      "doi": null,
+      "s2_paper_id": null,
+      "url": "https://arxiv.org/abs/2203.07835",
+      "verified_via": [
+        "arxiv_api"
+      ],
+      "verification_evidence": {
+        "arxiv": "Better Uncertainty Calibration via Proper Scores for Classification and Beyond (2022)"
+      },
+      "abstract_1sent": "With model trustworthiness being crucial for sensitive real-world applications, practitioners are putting more and more focus on improving the uncertainty calibration of deep neural networks.",
+      "relevance_tags": null,
+      "gap_note": null,
+      "sources": [
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "popordanoska2022canonical",
+      "title": "A Consistent and Differentiable Lp Canonical Calibration Error Estimator",
+      "authors": [
+        "Teodora Popordanoska",
+        "Raphael Sayer",
+        "Matthew B. Blaschko"
+      ],
+      "year": 2022,
+      "venue": "Neural Information Processing Systems",
+      "arxiv_id": "2210.07810",
+      "doi": "10.48550/arXiv.2210.07810",
+      "s2_paper_id": "28bdb998beb8cfb4052c3c23cb434d565da9111a",
+      "url": "https://arxiv.org/abs/2210.07810",
+      "verified_via": [
+        "arxiv_api",
+        "semantic_scholar"
+      ],
+      "verification_evidence": "Semantic Scholar API returned title=\"A Consistent and Differentiable Lp Canonical Calibration Error Estimator\", year=2022, paperId=28bdb998beb8cfb4052c3c23cb434d565da9111a.",
+      "abstract_1sent": "Calibrated probabilistic classifiers are models whose predicted probabilities can directly be interpreted as uncertainty estimates.",
+      "relevance_tags": [
+        "calibration",
+        "metrics"
+      ],
+      "gap_note": "Provides a metric or reliability-diagram foundation for evaluating tabular post-hoc calibration before and after shift, but does not itself adapt a calibrator to covariate shift.",
+      "sources": [
+        "lit_sol",
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "perezlebel2023beyond",
+      "title": "Beyond calibration: estimating the grouping loss of modern neural networks",
+      "authors": [
+        "Alexandre Perez-Lebel",
+        "Marine Le Morvan",
+        "Ga\\\"el Varoquaux"
+      ],
+      "year": 2023,
+      "venue": null,
+      "arxiv_id": "2210.16315",
+      "doi": null,
+      "s2_paper_id": null,
+      "url": "https://arxiv.org/abs/2210.16315",
+      "verified_via": [
+        "arxiv_api"
+      ],
+      "verification_evidence": {
+        "arxiv": "Beyond calibration: estimating the grouping loss of modern neural networks (2022)"
+      },
+      "abstract_1sent": "The ability to ensure that a classifier gives reliable confidence scores is essential to ensure informed decision-making.",
+      "relevance_tags": null,
+      "gap_note": null,
+      "sources": [
+        "orchestrator_arxiv"
+      ]
+    },
+    {
+      "key": "wang2023survey",
+      "title": "Calibration in Deep Learning: A Survey of the State-of-the-Art",
+      "authors": [
+        "Cheng Wang"
+      ],
+      "year": 2023,
+      "venue": "arXiv.org",
+      "arxiv_id": "2308.01222",
+      "doi": "10.48550/arXiv.2308.01222",
+      "s2_paper_id": "e7923b875fb12eea26926955f5e3b836595fa142",
+      "url": "https://arxiv.org/abs/2308.01222",
+      "verified_via": "semantic_scholar",
+      "verification_evidence": "Semantic Scholar API returned title=\"Calibration in Deep Learning: A Survey of the State-of-the-Art\", year=2023, paperId=e7923b875fb12eea26926955f5e3b836595fa142.",
+      "abstract_1sent": "Calibrating deep neural models plays an important role in building reliable, robust AI systems in safety-critical applications.",
+      "relevance_tags": [
+        "calibration",
+        "metrics"
+      ],
+      "gap_note": "Supplies a post-hoc calibration method or diagnostic baseline that can be transferred to tabular models, but its reliability under covariate shift is not established here.",
+      "sources": [
+        "lit_sol"
+      ]
+    }
+  ]
+}
