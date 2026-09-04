@@ -135,5 +135,24 @@ Object is leftover identification + one decision. Skills in
 `.cursor/skills/seminar*`; files in `seminars/`. Pilot
 `2026-09-01-pagliarini.md` is SKIP on a thin listing (legal).
 
+## 2026-09-04 — Loneliness Ig Nobel track: dyad fragility
+
+Not a costume on peg-in-hole. Lock file: `LONELINESS.md`.
+
+**Question:** holding invitation rate and per-person show-up $p$ fixed,
+does wanting a dyad ($k=2$, $q=2$) produce more nights alone than wanting
+a pub ($k=24$), and does a length-biased Saturday-night feed overstate
+how gregarious the calendar of *events* is?
+
+**Killed angles:** retitling Feld 1991; ATUS-only isolation snapshots;
+left-on-read blogs; logit frailty that moves $E[p]$.
+
+**Kept:** independent Bernoulli flakes + hard quorum; $q=1$ kill;
+pubs→dyads quality shift; attendance-weighted feed vs event-weighted
+proposed mean; Gaussian copula with fixed margins.
+
+Perlman & Peplau 1981 chapter did not verify (no DOI/arxiv); discrepancy
+language cites Hawkley \& Cacioppo 2010 and Hughes et al.\ 2004 instead.
+
 
 

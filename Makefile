@@ -2,7 +2,7 @@ PYTHON ?= python3
 VENV ?= .venv
 BIN := $(VENV)/bin
 
-.PHONY: setup test smoke fresh-clone-test lint-results
+.PHONY: setup test smoke fresh-clone-test lint-results lonely-summary lonely-paper
 
 setup:
 	$(PYTHON) -m venv $(VENV)
@@ -35,3 +35,12 @@ summary:
 
 paper: summary
 	cd paper && latexmk -pdf main.tex
+
+lonely-summary:
+	$(BIN)/python experiments/exp10_quorum_lonely/run.py
+	$(BIN)/python scripts/summarize_lonely.py
+	$(BIN)/python scripts/make_lonely_numbers.py
+	$(BIN)/python figures/make_lonely.py
+
+lonely-paper: lonely-summary
+	cd paper && latexmk -pdf lonely.tex

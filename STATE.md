@@ -1,10 +1,9 @@
 # STATE.md
 
-**Phase:** P5 dual-regime (swarm GO bar; paper compiled)
-**Last completed step:** exp09 5/5 seeds; summary_dual.json; 6-page PDF;
-kill criteria none fired.
-**Next action:** none required for the locked stack. Optional P6 re-review.
-**Updated:** 2026-08-31
+**Phase:** loneliness Ig Nobel track shipped alongside frozen dual-regime
+**Last completed step:** exp10 120/120; 3-page `paper/lonely.pdf`; kill q=1 held.
+**Next action:** none required for this track. Dual-regime stack still frozen.
+**Updated:** 2026-09-04
 
 ## Selected hypothesis
 

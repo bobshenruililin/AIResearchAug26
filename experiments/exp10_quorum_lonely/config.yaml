@@ -1,0 +1,17 @@
+experiment: exp10_quorum_lonely
+seeds: [0, 1, 2, 3, 4]
+n_people: 2400
+n_nights: 30
+k_small: 2
+k_dinner: 4
+k_large: 24
+frac_small: 0.5
+p_show_list: [0.50, 0.60, 0.70, 0.80]
+q_rules: ["one", "pair", "half"]
+rho_list: [0.0, 0.5]
+k_grid: [2, 3, 4, 6, 8, 12, 24, 48]
+overinvite_m: [1.0, 1.5, 2.0, 3.0, 4.0, 6.0, 8.0]
+headline_p: 0.70
+headline_q: pair
+headline_rho: 0.0
+frailty_mc_events: 40000

@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
-"""Verify citations against arXiv and Semantic Scholar; write paper/verified.bib.
+"""Verify citations against arXiv, Crossref, and Semantic Scholar; write BibTeX.
 
-Reads paper/candidates.json (list of {title, arxiv_id?, doi?, s2_paper_id?})
-and keeps only records that the live APIs confirm.
+Reads a candidates JSON list of {title, arxiv_id?, doi?, s2_paper_id?}
+and keeps only records that a live API confirms, with a title-overlap check
+so a wrong arXiv id cannot launder a different paper.
 """
 
 from __future__ import annotations
@@ -16,12 +17,29 @@ from pathlib import Path
 
 ARXIV = "http://export.arxiv.org/api/query"
 S2 = "https://api.semanticscholar.org/graph/v1"
+CROSSREF = "https://api.crossref.org/works"
 
 
 def get(url: str) -> bytes:
-    req = urllib.request.Request(url, headers={"User-Agent": "calibshift-verify/0.1"})
+    req = urllib.request.Request(
+        url,
+        headers={"User-Agent": "calibshift-verify/0.2 (mailto:bobshenruililin@gmail.com)"},
+    )
     with urllib.request.urlopen(req, timeout=30) as resp:
         return resp.read()
+
+
+def titles_match(a: str, b: str) -> bool:
+    stop = {"the", "a", "an", "of", "and", "in", "on", "for", "to", "with", "from", "your"}
+
+    def toks(s: str) -> set[str]:
+        cleaned = "".join(ch.lower() if ch.isalnum() else " " for ch in s)
+        return {t for t in cleaned.split() if t not in stop and len(t) > 2}
+
+    A, B = toks(a), toks(b)
+    if not A or not B:
+        return False
+    return (len(A & B) / len(A)) >= 0.5
 
 
 def verify_arxiv(arxiv_id: str) -> dict | None:
@@ -37,8 +55,37 @@ def verify_arxiv(arxiv_id: str) -> dict | None:
     return {"title": title, "arxiv_id": arxiv_id}
 
 
+def verify_doi(doi: str) -> dict | None:
+    raw = get(f"{CROSSREF}/{urllib.parse.quote(doi)}")
+    data = json.loads(raw.decode())
+    msg = data.get("message") or {}
+    titles = msg.get("title") or []
+    if not titles:
+        return None
+    year = None
+    issued = (msg.get("issued") or {}).get("date-parts") or [[]]
+    if issued and issued[0]:
+        year = issued[0][0]
+    authors = []
+    for a in msg.get("author") or []:
+        given = a.get("given") or ""
+        family = a.get("family") or ""
+        name = (given + " " + family).strip() or a.get("name")
+        if name:
+            authors.append(name)
+    return {
+        "title": titles[0],
+        "year": year,
+        "authors": authors,
+        "doi": doi,
+        "container": (msg.get("container-title") or [None])[0],
+    }
+
+
 def verify_s2(query: str) -> dict | None:
-    q = urllib.parse.urlencode({"query": query, "limit": 1, "fields": "title,year,externalIds,authors,venue"})
+    q = urllib.parse.urlencode(
+        {"query": query, "limit": 1, "fields": "title,year,externalIds,authors,venue"}
+    )
     raw = get(f"{S2}/paper/search?{q}")
     data = json.loads(raw.decode())
     papers = data.get("data") or []
@@ -60,21 +107,35 @@ def main() -> None:
         rec = dict(c)
         ok = False
         evidence = []
+        want = c.get("title") or ""
         if c.get("arxiv_id"):
             try:
                 ar = verify_arxiv(c["arxiv_id"])
                 time.sleep(0.2)
-                if ar and ar["title"]:
+                if ar and ar["title"] and titles_match(want, ar["title"]):
                     rec["arxiv_verified_title"] = ar["title"]
                     evidence.append("arxiv_api")
                     ok = True
+                elif ar and ar["title"]:
+                    rec["arxiv_title_mismatch"] = ar["title"]
             except Exception as exc:  # noqa: BLE001
                 rec["arxiv_error"] = str(exc)
+        if not ok and c.get("doi"):
+            try:
+                cr = verify_doi(c["doi"])
+                time.sleep(0.15)
+                if cr and cr.get("title") and titles_match(want, cr["title"]):
+                    rec["crossref_verified_title"] = cr["title"]
+                    rec["crossref_year"] = cr.get("year")
+                    evidence.append("crossref")
+                    ok = True
+            except Exception as exc:  # noqa: BLE001
+                rec["crossref_error"] = str(exc)
         if not ok:
             try:
-                s2 = verify_s2(c.get("title") or c.get("arxiv_id") or "")
-                time.sleep(0.4)
-                if s2 and s2.get("title"):
+                s2 = verify_s2(want or c.get("arxiv_id") or "")
+                time.sleep(0.6)
+                if s2 and s2.get("title") and titles_match(want, s2["title"]):
                     rec["s2_verified_title"] = s2["title"]
                     rec["s2_year"] = s2.get("year")
                     evidence.append("semantic_scholar")
@@ -88,15 +149,22 @@ def main() -> None:
             rejected.append(rec)
         print(f"[{i+1}/{len(cands)}] {'OK' if ok else 'REJECT'} {c.get('title', '')[:70]}")
 
-    Path(args.out_json).write_text(json.dumps({"verified": verified, "rejected": rejected}, indent=2) + "\n")
+    Path(args.out_json).write_text(
+        json.dumps({"verified": verified, "rejected": rejected}, indent=2) + "\n"
+    )
     lines = ["% Auto-generated by scripts/verify_citations.py. Do not add unverified entries.\n"]
     for rec in verified:
         key = rec.get("key") or rec.get("arxiv_id") or f"paper{len(lines)}"
-        title = rec.get("arxiv_verified_title") or rec.get("s2_verified_title") or rec.get("title")
+        title = (
+            rec.get("arxiv_verified_title")
+            or rec.get("crossref_verified_title")
+            or rec.get("s2_verified_title")
+            or rec.get("title")
+        )
         authors = rec.get("authors") or "Unknown"
         if isinstance(authors, list):
             authors = " and ".join(authors)
-        year = rec.get("year") or rec.get("s2_year") or "n.d."
+        year = rec.get("year") or rec.get("crossref_year") or rec.get("s2_year") or "n.d."
         lines.append(f"@misc{{{key},")
         lines.append(f"  title = {{{title}}},")
         lines.append(f"  author = {{{authors}}},")

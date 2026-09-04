@@ -22,6 +22,7 @@ paper/*.toc
 paper/*.synctex.gz
 *.pdf
 !paper/main.pdf
+!paper/lonely.pdf
 .DS_Store
 tmp/
 /tmp_clone_test/
